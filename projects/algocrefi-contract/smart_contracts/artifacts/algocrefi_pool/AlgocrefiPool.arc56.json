@@ -1,0 +1,124 @@
+{
+    "name": "AlgocrefiPool",
+    "structs": {},
+    "methods": [
+        {
+            "name": "deposit",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "amount"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            },
+            "actions": {
+                "create": [],
+                "call": [
+                    "NoOp"
+                ]
+            },
+            "readonly": false,
+            "events": [],
+            "recommendations": {}
+        },
+        {
+            "name": "get_pool",
+            "args": [],
+            "returns": {
+                "type": "uint64"
+            },
+            "actions": {
+                "create": [],
+                "call": [
+                    "NoOp"
+                ]
+            },
+            "readonly": false,
+            "events": [],
+            "recommendations": {}
+        }
+    ],
+    "arcs": [
+        22,
+        28
+    ],
+    "networks": {},
+    "state": {
+        "schema": {
+            "global": {
+                "ints": 1,
+                "bytes": 0
+            },
+            "local": {
+                "ints": 0,
+                "bytes": 0
+            }
+        },
+        "keys": {
+            "global": {
+                "pool": {
+                    "keyType": "AVMString",
+                    "valueType": "AVMUint64",
+                    "key": "cG9vbA=="
+                }
+            },
+            "local": {},
+            "box": {}
+        },
+        "maps": {
+            "global": {},
+            "local": {},
+            "box": {}
+        }
+    },
+    "bareActions": {
+        "create": [
+            "NoOp"
+        ],
+        "call": []
+    },
+    "sourceInfo": {
+        "approval": {
+            "sourceInfo": [
+                {
+                    "pc": [
+                        75,
+                        85
+                    ],
+                    "errorMessage": "check self.pool exists"
+                },
+                {
+                    "pc": [
+                        70
+                    ],
+                    "errorMessage": "invalid number of bytes for arc4.uint64"
+                }
+            ],
+            "pcOffsetMethod": "none"
+        },
+        "clear": {
+            "sourceInfo": [],
+            "pcOffsetMethod": "none"
+        }
+    },
+    "source": {
+        "approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAwIDEKICAgIGJ5dGVjYmxvY2sgInBvb2wiCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYm56IG1haW5fYWZ0ZXJfaWZfZWxzZUAyCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6OAogICAgLy8gc2VsZi5wb29sID0gVUludDY0KDApCiAgICBieXRlY18wIC8vICJwb29sIgogICAgaW50Y18wIC8vIDAKICAgIGFwcF9nbG9iYWxfcHV0CgptYWluX2FmdGVyX2lmX2Vsc2VAMjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBBbGdvY3JlZmlQb29sKEFSQzRDb250cmFjdCk6CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUAxMQogICAgdHhuIE9uQ29tcGxldGlvbgogICAgIQogICAgYXNzZXJ0CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0CiAgICBwdXNoYnl0ZXNzIDB4NmUyZWJjOWIgMHg4ZWE5NmZhZiAvLyBtZXRob2QgImRlcG9zaXQodWludDY0KXZvaWQiLCBtZXRob2QgImdldF9wb29sKCl1aW50NjQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBkZXBvc2l0IGdldF9wb29sCiAgICBlcnIKCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTE6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgJiYKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfcG9vbC5jb250cmFjdC5BbGdvY3JlZmlQb29sLmRlcG9zaXRbcm91dGluZ10oKSAtPiB2b2lkOgpkZXBvc2l0OgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjEwCiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDgKICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQudWludDY0CiAgICBidG9pCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6MTIKICAgIC8vIHNlbGYucG9vbCArPSBhbW91bnQKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18wIC8vICJwb29sIgogICAgYXBwX2dsb2JhbF9nZXRfZXgKICAgIGFzc2VydCAvLyBjaGVjayBzZWxmLnBvb2wgZXhpc3RzCiAgICArCiAgICBieXRlY18wIC8vICJwb29sIgogICAgc3dhcAogICAgYXBwX2dsb2JhbF9wdXQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weToxMAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBpbnRjXzEgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9wb29sLmNvbnRyYWN0LkFsZ29jcmVmaVBvb2wuZ2V0X3Bvb2xbcm91dGluZ10oKSAtPiB2b2lkOgpnZXRfcG9vbDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weToxNgogICAgLy8gcmV0dXJuIHNlbGYucG9vbAogICAgaW50Y18wIC8vIDAKICAgIGJ5dGVjXzAgLy8gInBvb2wiCiAgICBhcHBfZ2xvYmFsX2dldF9leAogICAgYXNzZXJ0IC8vIGNoZWNrIHNlbGYucG9vbCBleGlzdHMKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weToxNAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBpdG9iCiAgICBwdXNoYnl0ZXMgMHgxNTFmN2M3NQogICAgc3dhcAogICAgY29uY2F0CiAgICBsb2cKICAgIGludGNfMSAvLyAxCiAgICByZXR1cm4K",
+        "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="
+    },
+    "byteCode": {
+        "approval": "CyACAAEmAQRwb29sMRhAAAMoImcxG0EAHTEZFEQxGESCAgRuLrybBI6pb682GgCOAgAJAB0AMRkUMRgUEEM2GgFJFYEIEkQXIihlRAgoTGcjQyIoZUQWgAQVH3x1TFCwI0M=",
+        "clear": "C4EBQw=="
+    },
+    "compilerInfo": {
+        "compiler": "puya",
+        "compilerVersion": {
+            "major": 5,
+            "minor": 7,
+            "patch": 1
+        }
+    },
+    "events": [],
+    "templateVariables": {}
+}

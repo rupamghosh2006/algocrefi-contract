@@ -1,0 +1,83 @@
+#pragma version 11
+#pragma typetrack false
+
+// algopy.arc4.ARC4Contract.approval_program() -> uint64:
+main:
+    intcblock 0 1
+    bytecblock "pool"
+    txn ApplicationID
+    bnz main_after_if_else@2
+    // smart_contracts/algocrefi_pool/contract.py:8
+    // self.pool = UInt64(0)
+    bytec_0 // "pool"
+    intc_0 // 0
+    app_global_put
+
+main_after_if_else@2:
+    // smart_contracts/algocrefi_pool/contract.py:5
+    // class AlgocrefiPool(ARC4Contract):
+    txn NumAppArgs
+    bz main___algopy_default_create@11
+    txn OnCompletion
+    !
+    assert
+    txn ApplicationID
+    assert
+    pushbytess 0x6e2ebc9b 0x8ea96faf // method "deposit(uint64)void", method "get_pool()uint64"
+    txna ApplicationArgs 0
+    match deposit get_pool
+    err
+
+main___algopy_default_create@11:
+    txn OnCompletion
+    !
+    txn ApplicationID
+    !
+    &&
+    return
+
+
+// smart_contracts.algocrefi_pool.contract.AlgocrefiPool.deposit[routing]() -> void:
+deposit:
+    // smart_contracts/algocrefi_pool/contract.py:10
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    pushint 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algocrefi_pool/contract.py:12
+    // self.pool += amount
+    intc_0 // 0
+    bytec_0 // "pool"
+    app_global_get_ex
+    assert // check self.pool exists
+    +
+    bytec_0 // "pool"
+    swap
+    app_global_put
+    // smart_contracts/algocrefi_pool/contract.py:10
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
+// smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_pool[routing]() -> void:
+get_pool:
+    // smart_contracts/algocrefi_pool/contract.py:16
+    // return self.pool
+    intc_0 // 0
+    bytec_0 // "pool"
+    app_global_get_ex
+    assert // check self.pool exists
+    // smart_contracts/algocrefi_pool/contract.py:14
+    // @abimethod()
+    itob
+    pushbytes 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
