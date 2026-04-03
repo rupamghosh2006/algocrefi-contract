@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "uint64", "name": "amount"}], "name": "deposit", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [], "name": "get_pool", "returns": {"type": "uint64"}, "events": [], "readonly": false, "recommendations": {}}], "name": "AlgocrefiPool", "state": {"keys": {"box": {}, "global": {"pool": {"key": "cG9vbA==", "keyType": "AVMString", "valueType": "AVMUint64"}}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 1}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CyACAAEmAQRwb29sMRhAAAMoImcxG0EAHTEZFEQxGESCAgRuLrybBI6pb682GgCOAgAJAB0AMRkUMRgUEEM2GgFJFYEIEkQXIihlRAgoTGcjQyIoZUQWgAQVH3x1TFCwI0M=", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAwIDEKICAgIGJ5dGVjYmxvY2sgInBvb2wiCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYm56IG1haW5fYWZ0ZXJfaWZfZWxzZUAyCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6OAogICAgLy8gc2VsZi5wb29sID0gVUludDY0KDApCiAgICBieXRlY18wIC8vICJwb29sIgogICAgaW50Y18wIC8vIDAKICAgIGFwcF9nbG9iYWxfcHV0CgptYWluX2FmdGVyX2lmX2Vsc2VAMjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBBbGdvY3JlZmlQb29sKEFSQzRDb250cmFjdCk6CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUAxMQogICAgdHhuIE9uQ29tcGxldGlvbgogICAgIQogICAgYXNzZXJ0CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0CiAgICBwdXNoYnl0ZXNzIDB4NmUyZWJjOWIgMHg4ZWE5NmZhZiAvLyBtZXRob2QgImRlcG9zaXQodWludDY0KXZvaWQiLCBtZXRob2QgImdldF9wb29sKCl1aW50NjQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBkZXBvc2l0IGdldF9wb29sCiAgICBlcnIKCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTE6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgJiYKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfcG9vbC5jb250cmFjdC5BbGdvY3JlZmlQb29sLmRlcG9zaXRbcm91dGluZ10oKSAtPiB2b2lkOgpkZXBvc2l0OgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjEwCiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDgKICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQudWludDY0CiAgICBidG9pCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6MTIKICAgIC8vIHNlbGYucG9vbCArPSBhbW91bnQKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18wIC8vICJwb29sIgogICAgYXBwX2dsb2JhbF9nZXRfZXgKICAgIGFzc2VydCAvLyBjaGVjayBzZWxmLnBvb2wgZXhpc3RzCiAgICArCiAgICBieXRlY18wIC8vICJwb29sIgogICAgc3dhcAogICAgYXBwX2dsb2JhbF9wdXQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weToxMAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBpbnRjXzEgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9wb29sLmNvbnRyYWN0LkFsZ29jcmVmaVBvb2wuZ2V0X3Bvb2xbcm91dGluZ10oKSAtPiB2b2lkOgpnZXRfcG9vbDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weToxNgogICAgLy8gcmV0dXJuIHNlbGYucG9vbAogICAgaW50Y18wIC8vIDAKICAgIGJ5dGVjXzAgLy8gInBvb2wiCiAgICBhcHBfZ2xvYmFsX2dldF9leAogICAgYXNzZXJ0IC8vIGNoZWNrIHNlbGYucG9vbCBleGlzdHMKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weToxNAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBpdG9iCiAgICBwdXNoYnl0ZXMgMHgxNTFmN2M3NQogICAgc3dhcAogICAgY29uY2F0CiAgICBsb2cKICAgIGludGNfMSAvLyAxCiAgICByZXR1cm4K", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [75, 85], "errorMessage": "check self.pool exists"}, {"pc": [70], "errorMessage": "invalid number of bytes for arc4.uint64"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
+_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "uint64", "name": "amount"}], "name": "deposit", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "uint64", "name": "amount"}], "name": "withdraw", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [], "name": "get_pool", "returns": {"type": "uint64"}, "events": [], "readonly": false, "recommendations": {}}], "name": "AlgocrefiPool", "state": {"keys": {"box": {}, "global": {"pool": {"key": "cG9vbA==", "keyType": "AVMString", "valueType": "AVMUint64"}}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 1}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CyADAAEIJgEEcG9vbDEYQAADKCJnMRtBACQxGRREMRhEggMEbi68mwQh8d3/BI6pb682GgCOAwAJABwANQAxGRQxGBQQQzYaAUkVJBJEFyIoZUQIKExnI0M2GgFJFSQSRBciKGVESUsCD0RMCShMZyNDIihlRBaABBUffHVMULAjQw==", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAwIDEgOAogICAgYnl0ZWNibG9jayAicG9vbCIKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfcG9vbC9jb250cmFjdC5weTo4CiAgICAvLyBzZWxmLnBvb2wgPSBVSW50NjQoMCkKICAgIGJ5dGVjXzAgLy8gInBvb2wiCiAgICBpbnRjXzAgLy8gMAogICAgYXBwX2dsb2JhbF9wdXQKCm1haW5fYWZ0ZXJfaWZfZWxzZUAyOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjUKICAgIC8vIGNsYXNzIEFsZ29jcmVmaVBvb2woQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDEyCiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICBhc3NlcnQKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQKICAgIHB1c2hieXRlc3MgMHg2ZTJlYmM5YiAweDIxZjFkZGZmIDB4OGVhOTZmYWYgLy8gbWV0aG9kICJkZXBvc2l0KHVpbnQ2NCl2b2lkIiwgbWV0aG9kICJ3aXRoZHJhdyh1aW50NjQpdm9pZCIsIG1ldGhvZCAiZ2V0X3Bvb2woKXVpbnQ2NCIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDAKICAgIG1hdGNoIGRlcG9zaXQgd2l0aGRyYXcgZ2V0X3Bvb2wKICAgIGVycgoKbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUAxMjoKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICAmJgogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9wb29sLmNvbnRyYWN0LkFsZ29jcmVmaVBvb2wuZGVwb3NpdFtyb3V0aW5nXSgpIC0+IHZvaWQ6CmRlcG9zaXQ6CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6MTAKICAgIC8vIEBhYmltZXRob2QoKQogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgZHVwCiAgICBsZW4KICAgIGludGNfMiAvLyA4CiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnVpbnQ2NAogICAgYnRvaQogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjEyCiAgICAvLyBzZWxmLnBvb2wgKz0gYW1vdW50CiAgICBpbnRjXzAgLy8gMAogICAgYnl0ZWNfMCAvLyAicG9vbCIKICAgIGFwcF9nbG9iYWxfZ2V0X2V4CiAgICBhc3NlcnQgLy8gY2hlY2sgc2VsZi5wb29sIGV4aXN0cwogICAgKwogICAgYnl0ZWNfMCAvLyAicG9vbCIKICAgIHN3YXAKICAgIGFwcF9nbG9iYWxfcHV0CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6MTAKICAgIC8vIEBhYmltZXRob2QoKQogICAgaW50Y18xIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfcG9vbC5jb250cmFjdC5BbGdvY3JlZmlQb29sLndpdGhkcmF3W3JvdXRpbmddKCkgLT4gdm9pZDoKd2l0aGRyYXc6CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6MTQKICAgIC8vIEBhYmltZXRob2QoKQogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgZHVwCiAgICBsZW4KICAgIGludGNfMiAvLyA4CiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnVpbnQ2NAogICAgYnRvaQogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjE2LTE3CiAgICAvLyAjIHNpbXBsZSBzdWJ0cmFjdGlvbiAoYmFja2VuZCBlbnN1cmVzIGNvcnJlY3RuZXNzKQogICAgLy8gYXNzZXJ0IHNlbGYucG9vbCA+PSBhbW91bnQKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18wIC8vICJwb29sIgogICAgYXBwX2dsb2JhbF9nZXRfZXgKICAgIGFzc2VydCAvLyBjaGVjayBzZWxmLnBvb2wgZXhpc3RzCiAgICBkdXAKICAgIGRpZyAyCiAgICA+PQogICAgYXNzZXJ0CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX3Bvb2wvY29udHJhY3QucHk6MTgKICAgIC8vIHNlbGYucG9vbCAtPSBhbW91bnQKICAgIHN3YXAKICAgIC0KICAgIGJ5dGVjXzAgLy8gInBvb2wiCiAgICBzd2FwCiAgICBhcHBfZ2xvYmFsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjE0CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIGludGNfMSAvLyAxCiAgICByZXR1cm4KCgovLyBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX3Bvb2wuY29udHJhY3QuQWxnb2NyZWZpUG9vbC5nZXRfcG9vbFtyb3V0aW5nXSgpIC0+IHZvaWQ6CmdldF9wb29sOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjIyCiAgICAvLyByZXR1cm4gc2VsZi5wb29sCiAgICBpbnRjXzAgLy8gMAogICAgYnl0ZWNfMCAvLyAicG9vbCIKICAgIGFwcF9nbG9iYWxfZ2V0X2V4CiAgICBhc3NlcnQgLy8gY2hlY2sgc2VsZi5wb29sIGV4aXN0cwogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9wb29sL2NvbnRyYWN0LnB5OjIwCiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIGl0b2IKICAgIHB1c2hieXRlcyAweDE1MWY3Yzc1CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGxvZwogICAgaW50Y18xIC8vIDEKICAgIHJldHVybgo=", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [82, 101, 117], "errorMessage": "check self.pool exists"}, {"pc": [77, 96], "errorMessage": "invalid number of bytes for arc4.uint64"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -73,6 +73,15 @@ class DepositArgs:
     def abi_method_signature(self) -> str:
         return "deposit(uint64)void"
 
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class WithdrawArgs:
+    """Dataclass for withdraw arguments"""
+    amount: int
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "withdraw(uint64)void"
+
 
 class AlgocrefiPoolParams:
     def __init__(self, app_client: algokit_utils.AppClient):
@@ -88,6 +97,19 @@ class AlgocrefiPoolParams:
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
             "method": "deposit(uint64)void",
+            "args": method_args,
+        }))
+
+    def withdraw(
+        self,
+        args: tuple[int] | WithdrawArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "withdraw(uint64)void",
             "args": method_args,
         }))
 
@@ -130,6 +152,19 @@ class AlgocrefiPoolCreateTransactionParams:
             "args": method_args,
         }))
 
+    def withdraw(
+        self,
+        args: tuple[int] | WithdrawArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "withdraw(uint64)void",
+            "args": method_args,
+        }))
+
     def get_pool(
         self,
         params: algokit_utils.CommonAppCallParams | None = None
@@ -167,6 +202,22 @@ class AlgocrefiPoolSend:
         response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
             "method": "deposit(uint64)void",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+
+    def withdraw(
+        self,
+        args: tuple[int] | WithdrawArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[None]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "withdraw(uint64)void",
             "args": method_args,
         }), send_params=send_params)
         parsed_response = response
@@ -397,6 +448,12 @@ class AlgocrefiPoolClient:
     @typing.overload
     def decode_return_value(
         self,
+        method: typing.Literal["withdraw(uint64)void"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
         method: typing.Literal["get_pool()uint64"],
         return_value: algokit_utils.ABIReturn | None
     ) -> int | None: ...
@@ -602,6 +659,26 @@ class AlgocrefiPoolFactoryCreateParams:
             compilation_params=compilation_params
         )
 
+    def withdraw(
+        self,
+        args: tuple[int] | WithdrawArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the withdraw(uint64)void ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "withdraw(uint64)void",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
     def get_pool(
         self,
         *,
@@ -736,6 +813,24 @@ class AlgocrefiPoolComposer:
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
                 "deposit(uint64)void", v
+            )
+        )
+        return self
+
+    def withdraw(
+        self,
+        args: tuple[int] | WithdrawArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AlgocrefiPoolComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.withdraw(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "withdraw(uint64)void", v
             )
         )
         return self

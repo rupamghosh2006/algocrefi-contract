@@ -3,7 +3,7 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 0 1
+    intcblock 0 1 8
     bytecblock "pool"
     txn ApplicationID
     bnz main_after_if_else@2
@@ -17,18 +17,18 @@ main_after_if_else@2:
     // smart_contracts/algocrefi_pool/contract.py:5
     // class AlgocrefiPool(ARC4Contract):
     txn NumAppArgs
-    bz main___algopy_default_create@11
+    bz main___algopy_default_create@12
     txn OnCompletion
     !
     assert
     txn ApplicationID
     assert
-    pushbytess 0x6e2ebc9b 0x8ea96faf // method "deposit(uint64)void", method "get_pool()uint64"
+    pushbytess 0x6e2ebc9b 0x21f1ddff 0x8ea96faf // method "deposit(uint64)void", method "withdraw(uint64)void", method "get_pool()uint64"
     txna ApplicationArgs 0
-    match deposit get_pool
+    match deposit withdraw get_pool
     err
 
-main___algopy_default_create@11:
+main___algopy_default_create@12:
     txn OnCompletion
     !
     txn ApplicationID
@@ -44,7 +44,7 @@ deposit:
     txna ApplicationArgs 1
     dup
     len
-    pushint 8
+    intc_2 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
@@ -64,15 +64,50 @@ deposit:
     return
 
 
+// smart_contracts.algocrefi_pool.contract.AlgocrefiPool.withdraw[routing]() -> void:
+withdraw:
+    // smart_contracts/algocrefi_pool/contract.py:14
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algocrefi_pool/contract.py:16-17
+    // # simple subtraction (backend ensures correctness)
+    // assert self.pool >= amount
+    intc_0 // 0
+    bytec_0 // "pool"
+    app_global_get_ex
+    assert // check self.pool exists
+    dup
+    dig 2
+    >=
+    assert
+    // smart_contracts/algocrefi_pool/contract.py:18
+    // self.pool -= amount
+    swap
+    -
+    bytec_0 // "pool"
+    swap
+    app_global_put
+    // smart_contracts/algocrefi_pool/contract.py:14
+    // @abimethod()
+    intc_1 // 1
+    return
+
+
 // smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_pool[routing]() -> void:
 get_pool:
-    // smart_contracts/algocrefi_pool/contract.py:16
+    // smart_contracts/algocrefi_pool/contract.py:22
     // return self.pool
     intc_0 // 0
     bytec_0 // "pool"
     app_global_get_ex
     assert // check self.pool exists
-    // smart_contracts/algocrefi_pool/contract.py:14
+    // smart_contracts/algocrefi_pool/contract.py:20
     // @abimethod()
     itob
     pushbytes 0x151f7c75

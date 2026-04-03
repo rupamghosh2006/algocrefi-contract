@@ -12,5 +12,11 @@ class AlgocrefiPool(ARC4Contract):
         self.pool += amount
 
     @abimethod()
+    def withdraw(self, amount: UInt64) -> None:
+        # simple subtraction (backend ensures correctness)
+        assert self.pool >= amount
+        self.pool -= amount
+
+    @abimethod()
     def get_pool(self) -> UInt64:
         return self.pool
