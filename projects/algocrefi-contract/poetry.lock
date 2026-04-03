@@ -6,7 +6,7 @@ version = "2.2.0"
 description = "Algorand typed client Generator"
 optional = false
 python-versions = "<4.0,>=3.10"
-groups = ["dev"]
+groups = ["main", "dev"]
 files = [
     {file = "algokit_client_generator-2.2.0-py3-none-any.whl", hash = "sha256:f723aa77fb265b38e98836b13b830789c46467ba647815ff4a0a7dee3f64b74a"},
 ]
@@ -1089,4 +1089,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "ce88e9aba6fb832ac0d633cb3574c50007ae5fb4b965142ecc199745ed250de8"
+content-hash = "e1d4cf1ea924a1f491eb0cc15847f9de43f9c884bd42d93eeee0650791e6232d"

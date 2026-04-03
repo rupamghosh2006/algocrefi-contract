@@ -1,0 +1,137 @@
+#pragma version 11
+#pragma typetrack false
+
+// algopy.arc4.ARC4Contract.approval_program() -> uint64:
+main:
+    intcblock 0 8 1
+    bytecblock "loan" "collateral"
+    txn ApplicationID
+    bnz main_after_if_else@2
+    // smart_contracts/algocrefi_lending/contract.py:8
+    // self.loan = UInt64(0)
+    bytec_0 // "loan"
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:9
+    // self.collateral = UInt64(0)
+    bytec_1 // "collateral"
+    intc_0 // 0
+    app_global_put
+
+main_after_if_else@2:
+    // smart_contracts/algocrefi_lending/contract.py:5
+    // class AlgocrefiLending(ARC4Contract):
+    txn NumAppArgs
+    bz main___algopy_default_create@12
+    txn OnCompletion
+    !
+    assert
+    txn ApplicationID
+    assert
+    pushbytess 0x2502152d 0x71e982c5 0x8980c418 // method "borrow(uint64,uint64)void", method "repay(uint64)void", method "get_loan()uint64"
+    txna ApplicationArgs 0
+    match borrow repay get_loan
+    err
+
+main___algopy_default_create@12:
+    txn OnCompletion
+    !
+    txn ApplicationID
+    !
+    &&
+    return
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending.borrow[routing]() -> void:
+borrow:
+    // smart_contracts/algocrefi_lending/contract.py:11
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_1 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    txna ApplicationArgs 2
+    dup
+    len
+    intc_1 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algocrefi_lending/contract.py:13-14
+    // # simple rule
+    // assert collateral_amount >= amount
+    dup
+    dig 2
+    >=
+    assert
+    // smart_contracts/algocrefi_lending/contract.py:16
+    // self.loan = amount
+    bytec_0 // "loan"
+    uncover 2
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:17
+    // self.collateral = collateral_amount
+    bytec_1 // "collateral"
+    swap
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:11
+    // @abimethod()
+    intc_2 // 1
+    return
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending.repay[routing]() -> void:
+repay:
+    // smart_contracts/algocrefi_lending/contract.py:19
+    // @abimethod()
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_1 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    btoi
+    // smart_contracts/algocrefi_lending/contract.py:21
+    // assert amount >= self.loan
+    intc_0 // 0
+    bytec_0 // "loan"
+    app_global_get_ex
+    assert // check self.loan exists
+    >=
+    assert
+    // smart_contracts/algocrefi_lending/contract.py:23
+    // self.loan = UInt64(0)
+    bytec_0 // "loan"
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:24
+    // self.collateral = UInt64(0)
+    bytec_1 // "collateral"
+    intc_0 // 0
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:19
+    // @abimethod()
+    intc_2 // 1
+    return
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_loan[routing]() -> void:
+get_loan:
+    // smart_contracts/algocrefi_lending/contract.py:28
+    // return self.loan
+    intc_0 // 0
+    bytec_0 // "loan"
+    app_global_get_ex
+    assert // check self.loan exists
+    // smart_contracts/algocrefi_lending/contract.py:26
+    // @abimethod()
+    itob
+    pushbytes 0x151f7c75
+    swap
+    concat
+    log
+    intc_2 // 1
+    return
