@@ -38,13 +38,13 @@ def import_contract(folder: Path) -> Path:
     else:
         raise Exception(f"Contract not found in {folder}")
 
-
 def import_deploy_if_exists(folder: Path) -> Callable[[], None] | None:
     try:
         module_name = f"{folder.parent.name}.{folder.name}.deploy_config"
         deploy_module = importlib.import_module(module_name)
         return deploy_module.deploy
-    except ImportError:
+    except Exception as e:   # 🔥 catch EVERYTHING
+        print(f"❌ Failed to load deploy_config for {folder.name}: {e}")
         return None
 
 
