@@ -1,4 +1,4 @@
-from algopy import ARC4Contract, UInt64, Txn, LocalState
+from algopy import ARC4Contract, UInt64, Txn, LocalState, itxn
 from algopy.arc4 import abimethod
 
 
@@ -37,10 +37,19 @@ class AlgoPool(ARC4Contract):
         assert self.total_shares > 0, "No shares in pool"
 
         algo = (share_amount * self.pool) // self.total_shares
+        assert algo > 0, "Nothing to withdraw"
 
+        # Update accounting first
         self.pool -= algo
         self.total_shares -= share_amount
         self.shares[Txn.sender] = user_shares - share_amount
+
+        # Payout real ALGO from app account to investor
+        itxn.Payment(
+            receiver=Txn.sender,
+            amount=algo,
+            fee=UInt64(0),
+        ).submit()
 
         return algo
 

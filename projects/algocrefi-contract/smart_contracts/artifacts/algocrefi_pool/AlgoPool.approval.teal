@@ -214,7 +214,12 @@ withdraw:
     *
     uncover 2
     /
-    // smart_contracts/algocrefi_pool/contract.py:41
+    // smart_contracts/algocrefi_pool/contract.py:40
+    // assert algo > 0, "Nothing to withdraw"
+    dup
+    assert // Nothing to withdraw
+    // smart_contracts/algocrefi_pool/contract.py:42-43
+    // # Update accounting first
     // self.pool -= algo
     swap
     dig 1
@@ -222,7 +227,7 @@ withdraw:
     bytec_0 // "pool"
     swap
     app_global_put
-    // smart_contracts/algocrefi_pool/contract.py:42
+    // smart_contracts/algocrefi_pool/contract.py:44
     // self.total_shares -= share_amount
     intc_0 // 0
     bytec_1 // "total_shares"
@@ -233,7 +238,7 @@ withdraw:
     bytec_1 // "total_shares"
     swap
     app_global_put
-    // smart_contracts/algocrefi_pool/contract.py:43
+    // smart_contracts/algocrefi_pool/contract.py:45
     // self.shares[Txn.sender] = user_shares - share_amount
     swap
     uncover 2
@@ -242,6 +247,37 @@ withdraw:
     bytec_2 // "shares"
     uncover 2
     app_local_put
+    // smart_contracts/algocrefi_pool/contract.py:47-52
+    // # Payout real ALGO from app account to investor
+    // itxn.Payment(
+    //     receiver=Txn.sender,
+    //     amount=algo,
+    //     fee=UInt64(0),
+    // ).submit()
+    itxn_begin
+    // smart_contracts/algocrefi_pool/contract.py:49
+    // receiver=Txn.sender,
+    txn Sender
+    dig 1
+    itxn_field Amount
+    itxn_field Receiver
+    // smart_contracts/algocrefi_pool/contract.py:47-48
+    // # Payout real ALGO from app account to investor
+    // itxn.Payment(
+    intc_1 // pay
+    itxn_field TypeEnum
+    // smart_contracts/algocrefi_pool/contract.py:51
+    // fee=UInt64(0),
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/algocrefi_pool/contract.py:47-52
+    // # Payout real ALGO from app account to investor
+    // itxn.Payment(
+    //     receiver=Txn.sender,
+    //     amount=algo,
+    //     fee=UInt64(0),
+    // ).submit()
+    itxn_submit
     // smart_contracts/algocrefi_pool/contract.py:32
     // @abimethod()
     itob
@@ -255,13 +291,13 @@ withdraw:
 
 // smart_contracts.algocrefi_pool.contract.AlgoPool.get_pool[routing]() -> void:
 get_pool:
-    // smart_contracts/algocrefi_pool/contract.py:49
+    // smart_contracts/algocrefi_pool/contract.py:58
     // return self.pool
     intc_0 // 0
     bytec_0 // "pool"
     app_global_get_ex
     assert // check self.pool exists
-    // smart_contracts/algocrefi_pool/contract.py:47
+    // smart_contracts/algocrefi_pool/contract.py:56
     // @abimethod(readonly=True)
     itob
     bytec_3 // 0x151f7c75
@@ -274,13 +310,13 @@ get_pool:
 
 // smart_contracts.algocrefi_pool.contract.AlgoPool.get_total_shares[routing]() -> void:
 get_total_shares:
-    // smart_contracts/algocrefi_pool/contract.py:53
+    // smart_contracts/algocrefi_pool/contract.py:62
     // return self.total_shares
     intc_0 // 0
     bytec_1 // "total_shares"
     app_global_get_ex
     assert // check self.total_shares exists
-    // smart_contracts/algocrefi_pool/contract.py:51
+    // smart_contracts/algocrefi_pool/contract.py:60
     // @abimethod(readonly=True)
     itob
     bytec_3 // 0x151f7c75
