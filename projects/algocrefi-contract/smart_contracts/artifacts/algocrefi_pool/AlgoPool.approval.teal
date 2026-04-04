@@ -157,7 +157,7 @@ withdraw:
     assert // invalid number of bytes for arc4.uint64
     btoi
     // smart_contracts/algocrefi_pool/contract.py:34
-    // user_shares = self.shares.get(Txn.sender, UInt64(0))
+    // user_shares = self.shares.get(Txn.sender, UInt64(0))  # Fixed!
     txn Sender
     intc_0 // 0
     bytec_2 // "shares"
