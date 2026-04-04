@@ -10,11 +10,6 @@ class AlgoPool(ARC4Contract):
         self.shares = LocalState(UInt64, key="shares")
 
     @abimethod()
-    def opt_in(self) -> bool:
-        self.shares[Txn.sender] = UInt64(0)
-        return True
-
-    @abimethod()
     def deposit(self, amount: UInt64) -> UInt64:
         user_shares = self.shares.get(Txn.sender, UInt64(0))
 
@@ -31,7 +26,7 @@ class AlgoPool(ARC4Contract):
 
     @abimethod()
     def withdraw(self, share_amount: UInt64) -> UInt64:
-        user_shares = self.shares.get(Txn.sender, UInt64(0))  # Fixed!
+        user_shares = self.shares.get(Txn.sender, UInt64(0))
         assert user_shares >= share_amount, "Insufficient shares"
 
         algo = (share_amount * self.pool) // self.total_shares
