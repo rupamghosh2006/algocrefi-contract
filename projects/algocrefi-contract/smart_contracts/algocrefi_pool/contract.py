@@ -1,66 +1,67 @@
-from algopy import ARC4Contract, UInt64, Global, BoxMap, Account
+from algopy import ARC4Contract, UInt64, Global, Txn, Box, GlobalState, Bytes
 from algopy.arc4 import abimethod
 
 
 class AlgocrefiPool(ARC4Contract):
 
     def __init__(self) -> None:
-        self.total_shares = UInt64(0)
-        self.pool = UInt64(0)
-        self.shares: BoxMap[Account, UInt64] = BoxMap(Account, UInt64)
+        self.pool = GlobalState(UInt64, key="pool")
+        self.total_shares = GlobalState(UInt64, key="total_shares")
 
     @abimethod()
     def deposit(self, amount: UInt64) -> UInt64:
-        assert amount > 0, "Amount must be positive"
+        sender = Txn.sender
         
-        sender = Global.caller_application_address
+        pool_val = self.pool.get(UInt64(0))
+        total_val = self.total_shares.get(UInt64(0))
         
-        if self.pool == 0 or self.total_shares == 0:
-            self.pool += amount
-            self.total_shares += amount
-            self.shares[sender] = self.shares[sender] + amount
-            return amount
+        if pool_val == 0:
+            minted = amount
+        else:
+            minted = (amount * total_val) // pool_val
+
+        self.pool.value = pool_val + amount
+        self.total_shares.value = total_val + minted
         
-        shares_to_mint = (amount * self.total_shares) // self.pool
-        
-        assert shares_to_mint > 0, "Amount too small"
-        
-        self.pool += amount
-        self.total_shares += shares_to_mint
-        self.shares[sender] = self.shares[sender] + shares_to_mint
-        
-        return shares_to_mint
+        box_key = Bytes(b"s") + sender.bytes[:31]
+        user_box = Box(UInt64, key=box_key)
+        user_box.create(size=UInt64(8))
+        current_shares = user_box.get(default=UInt64(0))
+        user_box.value = current_shares + minted
+
+        return minted
 
     @abimethod()
-    def withdraw(self, share_amount: UInt64) -> UInt64:
-        sender = Global.caller_application_address
+    def withdraw(self, shares: UInt64) -> UInt64:
+        sender = Txn.sender
         
-        user_shares = self.shares[sender]
-        assert user_shares >= share_amount, "Insufficient shares"
+        box_key = Bytes(b"s") + sender.bytes[:31]
+        user_box = Box(UInt64, key=box_key)
+        user_shares = user_box.get(default=UInt64(0))
         
-        algo_to_return = (share_amount * self.pool) // self.total_shares
-        assert algo_to_return > 0, "Nothing to withdraw"
-        
-        self.pool -= algo_to_return
-        self.shares[sender] = user_shares - share_amount
-        self.total_shares -= share_amount
-        
-        return algo_to_return
+        assert user_shares >= shares, "Insufficient shares"
 
-    @abimethod()
+        pool_val = self.pool.get(UInt64(0))
+        total_val = self.total_shares.get(UInt64(0))
+        
+        algo = (shares * pool_val) // total_val
+
+        self.pool.value = pool_val - algo
+        self.total_shares.value = total_val - shares
+        user_box.value = user_shares - shares
+
+        return algo
+
+    @abimethod(readonly=True)
     def get_pool(self) -> UInt64:
-        return self.pool
+        return self.pool.get(UInt64(0))
 
-    @abimethod()
-    def get_shares(self, address: Account) -> UInt64:
-        return self.shares[address]
-
-    @abimethod()
+    @abimethod(readonly=True)
     def get_total_shares(self) -> UInt64:
-        return self.total_shares
+        return self.total_shares.get(UInt64(0))
 
-    @abimethod()
-    def get_share_price(self) -> UInt64:
-        if self.total_shares == 0:
-            return UInt64(0)
-        return self.pool // self.total_shares
+    @abimethod(readonly=True)
+    def get_shares(self, address: Bytes) -> UInt64:
+        box_key = Bytes(b"s") + address[:31]
+        user_box = Box(UInt64, key=box_key)
+        return user_box.get(default=UInt64(0))

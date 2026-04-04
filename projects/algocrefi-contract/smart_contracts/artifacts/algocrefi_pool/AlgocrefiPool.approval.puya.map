@@ -3,7 +3,7 @@
   "sources": [
     "../../algocrefi_pool/contract.py"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAOQ;AAAoB;AAApB;AACA;AAAY;AAAZ;AAJR;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;;;AAAA;;;;;;;;;AAOK;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAEG;AAES;;AAEN;AAAA;AAAA;AAAA;AAAA;;;AAAkB;AAAA;AAAA;AAAA;AAAlB;;;AACC;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AACA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AACsB;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAtB;AAAA;AATP;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAY8B;AAAA;AAAA;AAAA;AAAT;;AAAA;AAAA;;AAAA;AAA+B;AAAA;AAAA;AAAA;AAAhC;AAAA;;AAAA;AAEjB;AAAA;AAEA;AAAA;;AAAA;AAAA;AAAA;AAAA;AACA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AACsB;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAtB;AAAA;AAlBH;;;AAsBA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAIiB;AAFL;;AAEK;AAAA;AAAA;AAAA;AAAA;AACP;AAAA;;AAAA;AAAP;AAEiC;AAAA;AAAA;AAAA;AAAf;;AAAA;;AAAA;AAA6B;AAAA;AAAA;AAAA;AAA9B;AACjB;AAAA;AAEA;AAAA;;AAAA;AAAA;AAAA;AAAA;AACsB;AAAA;;AAAA;AAAtB;AAAA;;AAAA;AAAA;AACA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAZH;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBU;AAAA;AAAA;AAAA;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAIA;;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAEU;AAAA;AAAA;AAAA;AAAA;AAAA;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAMU;AAAA;AAAA;AAAA;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAMM;AAAA;AAAA;AAAA;AAAX;;;AACmB;AAHd;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAIU;AAAA;AAAA;AAAA;AAAa;AAAA;AAAA;AAAA;AAAb;AAJV",
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAIA;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;AAAA;;;;;;;;;AAMK;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAEY;;AAEE;AAAA;AAAA;AAAc;AAAd;;AAAA;AAAA;AACC;AAAA;AAAA;AAAsB;AAAtB;;AAAA;AAAA;AAEpB;;;;;AAK0B;;AAAA;;AAAA;AAAlB;AAAA;AAAA;AAC0B;AAAA;AAA1B;AAAA;AAAA;AAEwB;;AAAA;;;AAAd;AAAA;AAAA;AAEV;AAAqB;AAArB;;AACiB;AAAA;AAAA;AAAA;AAAqB;AAArB;AAAA;;AAAA;AACA;;AAAA;AAAjB;AAAA;AAnBH;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAUiB;;AAAA;;AAAA;AAAD;;AAAA;;;;AAahB;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAEY;;AAEe;;;AAAd;AAAA;AAAA;AAEI;AAAA;AAAA;AAAA;AAAqB;AAArB;AAAA;;AAAA;AAEP;AAAA;;AAAA;AAAP;AAEW;AAAA;AAAA;AAAc;AAAd;;AAAA;AACC;AAAA;AAAA;AAAsB;AAAtB;;AAAA;AAEJ;;AAAA;;AAAA;AAAD;;AAAA;AAEW;;AAAA;;AAAA;AAAlB;AAAA;AAAA;AAC0B;AAAA;;AAAA;AAA1B;AAAA;AAAA;AACiB;AAAA;;AAAA;AAAjB;AAAA;;AAAA;AAAA;AAjBH;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAuBU;AAAA;AAAA;AAAc;AAAd;;AAAA;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAMU;AAAA;AAAA;AAAsB;AAAtB;;AAAA;AAFV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAIA;;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;;AAE2B;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAd;AAAA;AAAA;AAEH;AAAA;AAAA;AAAqB;AAArB;AAAA;;AAAA;AAJV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA",
   "op_pc_offset": 0,
   "pc_events": {
     "1": {
@@ -11,71 +11,12 @@
       "params": {},
       "block": "main",
       "stack_in": [],
-      "op": "intcblock 0 1 8"
+      "op": "intcblock 0 1 8 31"
     },
-    "6": {
-      "op": "bytecblock \"total_shares\" \"pool\" 0x151f7c75 \"shares\""
+    "7": {
+      "op": "bytecblock \"pool\" \"total_shares\" 0x151f7c75 0x73"
     },
-    "38": {
-      "op": "txn ApplicationID",
-      "defined_out": [
-        "tmp%0#0"
-      ],
-      "stack_out": [
-        "tmp%0#0"
-      ]
-    },
-    "40": {
-      "op": "bnz main_after_if_else@2",
-      "stack_out": []
-    },
-    "43": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\""
-      ],
-      "stack_out": [
-        "\"total_shares\""
-      ]
-    },
-    "44": {
-      "op": "intc_0 // 0",
-      "defined_out": [
-        "\"total_shares\"",
-        "0"
-      ],
-      "stack_out": [
-        "\"total_shares\"",
-        "0"
-      ]
-    },
-    "45": {
-      "op": "app_global_put",
-      "stack_out": []
-    },
-    "46": {
-      "op": "bytec_1 // \"pool\"",
-      "defined_out": [
-        "\"pool\""
-      ],
-      "stack_out": [
-        "\"pool\""
-      ]
-    },
-    "47": {
-      "op": "intc_0 // 0",
-      "stack_out": [
-        "\"pool\"",
-        "0"
-      ]
-    },
-    "48": {
-      "op": "app_global_put",
-      "stack_out": []
-    },
-    "49": {
-      "block": "main_after_if_else@2",
-      "stack_in": [],
+    "34": {
       "op": "txn NumAppArgs",
       "defined_out": [
         "tmp%0#1"
@@ -84,11 +25,11 @@
         "tmp%0#1"
       ]
     },
-    "51": {
-      "op": "bz main___algopy_default_create@15",
+    "36": {
+      "op": "bz main___algopy_default_create@14",
       "stack_out": []
     },
-    "54": {
+    "39": {
       "op": "txn OnCompletion",
       "defined_out": [
         "tmp%2#0"
@@ -97,7 +38,7 @@
         "tmp%2#0"
       ]
     },
-    "56": {
+    "41": {
       "op": "!",
       "defined_out": [
         "tmp%3#0"
@@ -106,11 +47,11 @@
         "tmp%3#0"
       ]
     },
-    "57": {
+    "42": {
       "op": "assert",
       "stack_out": []
     },
-    "58": {
+    "43": {
       "op": "txn ApplicationID",
       "defined_out": [
         "tmp%4#0"
@@ -119,17 +60,16 @@
         "tmp%4#0"
       ]
     },
-    "60": {
+    "45": {
       "op": "assert",
       "stack_out": []
     },
-    "61": {
-      "op": "pushbytess 0x88048581 0x31214176 0x8ea96faf 0x0567df80 0xf335a072 0x0a37c529 // method \"deposit(uint64)uint64\", method \"withdraw(uint64)uint64\", method \"get_pool()uint64\", method \"get_shares(address)uint64\", method \"get_total_shares()uint64\", method \"get_share_price()uint64\"",
+    "46": {
+      "op": "pushbytess 0x88048581 0x31214176 0x8ea96faf 0xf335a072 0x72884a59 // method \"deposit(uint64)uint64\", method \"withdraw(uint64)uint64\", method \"get_pool()uint64\", method \"get_total_shares()uint64\", method \"get_shares(byte[])uint64\"",
       "defined_out": [
         "Method(deposit(uint64)uint64)",
         "Method(get_pool()uint64)",
-        "Method(get_share_price()uint64)",
-        "Method(get_shares(address)uint64)",
+        "Method(get_shares(byte[])uint64)",
         "Method(get_total_shares()uint64)",
         "Method(withdraw(uint64)uint64)"
       ],
@@ -137,18 +77,16 @@
         "Method(deposit(uint64)uint64)",
         "Method(withdraw(uint64)uint64)",
         "Method(get_pool()uint64)",
-        "Method(get_shares(address)uint64)",
         "Method(get_total_shares()uint64)",
-        "Method(get_share_price()uint64)"
+        "Method(get_shares(byte[])uint64)"
       ]
     },
-    "93": {
+    "73": {
       "op": "txna ApplicationArgs 0",
       "defined_out": [
         "Method(deposit(uint64)uint64)",
         "Method(get_pool()uint64)",
-        "Method(get_share_price()uint64)",
-        "Method(get_shares(address)uint64)",
+        "Method(get_shares(byte[])uint64)",
         "Method(get_total_shares()uint64)",
         "Method(withdraw(uint64)uint64)",
         "tmp%6#0"
@@ -157,21 +95,20 @@
         "Method(deposit(uint64)uint64)",
         "Method(withdraw(uint64)uint64)",
         "Method(get_pool()uint64)",
-        "Method(get_shares(address)uint64)",
         "Method(get_total_shares()uint64)",
-        "Method(get_share_price()uint64)",
+        "Method(get_shares(byte[])uint64)",
         "tmp%6#0"
       ]
     },
-    "96": {
-      "op": "match deposit withdraw get_pool get_shares get_total_shares get_share_price",
+    "76": {
+      "op": "match deposit withdraw get_pool get_total_shares get_shares",
       "stack_out": []
     },
-    "110": {
+    "88": {
       "op": "err"
     },
-    "111": {
-      "block": "main___algopy_default_create@15",
+    "89": {
+      "block": "main___algopy_default_create@14",
       "stack_in": [],
       "op": "txn OnCompletion",
       "defined_out": [
@@ -181,7 +118,7 @@
         "tmp%7#0"
       ]
     },
-    "113": {
+    "91": {
       "op": "!",
       "defined_out": [
         "tmp%8#0"
@@ -190,7 +127,7 @@
         "tmp%8#0"
       ]
     },
-    "114": {
+    "92": {
       "op": "txn ApplicationID",
       "defined_out": [
         "tmp%8#0",
@@ -201,7 +138,7 @@
         "tmp%9#0"
       ]
     },
-    "116": {
+    "94": {
       "op": "!",
       "defined_out": [
         "tmp%10#0",
@@ -212,7 +149,7 @@
         "tmp%10#0"
       ]
     },
-    "117": {
+    "95": {
       "op": "&&",
       "defined_out": [
         "tmp%11#0"
@@ -221,12 +158,12 @@
         "tmp%11#0"
       ]
     },
-    "118": {
+    "96": {
       "op": "return",
       "defined_out": [],
       "stack_out": []
     },
-    "119": {
+    "97": {
       "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.deposit[routing]",
       "params": {},
       "block": "deposit",
@@ -239,7 +176,7 @@
         "tmp%0#0"
       ]
     },
-    "122": {
+    "100": {
       "op": "dup",
       "defined_out": [
         "tmp%0#0",
@@ -250,7 +187,7 @@
         "tmp%0#0 (copy)"
       ]
     },
-    "123": {
+    "101": {
       "op": "len",
       "defined_out": [
         "len%0#0",
@@ -261,7 +198,7 @@
         "len%0#0"
       ]
     },
-    "124": {
+    "102": {
       "op": "intc_2 // 8",
       "defined_out": [
         "8",
@@ -274,7 +211,7 @@
         "8"
       ]
     },
-    "125": {
+    "103": {
       "op": "==",
       "defined_out": [
         "eq%0#0",
@@ -285,14 +222,14 @@
         "eq%0#0"
       ]
     },
-    "126": {
+    "104": {
       "error": "invalid number of bytes for arc4.uint64",
       "op": "assert // invalid number of bytes for arc4.uint64",
       "stack_out": [
         "tmp%0#0"
       ]
     },
-    "127": {
+    "105": {
       "op": "btoi",
       "defined_out": [
         "amount#0"
@@ -301,31 +238,14 @@
         "amount#0"
       ]
     },
-    "128": {
-      "op": "dup",
-      "defined_out": [
-        "amount#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "amount#0"
-      ]
+    "106": {
+      "op": "txn Sender"
     },
-    "129": {
-      "error": "Amount must be positive",
-      "op": "assert // Amount must be positive",
-      "stack_out": [
-        "amount#0"
-      ]
-    },
-    "130": {
-      "op": "global CallerApplicationAddress"
-    },
-    "132": {
+    "108": {
       "op": "intc_0 // 0"
     },
-    "133": {
-      "op": "bytec_1 // \"pool\"",
+    "109": {
+      "op": "bytec_0 // \"pool\"",
       "defined_out": [
         "\"pool\"",
         "0",
@@ -339,7 +259,7 @@
         "\"pool\""
       ]
     },
-    "134": {
+    "110": {
       "op": "app_global_get_ex",
       "defined_out": [
         "amount#0",
@@ -354,1090 +274,909 @@
         "maybe_exists%0#0"
       ]
     },
-    "135": {
-      "error": "check self.pool exists",
-      "op": "assert // check self.pool exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%0#0"
-      ]
-    },
-    "136": {
-      "op": "bz deposit_if_body@3",
-      "stack_out": [
-        "amount#0",
-        "sender#0"
-      ]
-    },
-    "139": {
+    "111": {
       "op": "intc_0 // 0",
       "stack_out": [
         "amount#0",
         "sender#0",
+        "maybe_value%0#0",
+        "maybe_exists%0#0",
         "0"
       ]
     },
-    "140": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\"",
-        "0",
+    "112": {
+      "op": "cover 2",
+      "stack_out": [
         "amount#0",
+        "sender#0",
+        "0",
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "114": {
+      "op": "select",
+      "defined_out": [
+        "amount#0",
+        "pool_val#0",
         "sender#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0"
+      ]
+    },
+    "115": {
+      "op": "dup",
+      "defined_out": [
+        "amount#0",
+        "pool_val#0",
+        "sender#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "pool_val#0"
+      ]
+    },
+    "116": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "pool_val#0",
+        "0"
+      ]
+    },
+    "117": {
+      "op": "bytec_1 // \"total_shares\"",
+      "defined_out": [
+        "\"total_shares\"",
+        "0",
+        "amount#0",
+        "pool_val#0",
+        "sender#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "pool_val#0",
         "0",
         "\"total_shares\""
       ]
     },
-    "141": {
+    "118": {
       "op": "app_global_get_ex",
       "defined_out": [
         "amount#0",
         "maybe_exists%1#0",
         "maybe_value%1#0",
+        "pool_val#0",
         "sender#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "pool_val#0",
         "maybe_value%1#0",
         "maybe_exists%1#0"
       ]
     },
-    "142": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%1#0"
-      ]
-    },
-    "143": {
-      "op": "bnz deposit_after_if_else@4",
-      "stack_out": [
-        "amount#0",
-        "sender#0"
-      ]
-    },
-    "146": {
-      "block": "deposit_if_body@3",
-      "stack_in": [
-        "amount#0",
-        "sender#0"
-      ],
+    "119": {
       "op": "intc_0 // 0",
-      "defined_out": [
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "pool_val#0",
+        "maybe_value%1#0",
+        "maybe_exists%1#0",
         "0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "0"
       ]
     },
-    "147": {
-      "op": "bytec_1 // \"pool\"",
-      "defined_out": [
-        "\"pool\"",
-        "0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "0",
-        "\"pool\""
-      ]
-    },
-    "148": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "maybe_exists%2#0",
-        "maybe_value%2#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%2#0",
-        "maybe_exists%2#0"
-      ]
-    },
-    "149": {
-      "error": "check self.pool exists",
-      "op": "assert // check self.pool exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%2#0"
-      ]
-    },
-    "150": {
-      "op": "dig 2",
-      "defined_out": [
-        "amount#0",
-        "maybe_value%2#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%2#0",
-        "amount#0"
-      ]
-    },
-    "152": {
-      "op": "dup",
-      "defined_out": [
-        "amount#0",
-        "amount#0 (copy)",
-        "maybe_value%2#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%2#0",
-        "amount#0 (copy)",
-        "amount#0 (copy)"
-      ]
-    },
-    "153": {
+    "120": {
       "op": "cover 2",
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "maybe_value%2#0",
-        "amount#0 (copy)"
+        "pool_val#0",
+        "pool_val#0",
+        "0",
+        "maybe_value%1#0",
+        "maybe_exists%1#0"
       ]
     },
-    "155": {
-      "op": "+",
+    "122": {
+      "op": "select",
       "defined_out": [
         "amount#0",
-        "tmp%4#1"
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "tmp%4#1"
+        "pool_val#0",
+        "pool_val#0",
+        "total_val#0"
       ]
     },
-    "156": {
-      "op": "bytec_1 // \"pool\"",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "tmp%4#1",
-        "\"pool\""
-      ]
-    },
-    "157": {
+    "123": {
       "op": "swap",
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "pool_val#0"
+      ]
+    },
+    "124": {
+      "op": "bnz deposit_else_body@3",
+      "stack_out": [
         "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0"
+      ]
+    },
+    "127": {
+      "op": "dig 3",
+      "defined_out": [
+        "amount#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1"
+      ]
+    },
+    "129": {
+      "block": "deposit_after_if_else@4",
+      "stack_in": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1"
+      ],
+      "op": "dig 2",
+      "defined_out": [
+        "pool_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "pool_val#0"
+      ]
+    },
+    "131": {
+      "op": "dig 5",
+      "defined_out": [
+        "amount#0",
+        "pool_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "pool_val#0",
+        "amount#0"
+      ]
+    },
+    "133": {
+      "op": "+",
+      "defined_out": [
+        "amount#0",
+        "pool_val#0",
+        "tmp%4#1"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "tmp%4#1"
+      ]
+    },
+    "134": {
+      "op": "bytec_0 // \"pool\"",
+      "defined_out": [
+        "\"pool\"",
+        "amount#0",
+        "pool_val#0",
+        "tmp%4#1"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "tmp%4#1",
+        "\"pool\""
+      ]
+    },
+    "135": {
+      "op": "swap",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
         "\"pool\"",
         "tmp%4#1"
       ]
     },
-    "158": {
+    "136": {
       "op": "app_global_put",
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0"
+        "pool_val#0",
+        "total_val#0",
+        "minted#1"
       ]
     },
-    "159": {
-      "op": "intc_0 // 0",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "0"
-      ]
-    },
-    "160": {
-      "op": "bytec_0 // \"total_shares\"",
+    "137": {
+      "op": "dup2",
       "defined_out": [
-        "\"total_shares\"",
-        "0",
-        "amount#0"
+        "amount#0",
+        "minted#1",
+        "minted#1 (copy)",
+        "pool_val#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "total_val#0",
+        "minted#1 (copy)"
+      ]
+    },
+    "138": {
+      "op": "+",
+      "defined_out": [
         "amount#0",
-        "0",
+        "minted#1",
+        "pool_val#0",
+        "tmp%5#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "tmp%5#0"
+      ]
+    },
+    "139": {
+      "op": "bytec_1 // \"total_shares\"",
+      "defined_out": [
+        "\"total_shares\"",
+        "amount#0",
+        "minted#1",
+        "pool_val#0",
+        "tmp%5#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "tmp%5#0",
         "\"total_shares\""
       ]
     },
-    "161": {
-      "op": "app_global_get_ex",
+    "140": {
+      "op": "swap",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "\"total_shares\"",
+        "tmp%5#0"
+      ]
+    },
+    "141": {
+      "op": "app_global_put",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1"
+      ]
+    },
+    "142": {
+      "op": "dig 3",
       "defined_out": [
         "amount#0",
-        "maybe_exists%3#0",
-        "maybe_value%3#0"
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "sender#0"
+      ]
+    },
+    "144": {
+      "op": "substring 0 31",
+      "defined_out": [
         "amount#0",
-        "maybe_value%3#0",
-        "maybe_exists%3#0"
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "tmp%6#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "tmp%6#0"
+      ]
+    },
+    "147": {
+      "op": "bytec_3 // 0x73",
+      "defined_out": [
+        "0x73",
+        "amount#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "tmp%6#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "tmp%6#0",
+        "0x73"
+      ]
+    },
+    "148": {
+      "op": "swap",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "0x73",
+        "tmp%6#0"
+      ]
+    },
+    "149": {
+      "op": "concat",
+      "defined_out": [
+        "amount#0",
+        "box_key#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0"
+      ]
+    },
+    "150": {
+      "op": "dup",
+      "defined_out": [
+        "amount#0",
+        "box_key#0",
+        "box_key#0 (copy)",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "box_key#0 (copy)"
+      ]
+    },
+    "151": {
+      "op": "intc_2 // 8",
+      "defined_out": [
+        "8",
+        "amount#0",
+        "box_key#0",
+        "box_key#0 (copy)",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "box_key#0 (copy)",
+        "8"
+      ]
+    },
+    "152": {
+      "op": "box_create",
+      "defined_out": [
+        "amount#0",
+        "box_key#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0",
+        "{box_create}"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "{box_create}"
+      ]
+    },
+    "153": {
+      "op": "pop",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0"
+      ]
+    },
+    "154": {
+      "op": "dup",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "box_key#0 (copy)"
+      ]
+    },
+    "155": {
+      "op": "box_get",
+      "defined_out": [
+        "amount#0",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value%2#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "maybe_value%2#0",
+        "maybe_exists%2#0"
+      ]
+    },
+    "156": {
+      "op": "swap",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value%2#0"
+      ]
+    },
+    "157": {
+      "op": "btoi",
+      "defined_out": [
+        "amount#0",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value_converted%0#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value_converted%0#0"
+      ]
+    },
+    "158": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "amount#0",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value_converted%0#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value_converted%0#0",
+        "0"
+      ]
+    },
+    "159": {
+      "op": "swap",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "maybe_exists%2#0",
+        "0",
+        "maybe_value_converted%0#0"
+      ]
+    },
+    "160": {
+      "op": "uncover 2",
+      "stack_out": [
+        "amount#0",
+        "sender#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "0",
+        "maybe_value_converted%0#0",
+        "maybe_exists%2#0"
       ]
     },
     "162": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
+      "op": "select",
+      "defined_out": [
+        "amount#0",
+        "box_key#0",
+        "current_shares#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
+      ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "maybe_value%3#0"
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "current_shares#0"
       ]
     },
     "163": {
-      "op": "dig 1",
+      "op": "dig 2",
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "maybe_value%3#0",
-        "amount#0 (copy)"
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "current_shares#0",
+        "minted#1 (copy)"
       ]
     },
     "165": {
       "op": "+",
       "defined_out": [
         "amount#0",
-        "tmp%5#0"
+        "box_key#0",
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "tmp%8#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "tmp%5#0"
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
+        "tmp%8#0"
       ]
     },
     "166": {
-      "op": "bytec_0 // \"total_shares\"",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "tmp%5#0",
-        "\"total_shares\""
-      ]
-    },
-    "167": {
-      "op": "swap",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "\"total_shares\"",
-        "tmp%5#0"
-      ]
-    },
-    "168": {
-      "op": "app_global_put",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0"
-      ]
-    },
-    "169": {
-      "op": "bytec_3 // \"shares\"",
-      "defined_out": [
-        "\"shares\"",
-        "amount#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "\"shares\""
-      ]
-    },
-    "170": {
-      "op": "dig 2",
-      "defined_out": [
-        "\"shares\"",
-        "amount#0",
-        "sender#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "\"shares\"",
-        "sender#0"
-      ]
-    },
-    "172": {
-      "op": "concat",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "sender#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0"
-      ]
-    },
-    "173": {
-      "op": "dup",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "box_prefixed_key%0#0 (copy)",
-        "sender#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "box_prefixed_key%0#0 (copy)"
-      ]
-    },
-    "174": {
-      "op": "box_get",
-      "defined_out": [
-        "aggregate%box_get%0#0",
-        "aggregate%box_get%1#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "sender#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "aggregate%box_get%0#0",
-        "aggregate%box_get%1#0"
-      ]
-    },
-    "175": {
-      "error": "check self.shares entry exists",
-      "op": "assert // check self.shares entry exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "aggregate%box_get%0#0"
-      ]
-    },
-    "176": {
-      "op": "btoi",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "maybe_value_converted%0#0",
-        "sender#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "maybe_value_converted%0#0"
-      ]
-    },
-    "177": {
-      "op": "dig 2",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "maybe_value_converted%0#0",
-        "amount#0 (copy)"
-      ]
-    },
-    "179": {
-      "op": "+",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "sender#0",
-        "tmp%6#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
-        "tmp%6#0"
-      ]
-    },
-    "180": {
       "op": "itob",
       "defined_out": [
         "amount#0",
-        "box_prefixed_key%0#0",
+        "box_key#0",
         "encoded_value%0#0",
-        "sender#0"
+        "minted#1",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "box_prefixed_key%0#0",
+        "pool_val#0",
+        "total_val#0",
+        "minted#1",
+        "box_key#0",
         "encoded_value%0#0"
       ]
     },
-    "181": {
+    "167": {
       "op": "box_put",
-      "defined_out": [
-        "amount#0",
-        "sender#0",
-        "tmp%2#0"
-      ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "tmp%2#0"
+        "pool_val#0",
+        "total_val#0",
+        "minted#1"
       ]
     },
-    "182": {
-      "block": "deposit_after_inlined_smart_contracts.algocrefi_pool.contract.AlgocrefiPool.deposit@5",
-      "stack_in": [
-        "amount#0",
-        "sender#0",
-        "tmp%2#0"
-      ],
+    "168": {
       "op": "itob",
       "defined_out": [
-        "aggregate%val_as_bytes%0#0"
+        "aggregate%val_as_bytes%0#0",
+        "amount#0",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
         "aggregate%val_as_bytes%0#0"
       ]
     },
-    "183": {
+    "169": {
       "op": "bytec_2 // 0x151f7c75",
       "defined_out": [
         "0x151f7c75",
-        "aggregate%val_as_bytes%0#0"
+        "aggregate%val_as_bytes%0#0",
+        "amount#0",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
         "aggregate%val_as_bytes%0#0",
         "0x151f7c75"
       ]
     },
-    "184": {
+    "170": {
       "op": "swap",
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
         "0x151f7c75",
         "aggregate%val_as_bytes%0#0"
       ]
     },
-    "185": {
+    "171": {
       "op": "concat",
       "defined_out": [
-        "tmp%4#0"
+        "amount#0",
+        "pool_val#0",
+        "sender#0",
+        "tmp%4#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
         "tmp%4#0"
       ]
     },
-    "186": {
+    "172": {
       "op": "log",
       "stack_out": [
         "amount#0",
-        "sender#0"
+        "sender#0",
+        "pool_val#0",
+        "total_val#0"
       ]
     },
-    "187": {
+    "173": {
       "op": "intc_1 // 1",
       "defined_out": [
-        "1"
+        "1",
+        "amount#0",
+        "pool_val#0",
+        "sender#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
         "1"
       ]
     },
-    "188": {
+    "174": {
       "op": "return",
       "stack_out": [
         "amount#0",
-        "sender#0"
+        "sender#0",
+        "pool_val#0",
+        "total_val#0"
       ]
     },
-    "189": {
-      "block": "deposit_after_if_else@4",
+    "175": {
+      "block": "deposit_else_body@3",
       "stack_in": [
         "amount#0",
-        "sender#0"
+        "sender#0",
+        "pool_val#0",
+        "total_val#0"
       ],
-      "op": "intc_0 // 0",
+      "op": "dig 3",
       "defined_out": [
-        "0"
+        "amount#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "0"
-      ]
-    },
-    "190": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\"",
-        "0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "0",
-        "\"total_shares\""
-      ]
-    },
-    "191": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "maybe_exists%4#0",
-        "maybe_value%4#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%4#0",
-        "maybe_exists%4#0"
-      ]
-    },
-    "192": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%4#0"
-      ]
-    },
-    "193": {
-      "op": "dig 2",
-      "defined_out": [
-        "amount#0",
-        "maybe_value%4#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "maybe_value%4#0",
+        "pool_val#0",
+        "total_val#0",
         "amount#0"
       ]
     },
-    "195": {
-      "op": "dup"
-    },
-    "196": {
-      "op": "uncover 2",
+    "177": {
+      "op": "dig 1",
       "defined_out": [
         "amount#0",
-        "amount#0 (copy)",
-        "maybe_value%4#0"
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
+        "pool_val#0",
+        "total_val#0",
         "amount#0",
-        "amount#0 (copy)",
-        "maybe_value%4#0"
+        "total_val#0"
       ]
     },
-    "198": {
+    "179": {
       "op": "*",
       "defined_out": [
         "amount#0",
-        "tmp%7#0"
+        "tmp%2#1",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "tmp%7#0"
+        "pool_val#0",
+        "total_val#0",
+        "tmp%2#1"
       ]
     },
-    "199": {
-      "op": "intc_0 // 0",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "tmp%7#0",
-        "0"
-      ]
-    },
-    "200": {
-      "op": "bytec_1 // \"pool\"",
-      "defined_out": [
-        "\"pool\"",
-        "0",
-        "amount#0",
-        "tmp%7#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "tmp%7#0",
-        "0",
-        "\"pool\""
-      ]
-    },
-    "201": {
-      "op": "app_global_get_ex",
+    "180": {
+      "op": "dig 2",
       "defined_out": [
         "amount#0",
-        "maybe_exists%5#0",
-        "maybe_value%5#0",
-        "tmp%7#0"
+        "pool_val#0",
+        "tmp%2#1",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "tmp%7#0",
-        "maybe_value%5#0",
-        "maybe_exists%5#0"
+        "pool_val#0",
+        "total_val#0",
+        "tmp%2#1",
+        "pool_val#0"
       ]
     },
-    "202": {
-      "error": "check self.pool exists",
-      "op": "assert // check self.pool exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "tmp%7#0",
-        "maybe_value%5#0"
-      ]
-    },
-    "203": {
-      "op": "swap",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "maybe_value%5#0",
-        "tmp%7#0"
-      ]
-    },
-    "204": {
-      "op": "dig 1",
-      "defined_out": [
-        "amount#0",
-        "maybe_value%5#0",
-        "maybe_value%5#0 (copy)",
-        "tmp%7#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "maybe_value%5#0",
-        "tmp%7#0",
-        "maybe_value%5#0 (copy)"
-      ]
-    },
-    "206": {
+    "182": {
       "op": "/",
       "defined_out": [
         "amount#0",
-        "maybe_value%5#0",
-        "shares_to_mint#0"
+        "minted#1",
+        "pool_val#0",
+        "total_val#0"
       ],
       "stack_out": [
         "amount#0",
         "sender#0",
-        "amount#0",
-        "maybe_value%5#0",
-        "shares_to_mint#0"
+        "pool_val#0",
+        "total_val#0",
+        "minted#1"
       ]
     },
-    "207": {
-      "op": "dup",
-      "defined_out": [
-        "amount#0",
-        "maybe_value%5#0",
-        "shares_to_mint#0",
-        "shares_to_mint#0 (copy)"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "maybe_value%5#0",
-        "shares_to_mint#0",
-        "shares_to_mint#0 (copy)"
-      ]
+    "183": {
+      "op": "b deposit_after_if_else@4"
     },
-    "208": {
-      "error": "Amount too small",
-      "op": "assert // Amount too small",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "maybe_value%5#0",
-        "shares_to_mint#0"
-      ]
-    },
-    "209": {
-      "op": "swap",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "amount#0",
-        "shares_to_mint#0",
-        "maybe_value%5#0"
-      ]
-    },
-    "210": {
-      "op": "uncover 2",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "maybe_value%5#0",
-        "amount#0"
-      ]
-    },
-    "212": {
-      "op": "+",
-      "defined_out": [
-        "amount#0",
-        "shares_to_mint#0",
-        "tmp%10#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "tmp%10#0"
-      ]
-    },
-    "213": {
-      "op": "bytec_1 // \"pool\"",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "tmp%10#0",
-        "\"pool\""
-      ]
-    },
-    "214": {
-      "op": "swap",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "\"pool\"",
-        "tmp%10#0"
-      ]
-    },
-    "215": {
-      "op": "app_global_put",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ]
-    },
-    "216": {
-      "op": "intc_0 // 0",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "0"
-      ]
-    },
-    "217": {
-      "op": "bytec_0 // \"total_shares\"",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "0",
-        "\"total_shares\""
-      ]
-    },
-    "218": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "amount#0",
-        "maybe_exists%7#0",
-        "maybe_value%7#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "maybe_value%7#0",
-        "maybe_exists%7#0"
-      ]
-    },
-    "219": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "maybe_value%7#0"
-      ]
-    },
-    "220": {
-      "op": "dig 1",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "maybe_value%7#0",
-        "shares_to_mint#0 (copy)"
-      ]
-    },
-    "222": {
-      "op": "+",
-      "defined_out": [
-        "amount#0",
-        "shares_to_mint#0",
-        "tmp%11#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "tmp%11#0"
-      ]
-    },
-    "223": {
-      "op": "bytec_0 // \"total_shares\"",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "tmp%11#0",
-        "\"total_shares\""
-      ]
-    },
-    "224": {
-      "op": "swap",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "\"total_shares\"",
-        "tmp%11#0"
-      ]
-    },
-    "225": {
-      "op": "app_global_put",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ]
-    },
-    "226": {
-      "op": "bytec_3 // \"shares\"",
-      "defined_out": [
-        "\"shares\"",
-        "amount#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "\"shares\""
-      ]
-    },
-    "227": {
-      "op": "dig 2",
-      "defined_out": [
-        "\"shares\"",
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "\"shares\"",
-        "sender#0"
-      ]
-    },
-    "229": {
-      "op": "concat",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%2#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0"
-      ]
-    },
-    "230": {
-      "op": "dup",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%2#0",
-        "box_prefixed_key%2#0 (copy)",
-        "sender#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "box_prefixed_key%2#0 (copy)"
-      ]
-    },
-    "231": {
-      "op": "box_get",
-      "defined_out": [
-        "aggregate%box_get%2#0",
-        "aggregate%box_get%3#0",
-        "amount#0",
-        "box_prefixed_key%2#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "aggregate%box_get%2#0",
-        "aggregate%box_get%3#0"
-      ]
-    },
-    "232": {
-      "error": "check self.shares entry exists",
-      "op": "assert // check self.shares entry exists",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "aggregate%box_get%2#0"
-      ]
-    },
-    "233": {
-      "op": "btoi",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%2#0",
-        "maybe_value_converted%1#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "maybe_value_converted%1#0"
-      ]
-    },
-    "234": {
-      "op": "dig 2",
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "maybe_value_converted%1#0",
-        "shares_to_mint#0 (copy)"
-      ]
-    },
-    "236": {
-      "op": "+",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%2#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "tmp%12#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "tmp%12#0"
-      ]
-    },
-    "237": {
-      "op": "itob",
-      "defined_out": [
-        "amount#0",
-        "box_prefixed_key%2#0",
-        "encoded_value%1#0",
-        "sender#0",
-        "shares_to_mint#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "shares_to_mint#0",
-        "box_prefixed_key%2#0",
-        "encoded_value%1#0"
-      ]
-    },
-    "238": {
-      "op": "box_put",
-      "defined_out": [
-        "amount#0",
-        "sender#0",
-        "tmp%2#0"
-      ],
-      "stack_out": [
-        "amount#0",
-        "sender#0",
-        "tmp%2#0"
-      ]
-    },
-    "239": {
-      "op": "b deposit_after_inlined_smart_contracts.algocrefi_pool.contract.AlgocrefiPool.deposit@5"
-    },
-    "242": {
+    "186": {
       "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.withdraw[routing]",
       "params": {},
       "block": "withdraw",
@@ -1450,7 +1189,7 @@
         "tmp%0#0"
       ]
     },
-    "245": {
+    "189": {
       "op": "dup",
       "defined_out": [
         "tmp%0#0",
@@ -1461,7 +1200,7 @@
         "tmp%0#0 (copy)"
       ]
     },
-    "246": {
+    "190": {
       "op": "len",
       "defined_out": [
         "len%0#0",
@@ -1472,7 +1211,7 @@
         "len%0#0"
       ]
     },
-    "247": {
+    "191": {
       "op": "intc_2 // 8",
       "defined_out": [
         "8",
@@ -1485,7 +1224,7 @@
         "8"
       ]
     },
-    "248": {
+    "192": {
       "op": "==",
       "defined_out": [
         "eq%0#0",
@@ -1496,606 +1235,715 @@
         "eq%0#0"
       ]
     },
-    "249": {
+    "193": {
       "error": "invalid number of bytes for arc4.uint64",
       "op": "assert // invalid number of bytes for arc4.uint64",
       "stack_out": [
         "tmp%0#0"
       ]
     },
-    "250": {
+    "194": {
       "op": "btoi",
       "defined_out": [
-        "share_amount#0"
+        "shares#0"
       ],
       "stack_out": [
-        "share_amount#0"
+        "shares#0"
       ]
     },
-    "251": {
-      "op": "bytec_3 // \"shares\"",
+    "195": {
+      "op": "txn Sender",
       "defined_out": [
-        "\"shares\"",
-        "share_amount#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "\"shares\""
-      ]
-    },
-    "252": {
-      "op": "global CallerApplicationAddress",
-      "defined_out": [
-        "\"shares\"",
         "sender#0",
-        "share_amount#0"
+        "shares#0"
       ],
       "stack_out": [
-        "share_amount#0",
-        "\"shares\"",
+        "shares#0",
         "sender#0"
       ]
     },
-    "254": {
-      "op": "concat",
+    "197": {
+      "op": "substring 0 31",
       "defined_out": [
-        "box_prefixed_key%0#0",
-        "share_amount#0"
+        "shares#0",
+        "tmp%1#1"
       ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0"
-      ]
-    },
-    "255": {
-      "op": "dup",
-      "defined_out": [
-        "box_prefixed_key%0#0",
-        "box_prefixed_key%0#0 (copy)",
-        "share_amount#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "box_prefixed_key%0#0 (copy)"
-      ]
-    },
-    "256": {
-      "op": "box_get",
-      "defined_out": [
-        "aggregate%box_get%0#0",
-        "aggregate%box_get%1#0",
-        "box_prefixed_key%0#0",
-        "share_amount#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "aggregate%box_get%0#0",
-        "aggregate%box_get%1#0"
-      ]
-    },
-    "257": {
-      "error": "check self.shares entry exists",
-      "op": "assert // check self.shares entry exists",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "aggregate%box_get%0#0"
-      ]
-    },
-    "258": {
-      "op": "btoi",
-      "defined_out": [
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "user_shares#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0"
-      ]
-    },
-    "259": {
-      "op": "dup",
-      "defined_out": [
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "user_shares#0",
-        "user_shares#0 (copy)"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "user_shares#0 (copy)"
-      ]
-    },
-    "260": {
-      "op": "dig 3",
-      "defined_out": [
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "share_amount#0 (copy)",
-        "user_shares#0",
-        "user_shares#0 (copy)"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "user_shares#0 (copy)",
-        "share_amount#0 (copy)"
-      ]
-    },
-    "262": {
-      "op": ">=",
-      "defined_out": [
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "tmp%1#1",
-        "user_shares#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
+        "shares#0",
         "tmp%1#1"
       ]
     },
-    "263": {
-      "error": "Insufficient shares",
-      "op": "assert // Insufficient shares",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0"
-      ]
-    },
-    "264": {
-      "op": "intc_0 // 0",
+    "200": {
+      "op": "bytec_3 // 0x73",
       "defined_out": [
-        "0",
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "user_shares#0"
+        "0x73",
+        "shares#0",
+        "tmp%1#1"
       ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "0"
+        "shares#0",
+        "tmp%1#1",
+        "0x73"
       ]
     },
-    "265": {
-      "op": "bytec_1 // \"pool\"",
+    "201": {
+      "op": "swap",
+      "stack_out": [
+        "shares#0",
+        "0x73",
+        "tmp%1#1"
+      ]
+    },
+    "202": {
+      "op": "concat",
       "defined_out": [
-        "\"pool\"",
-        "0",
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "user_shares#0"
+        "box_key#0",
+        "shares#0"
       ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "0",
-        "\"pool\""
+        "shares#0",
+        "box_key#0"
       ]
     },
-    "266": {
-      "op": "app_global_get_ex",
+    "203": {
+      "op": "dup",
       "defined_out": [
-        "box_prefixed_key%0#0",
+        "box_key#0",
+        "box_key#0 (copy)",
+        "shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "box_key#0 (copy)"
+      ]
+    },
+    "204": {
+      "op": "box_get",
+      "defined_out": [
+        "box_key#0",
         "maybe_exists%0#0",
         "maybe_value%0#0",
-        "share_amount#0",
-        "user_shares#0"
+        "shares#0"
       ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
+        "shares#0",
+        "box_key#0",
         "maybe_value%0#0",
         "maybe_exists%0#0"
       ]
     },
-    "267": {
-      "error": "check self.pool exists",
-      "op": "assert // check self.pool exists",
+    "205": {
+      "op": "swap",
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
+        "shares#0",
+        "box_key#0",
+        "maybe_exists%0#0",
         "maybe_value%0#0"
       ]
     },
-    "268": {
-      "op": "dig 3",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "share_amount#0 (copy)"
-      ]
-    },
-    "270": {
-      "op": "dig 1",
+    "206": {
+      "op": "btoi",
       "defined_out": [
-        "box_prefixed_key%0#0",
-        "maybe_value%0#0",
-        "maybe_value%0#0 (copy)",
-        "share_amount#0",
-        "share_amount#0 (copy)",
-        "user_shares#0"
+        "box_key#0",
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0",
+        "shares#0"
       ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "share_amount#0 (copy)",
-        "maybe_value%0#0 (copy)"
+        "shares#0",
+        "box_key#0",
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0"
       ]
     },
-    "272": {
-      "op": "*",
-      "defined_out": [
-        "box_prefixed_key%0#0",
-        "maybe_value%0#0",
-        "share_amount#0",
-        "tmp%2#1",
-        "user_shares#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "tmp%2#1"
-      ]
-    },
-    "273": {
+    "207": {
       "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "box_key#0",
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0",
+        "shares#0"
+      ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "tmp%2#1",
+        "shares#0",
+        "box_key#0",
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0",
         "0"
       ]
     },
-    "274": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\"",
-        "0",
-        "box_prefixed_key%0#0",
-        "maybe_value%0#0",
-        "share_amount#0",
-        "tmp%2#1",
-        "user_shares#0"
-      ],
+    "208": {
+      "op": "swap",
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "tmp%2#1",
+        "shares#0",
+        "box_key#0",
+        "maybe_exists%0#0",
         "0",
-        "\"total_shares\""
+        "maybe_value_converted%0#0"
       ]
     },
-    "275": {
-      "op": "app_global_get_ex",
+    "209": {
+      "op": "uncover 2",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "0",
+        "maybe_value_converted%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "211": {
+      "op": "select",
       "defined_out": [
-        "box_prefixed_key%0#0",
-        "maybe_exists%1#0",
-        "maybe_value%0#0",
-        "maybe_value%1#0",
-        "share_amount#0",
-        "tmp%2#1",
+        "box_key#0",
+        "shares#0",
         "user_shares#0"
       ],
       "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
+        "shares#0",
+        "box_key#0",
+        "user_shares#0"
+      ]
+    },
+    "212": {
+      "op": "dup",
+      "defined_out": [
+        "box_key#0",
+        "shares#0",
         "user_shares#0",
-        "maybe_value%0#0",
-        "tmp%2#1",
+        "user_shares#0 (copy)"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "user_shares#0 (copy)"
+      ]
+    },
+    "213": {
+      "op": "dig 3",
+      "defined_out": [
+        "box_key#0",
+        "shares#0",
+        "shares#0 (copy)",
+        "user_shares#0",
+        "user_shares#0 (copy)"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "user_shares#0 (copy)",
+        "shares#0 (copy)"
+      ]
+    },
+    "215": {
+      "op": ">=",
+      "defined_out": [
+        "box_key#0",
+        "shares#0",
+        "tmp%3#1",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "tmp%3#1"
+      ]
+    },
+    "216": {
+      "error": "Insufficient shares",
+      "op": "assert // Insufficient shares",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0"
+      ]
+    },
+    "217": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "0"
+      ]
+    },
+    "218": {
+      "op": "bytec_0 // \"pool\"",
+      "defined_out": [
+        "\"pool\"",
+        "0",
+        "box_key#0",
+        "shares#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "0",
+        "\"pool\""
+      ]
+    },
+    "219": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "box_key#0",
+        "maybe_exists%1#0",
+        "maybe_value%1#0",
+        "shares#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
         "maybe_value%1#0",
         "maybe_exists%1#0"
       ]
     },
-    "276": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "tmp%2#1",
-        "maybe_value%1#0"
-      ]
-    },
-    "277": {
-      "op": "/",
-      "defined_out": [
-        "algo_to_return#0",
-        "box_prefixed_key%0#0",
-        "maybe_value%0#0",
-        "share_amount#0",
-        "user_shares#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "algo_to_return#0"
-      ]
-    },
-    "278": {
-      "op": "dup",
-      "defined_out": [
-        "algo_to_return#0",
-        "algo_to_return#0 (copy)",
-        "box_prefixed_key%0#0",
-        "maybe_value%0#0",
-        "share_amount#0",
-        "user_shares#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "algo_to_return#0",
-        "algo_to_return#0 (copy)"
-      ]
-    },
-    "279": {
-      "error": "Nothing to withdraw",
-      "op": "assert // Nothing to withdraw",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "maybe_value%0#0",
-        "algo_to_return#0"
-      ]
-    },
-    "280": {
-      "op": "swap",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "algo_to_return#0",
-        "maybe_value%0#0"
-      ]
-    },
-    "281": {
-      "op": "dig 1",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "algo_to_return#0",
-        "maybe_value%0#0",
-        "algo_to_return#0 (copy)"
-      ]
-    },
-    "283": {
-      "op": "-",
-      "defined_out": [
-        "algo_to_return#0",
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "tmp%5#0",
-        "user_shares#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "algo_to_return#0",
-        "tmp%5#0"
-      ]
-    },
-    "284": {
-      "op": "bytec_1 // \"pool\"",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "algo_to_return#0",
-        "tmp%5#0",
-        "\"pool\""
-      ]
-    },
-    "285": {
-      "op": "swap",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "algo_to_return#0",
-        "\"pool\"",
-        "tmp%5#0"
-      ]
-    },
-    "286": {
-      "op": "app_global_put",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "user_shares#0",
-        "algo_to_return#0"
-      ]
-    },
-    "287": {
-      "op": "swap",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "algo_to_return#0",
-        "user_shares#0"
-      ]
-    },
-    "288": {
-      "op": "dig 3",
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "algo_to_return#0",
-        "user_shares#0",
-        "share_amount#0 (copy)"
-      ]
-    },
-    "290": {
-      "op": "-",
-      "defined_out": [
-        "algo_to_return#0",
-        "box_prefixed_key%0#0",
-        "share_amount#0",
-        "tmp%6#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "algo_to_return#0",
-        "tmp%6#0"
-      ]
-    },
-    "291": {
-      "op": "itob",
-      "defined_out": [
-        "algo_to_return#0",
-        "box_prefixed_key%0#0",
-        "encoded_value%0#0",
-        "share_amount#0"
-      ],
-      "stack_out": [
-        "share_amount#0",
-        "box_prefixed_key%0#0",
-        "algo_to_return#0",
-        "encoded_value%0#0"
-      ]
-    },
-    "292": {
-      "op": "uncover 2",
-      "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0",
-        "encoded_value%0#0",
-        "box_prefixed_key%0#0"
-      ]
-    },
-    "294": {
-      "op": "swap",
-      "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0",
-        "box_prefixed_key%0#0",
-        "encoded_value%0#0"
-      ]
-    },
-    "295": {
-      "op": "box_put",
-      "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0"
-      ]
-    },
-    "296": {
+    "220": {
       "op": "intc_0 // 0",
       "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0",
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "maybe_value%1#0",
+        "maybe_exists%1#0",
         "0"
       ]
     },
-    "297": {
-      "op": "bytec_0 // \"total_shares\"",
+    "221": {
+      "op": "cover 2",
       "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0",
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "0",
+        "maybe_value%1#0",
+        "maybe_exists%1#0"
+      ]
+    },
+    "223": {
+      "op": "select",
+      "defined_out": [
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0"
+      ]
+    },
+    "224": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "0"
+      ]
+    },
+    "225": {
+      "op": "bytec_1 // \"total_shares\"",
+      "defined_out": [
+        "\"total_shares\"",
+        "0",
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
         "0",
         "\"total_shares\""
       ]
     },
-    "298": {
+    "226": {
       "op": "app_global_get_ex",
       "defined_out": [
-        "algo_to_return#0",
-        "maybe_exists%3#0",
-        "maybe_value%3#0",
-        "share_amount#0"
+        "box_key#0",
+        "maybe_exists%2#0",
+        "maybe_value%2#0",
+        "pool_val#0",
+        "shares#0",
+        "user_shares#0"
       ],
       "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0",
-        "maybe_value%3#0",
-        "maybe_exists%3#0"
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "maybe_value%2#0",
+        "maybe_exists%2#0"
       ]
     },
-    "299": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
+    "227": {
+      "op": "intc_0 // 0",
       "stack_out": [
-        "share_amount#0",
-        "algo_to_return#0",
-        "maybe_value%3#0"
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "maybe_value%2#0",
+        "maybe_exists%2#0",
+        "0"
       ]
     },
-    "300": {
+    "228": {
+      "op": "cover 2",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "0",
+        "maybe_value%2#0",
+        "maybe_exists%2#0"
+      ]
+    },
+    "230": {
+      "op": "select",
+      "defined_out": [
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "total_val#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "total_val#0"
+      ]
+    },
+    "231": {
+      "op": "dig 4",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "total_val#0",
+        "shares#0 (copy)"
+      ]
+    },
+    "233": {
+      "op": "dig 2",
+      "defined_out": [
+        "box_key#0",
+        "pool_val#0",
+        "pool_val#0 (copy)",
+        "shares#0",
+        "shares#0 (copy)",
+        "total_val#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "total_val#0",
+        "shares#0 (copy)",
+        "pool_val#0 (copy)"
+      ]
+    },
+    "235": {
+      "op": "*",
+      "defined_out": [
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "tmp%4#1",
+        "total_val#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "total_val#0",
+        "tmp%4#1"
+      ]
+    },
+    "236": {
+      "op": "dig 1",
+      "defined_out": [
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "tmp%4#1",
+        "total_val#0",
+        "total_val#0 (copy)",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "total_val#0",
+        "tmp%4#1",
+        "total_val#0 (copy)"
+      ]
+    },
+    "238": {
+      "op": "/",
+      "defined_out": [
+        "algo#0",
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "total_val#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "pool_val#0",
+        "total_val#0",
+        "algo#0"
+      ]
+    },
+    "239": {
       "op": "uncover 2",
       "stack_out": [
-        "algo_to_return#0",
-        "maybe_value%3#0",
-        "share_amount#0"
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "total_val#0",
+        "algo#0",
+        "pool_val#0"
       ]
     },
-    "302": {
-      "op": "-",
+    "241": {
+      "op": "dig 1",
       "defined_out": [
-        "algo_to_return#0",
-        "tmp%7#0"
+        "algo#0",
+        "algo#0 (copy)",
+        "box_key#0",
+        "pool_val#0",
+        "shares#0",
+        "total_val#0",
+        "user_shares#0"
       ],
       "stack_out": [
-        "algo_to_return#0",
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "total_val#0",
+        "algo#0",
+        "pool_val#0",
+        "algo#0 (copy)"
+      ]
+    },
+    "243": {
+      "op": "-",
+      "defined_out": [
+        "algo#0",
+        "box_key#0",
+        "shares#0",
+        "tmp%6#0",
+        "total_val#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "total_val#0",
+        "algo#0",
+        "tmp%6#0"
+      ]
+    },
+    "244": {
+      "op": "bytec_0 // \"pool\"",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "total_val#0",
+        "algo#0",
+        "tmp%6#0",
+        "\"pool\""
+      ]
+    },
+    "245": {
+      "op": "swap",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "total_val#0",
+        "algo#0",
+        "\"pool\"",
+        "tmp%6#0"
+      ]
+    },
+    "246": {
+      "op": "app_global_put",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "total_val#0",
+        "algo#0"
+      ]
+    },
+    "247": {
+      "op": "swap",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "algo#0",
+        "total_val#0"
+      ]
+    },
+    "248": {
+      "op": "dig 4",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "algo#0",
+        "total_val#0",
+        "shares#0 (copy)"
+      ]
+    },
+    "250": {
+      "op": "-",
+      "defined_out": [
+        "algo#0",
+        "box_key#0",
+        "shares#0",
+        "tmp%7#0",
+        "user_shares#0"
+      ],
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "algo#0",
         "tmp%7#0"
       ]
     },
-    "303": {
-      "op": "bytec_0 // \"total_shares\"",
+    "251": {
+      "op": "bytec_1 // \"total_shares\"",
       "stack_out": [
-        "algo_to_return#0",
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "algo#0",
         "tmp%7#0",
         "\"total_shares\""
       ]
     },
-    "304": {
+    "252": {
       "op": "swap",
       "stack_out": [
-        "algo_to_return#0",
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "algo#0",
         "\"total_shares\"",
         "tmp%7#0"
       ]
     },
-    "305": {
+    "253": {
       "op": "app_global_put",
       "stack_out": [
-        "algo_to_return#0"
+        "shares#0",
+        "box_key#0",
+        "user_shares#0",
+        "algo#0"
       ]
     },
-    "306": {
+    "254": {
+      "op": "swap",
+      "stack_out": [
+        "shares#0",
+        "box_key#0",
+        "algo#0",
+        "user_shares#0"
+      ]
+    },
+    "255": {
+      "op": "uncover 3",
+      "stack_out": [
+        "box_key#0",
+        "algo#0",
+        "user_shares#0",
+        "shares#0"
+      ]
+    },
+    "257": {
+      "op": "-",
+      "defined_out": [
+        "algo#0",
+        "box_key#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "box_key#0",
+        "algo#0",
+        "tmp%8#0"
+      ]
+    },
+    "258": {
+      "op": "itob",
+      "defined_out": [
+        "algo#0",
+        "box_key#0",
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "box_key#0",
+        "algo#0",
+        "encoded_value%0#0"
+      ]
+    },
+    "259": {
+      "op": "uncover 2",
+      "stack_out": [
+        "algo#0",
+        "encoded_value%0#0",
+        "box_key#0"
+      ]
+    },
+    "261": {
+      "op": "swap",
+      "stack_out": [
+        "algo#0",
+        "box_key#0",
+        "encoded_value%0#0"
+      ]
+    },
+    "262": {
+      "op": "box_put",
+      "stack_out": [
+        "algo#0"
+      ]
+    },
+    "263": {
       "op": "itob",
       "defined_out": [
         "aggregate%val_as_bytes%0#0"
@@ -2104,7 +1952,7 @@
         "aggregate%val_as_bytes%0#0"
       ]
     },
-    "307": {
+    "264": {
       "op": "bytec_2 // 0x151f7c75",
       "defined_out": [
         "0x151f7c75",
@@ -2115,14 +1963,14 @@
         "0x151f7c75"
       ]
     },
-    "308": {
+    "265": {
       "op": "swap",
       "stack_out": [
         "0x151f7c75",
         "aggregate%val_as_bytes%0#0"
       ]
     },
-    "309": {
+    "266": {
       "op": "concat",
       "defined_out": [
         "tmp%4#0"
@@ -2131,11 +1979,11 @@
         "tmp%4#0"
       ]
     },
-    "310": {
+    "267": {
       "op": "log",
       "stack_out": []
     },
-    "311": {
+    "268": {
       "op": "intc_1 // 1",
       "defined_out": [
         "1"
@@ -2144,11 +1992,11 @@
         "1"
       ]
     },
-    "312": {
+    "269": {
       "op": "return",
       "stack_out": []
     },
-    "313": {
+    "270": {
       "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_pool[routing]",
       "params": {},
       "block": "get_pool",
@@ -2161,8 +2009,8 @@
         "0"
       ]
     },
-    "314": {
-      "op": "bytec_1 // \"pool\"",
+    "271": {
+      "op": "bytec_0 // \"pool\"",
       "defined_out": [
         "\"pool\"",
         "0"
@@ -2172,7 +2020,7 @@
         "\"pool\""
       ]
     },
-    "315": {
+    "272": {
       "op": "app_global_get_ex",
       "defined_out": [
         "maybe_exists%0#0",
@@ -2183,14 +2031,32 @@
         "maybe_exists%0#0"
       ]
     },
-    "316": {
-      "error": "check self.pool exists",
-      "op": "assert // check self.pool exists",
+    "273": {
+      "op": "intc_0 // 0",
       "stack_out": [
-        "maybe_value%0#0"
+        "maybe_value%0#0",
+        "maybe_exists%0#0",
+        "0"
       ]
     },
-    "317": {
+    "274": {
+      "op": "cover 2",
+      "stack_out": [
+        "0",
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "276": {
+      "op": "select",
+      "defined_out": [
+        "state_get%0#0"
+      ],
+      "stack_out": [
+        "state_get%0#0"
+      ]
+    },
+    "277": {
       "op": "itob",
       "defined_out": [
         "aggregate%val_as_bytes%0#0"
@@ -2199,7 +2065,7 @@
         "aggregate%val_as_bytes%0#0"
       ]
     },
-    "318": {
+    "278": {
       "op": "bytec_2 // 0x151f7c75",
       "defined_out": [
         "0x151f7c75",
@@ -2210,14 +2076,14 @@
         "0x151f7c75"
       ]
     },
-    "319": {
+    "279": {
       "op": "swap",
       "stack_out": [
         "0x151f7c75",
         "aggregate%val_as_bytes%0#0"
       ]
     },
-    "320": {
+    "280": {
       "op": "concat",
       "defined_out": [
         "tmp%2#0"
@@ -2226,11 +2092,11 @@
         "tmp%2#0"
       ]
     },
-    "321": {
+    "281": {
       "op": "log",
       "stack_out": []
     },
-    "322": {
+    "282": {
       "op": "intc_1 // 1",
       "defined_out": [
         "1"
@@ -2239,16 +2105,237 @@
         "1"
       ]
     },
-    "323": {
+    "283": {
       "op": "return",
       "stack_out": []
     },
-    "324": {
+    "284": {
+      "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_total_shares[routing]",
+      "params": {},
+      "block": "get_total_shares",
+      "stack_in": [],
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "285": {
+      "op": "bytec_1 // \"total_shares\"",
+      "defined_out": [
+        "\"total_shares\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"total_shares\""
+      ]
+    },
+    "286": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
+      ],
+      "stack_out": [
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "287": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "maybe_value%0#0",
+        "maybe_exists%0#0",
+        "0"
+      ]
+    },
+    "288": {
+      "op": "cover 2",
+      "stack_out": [
+        "0",
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "290": {
+      "op": "select",
+      "defined_out": [
+        "state_get%0#0"
+      ],
+      "stack_out": [
+        "state_get%0#0"
+      ]
+    },
+    "291": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "292": {
+      "op": "bytec_2 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "aggregate%val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "aggregate%val_as_bytes%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "293": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "294": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "295": {
+      "op": "log",
+      "stack_out": []
+    },
+    "296": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "297": {
+      "op": "return",
+      "stack_out": []
+    },
+    "298": {
       "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_shares[routing]",
       "params": {},
       "block": "get_shares",
       "stack_in": [],
       "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "301": {
+      "op": "dup",
+      "defined_out": [
+        "tmp%0#0",
+        "tmp%0#0 (copy)"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "tmp%0#0 (copy)"
+      ]
+    },
+    "302": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "tmp%0#0",
+        "tmp%0#0 (copy)"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "tmp%0#0 (copy)",
+        "0"
+      ]
+    },
+    "303": {
+      "error": "invalid array length header",
+      "op": "extract_uint16 // on error: invalid array length header",
+      "defined_out": [
+        "aggregate%array_length%0#0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "aggregate%array_length%0#0"
+      ]
+    },
+    "304": {
+      "op": "pushint 2",
+      "defined_out": [
+        "2",
+        "aggregate%array_length%0#0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "aggregate%array_length%0#0",
+        "2"
+      ]
+    },
+    "306": {
+      "op": "+",
+      "defined_out": [
+        "add%0#0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "add%0#0"
+      ]
+    },
+    "307": {
+      "op": "dig 1",
+      "stack_out": [
+        "tmp%0#0",
+        "add%0#0",
+        "tmp%0#0 (copy)"
+      ]
+    },
+    "309": {
+      "op": "len",
+      "defined_out": [
+        "add%0#0",
+        "len%0#0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "add%0#0",
+        "len%0#0"
+      ]
+    },
+    "310": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "eq%0#0"
+      ]
+    },
+    "311": {
+      "error": "invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "op": "assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "312": {
+      "op": "extract 2 0",
       "defined_out": [
         "address#0"
       ],
@@ -2256,7 +2343,7 @@
         "address#0"
       ]
     },
-    "327": {
+    "315": {
       "op": "dup",
       "defined_out": [
         "address#0",
@@ -2267,100 +2354,191 @@
         "address#0 (copy)"
       ]
     },
-    "328": {
+    "316": {
       "op": "len",
       "defined_out": [
         "address#0",
-        "len%0#0"
+        "length%0#1"
       ],
       "stack_out": [
         "address#0",
-        "len%0#0"
+        "length%0#1"
+      ]
+    },
+    "317": {
+      "op": "intc_3 // 31",
+      "defined_out": [
+        "31",
+        "address#0",
+        "length%0#1"
+      ],
+      "stack_out": [
+        "address#0",
+        "length%0#1",
+        "31"
+      ]
+    },
+    "318": {
+      "op": "dig 1",
+      "defined_out": [
+        "31",
+        "address#0",
+        "length%0#1",
+        "length%0#1 (copy)"
+      ],
+      "stack_out": [
+        "address#0",
+        "length%0#1",
+        "31",
+        "length%0#1 (copy)"
+      ]
+    },
+    "320": {
+      "op": ">=",
+      "defined_out": [
+        "address#0",
+        "is_out_of_bounds%0#0",
+        "length%0#1"
+      ],
+      "stack_out": [
+        "address#0",
+        "length%0#1",
+        "is_out_of_bounds%0#0"
+      ]
+    },
+    "321": {
+      "op": "intc_3 // 31",
+      "stack_out": [
+        "address#0",
+        "length%0#1",
+        "is_out_of_bounds%0#0",
+        "31"
+      ]
+    },
+    "322": {
+      "op": "cover 2",
+      "stack_out": [
+        "address#0",
+        "31",
+        "length%0#1",
+        "is_out_of_bounds%0#0"
+      ]
+    },
+    "324": {
+      "op": "select",
+      "defined_out": [
+        "address#0",
+        "bounded_index%0#0"
+      ],
+      "stack_out": [
+        "address#0",
+        "bounded_index%0#0"
+      ]
+    },
+    "325": {
+      "op": "intc_0 // 0"
+    },
+    "326": {
+      "op": "swap",
+      "stack_out": [
+        "address#0",
+        "0",
+        "bounded_index%0#0"
+      ]
+    },
+    "327": {
+      "op": "substring3",
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "328": {
+      "op": "bytec_3 // 0x73",
+      "defined_out": [
+        "0x73",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "0x73"
       ]
     },
     "329": {
-      "op": "pushint 32",
+      "op": "swap",
+      "stack_out": [
+        "0x73",
+        "tmp%0#0"
+      ]
+    },
+    "330": {
+      "op": "concat",
       "defined_out": [
-        "32",
-        "address#0",
-        "len%0#0"
+        "box_key#0"
       ],
       "stack_out": [
-        "address#0",
-        "len%0#0",
-        "32"
+        "box_key#0"
       ]
     },
     "331": {
-      "op": "==",
+      "op": "box_get",
       "defined_out": [
-        "address#0",
-        "eq%0#0"
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
       ],
       "stack_out": [
-        "address#0",
-        "eq%0#0"
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
       ]
     },
     "332": {
-      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
-      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "swap",
       "stack_out": [
-        "address#0"
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
       ]
     },
     "333": {
-      "op": "bytec_3 // \"shares\"",
+      "op": "btoi",
       "defined_out": [
-        "\"shares\"",
-        "address#0"
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0"
       ],
       "stack_out": [
-        "address#0",
-        "\"shares\""
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0"
       ]
     },
     "334": {
-      "op": "swap",
+      "op": "intc_0 // 0",
       "stack_out": [
-        "\"shares\"",
-        "address#0"
+        "maybe_exists%0#0",
+        "maybe_value_converted%0#0",
+        "0"
       ]
     },
     "335": {
-      "op": "concat",
-      "defined_out": [
-        "box_prefixed_key%0#0"
-      ],
+      "op": "swap",
       "stack_out": [
-        "box_prefixed_key%0#0"
+        "maybe_exists%0#0",
+        "0",
+        "maybe_value_converted%0#0"
       ]
     },
     "336": {
-      "op": "box_get",
-      "defined_out": [
-        "aggregate%box_get%0#0",
-        "aggregate%box_get%1#0"
-      ],
+      "op": "uncover 2",
       "stack_out": [
-        "aggregate%box_get%0#0",
-        "aggregate%box_get%1#0"
-      ]
-    },
-    "337": {
-      "error": "check self.shares entry exists",
-      "op": "assert // check self.shares entry exists",
-      "stack_out": [
-        "aggregate%box_get%0#0"
+        "0",
+        "maybe_value_converted%0#0",
+        "maybe_exists%0#0"
       ]
     },
     "338": {
-      "op": "btoi",
+      "op": "select",
       "defined_out": [
-        "maybe_value_converted%0#0"
+        "state_get%0#0"
       ],
       "stack_out": [
-        "maybe_value_converted%0#0"
+        "state_get%0#0"
       ]
     },
     "339": {
@@ -2415,306 +2593,6 @@
     "345": {
       "op": "return",
       "stack_out": []
-    },
-    "346": {
-      "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_total_shares[routing]",
-      "params": {},
-      "block": "get_total_shares",
-      "stack_in": [],
-      "op": "intc_0 // 0",
-      "defined_out": [
-        "0"
-      ],
-      "stack_out": [
-        "0"
-      ]
-    },
-    "347": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\"",
-        "0"
-      ],
-      "stack_out": [
-        "0",
-        "\"total_shares\""
-      ]
-    },
-    "348": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "maybe_exists%0#0",
-        "maybe_value%0#0"
-      ],
-      "stack_out": [
-        "maybe_value%0#0",
-        "maybe_exists%0#0"
-      ]
-    },
-    "349": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "maybe_value%0#0"
-      ]
-    },
-    "350": {
-      "op": "itob",
-      "defined_out": [
-        "aggregate%val_as_bytes%0#0"
-      ],
-      "stack_out": [
-        "aggregate%val_as_bytes%0#0"
-      ]
-    },
-    "351": {
-      "op": "bytec_2 // 0x151f7c75",
-      "defined_out": [
-        "0x151f7c75",
-        "aggregate%val_as_bytes%0#0"
-      ],
-      "stack_out": [
-        "aggregate%val_as_bytes%0#0",
-        "0x151f7c75"
-      ]
-    },
-    "352": {
-      "op": "swap",
-      "stack_out": [
-        "0x151f7c75",
-        "aggregate%val_as_bytes%0#0"
-      ]
-    },
-    "353": {
-      "op": "concat",
-      "defined_out": [
-        "tmp%2#0"
-      ],
-      "stack_out": [
-        "tmp%2#0"
-      ]
-    },
-    "354": {
-      "op": "log",
-      "stack_out": []
-    },
-    "355": {
-      "op": "intc_1 // 1",
-      "defined_out": [
-        "1"
-      ],
-      "stack_out": [
-        "1"
-      ]
-    },
-    "356": {
-      "op": "return",
-      "stack_out": []
-    },
-    "357": {
-      "subroutine": "smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_share_price[routing]",
-      "params": {},
-      "block": "get_share_price",
-      "stack_in": [],
-      "op": "intc_0 // 0",
-      "defined_out": [
-        "0"
-      ],
-      "stack_out": [
-        "0"
-      ]
-    },
-    "358": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\"",
-        "0"
-      ],
-      "stack_out": [
-        "0",
-        "\"total_shares\""
-      ]
-    },
-    "359": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "maybe_exists%0#0",
-        "maybe_value%0#0"
-      ],
-      "stack_out": [
-        "maybe_value%0#0",
-        "maybe_exists%0#0"
-      ]
-    },
-    "360": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "maybe_value%0#0"
-      ]
-    },
-    "361": {
-      "op": "bnz get_share_price_after_if_else@3",
-      "stack_out": []
-    },
-    "364": {
-      "op": "intc_0 // 0",
-      "defined_out": [
-        "tmp%0#0"
-      ],
-      "stack_out": [
-        "tmp%0#0"
-      ]
-    },
-    "365": {
-      "block": "get_share_price_after_inlined_smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_share_price@4",
-      "stack_in": [
-        "tmp%0#0"
-      ],
-      "op": "itob",
-      "defined_out": [
-        "aggregate%val_as_bytes%0#0"
-      ],
-      "stack_out": [
-        "aggregate%val_as_bytes%0#0"
-      ]
-    },
-    "366": {
-      "op": "bytec_2 // 0x151f7c75",
-      "defined_out": [
-        "0x151f7c75",
-        "aggregate%val_as_bytes%0#0"
-      ],
-      "stack_out": [
-        "aggregate%val_as_bytes%0#0",
-        "0x151f7c75"
-      ]
-    },
-    "367": {
-      "op": "swap",
-      "stack_out": [
-        "0x151f7c75",
-        "aggregate%val_as_bytes%0#0"
-      ]
-    },
-    "368": {
-      "op": "concat",
-      "defined_out": [
-        "tmp%2#0"
-      ],
-      "stack_out": [
-        "tmp%2#0"
-      ]
-    },
-    "369": {
-      "op": "log",
-      "stack_out": []
-    },
-    "370": {
-      "op": "intc_1 // 1",
-      "defined_out": [
-        "1"
-      ],
-      "stack_out": [
-        "1"
-      ]
-    },
-    "371": {
-      "op": "return",
-      "stack_out": []
-    },
-    "372": {
-      "block": "get_share_price_after_if_else@3",
-      "stack_in": [],
-      "op": "intc_0 // 0",
-      "defined_out": [
-        "0"
-      ],
-      "stack_out": [
-        "0"
-      ]
-    },
-    "373": {
-      "op": "bytec_1 // \"pool\"",
-      "defined_out": [
-        "\"pool\"",
-        "0"
-      ],
-      "stack_out": [
-        "0",
-        "\"pool\""
-      ]
-    },
-    "374": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "maybe_exists%1#0",
-        "maybe_value%1#0"
-      ],
-      "stack_out": [
-        "maybe_value%1#0",
-        "maybe_exists%1#0"
-      ]
-    },
-    "375": {
-      "error": "check self.pool exists",
-      "op": "assert // check self.pool exists",
-      "stack_out": [
-        "maybe_value%1#0"
-      ]
-    },
-    "376": {
-      "op": "intc_0 // 0",
-      "stack_out": [
-        "maybe_value%1#0",
-        "0"
-      ]
-    },
-    "377": {
-      "op": "bytec_0 // \"total_shares\"",
-      "defined_out": [
-        "\"total_shares\"",
-        "0",
-        "maybe_value%1#0"
-      ],
-      "stack_out": [
-        "maybe_value%1#0",
-        "0",
-        "\"total_shares\""
-      ]
-    },
-    "378": {
-      "op": "app_global_get_ex",
-      "defined_out": [
-        "maybe_exists%2#0",
-        "maybe_value%1#0",
-        "maybe_value%2#0"
-      ],
-      "stack_out": [
-        "maybe_value%1#0",
-        "maybe_value%2#0",
-        "maybe_exists%2#0"
-      ]
-    },
-    "379": {
-      "error": "check self.total_shares exists",
-      "op": "assert // check self.total_shares exists",
-      "stack_out": [
-        "maybe_value%1#0",
-        "maybe_value%2#0"
-      ]
-    },
-    "380": {
-      "op": "/",
-      "defined_out": [
-        "tmp%0#0"
-      ],
-      "stack_out": [
-        "tmp%0#0"
-      ]
-    },
-    "381": {
-      "op": "b get_share_price_after_inlined_smart_contracts.algocrefi_pool.contract.AlgocrefiPool.get_share_price@4"
     }
   }
 }
