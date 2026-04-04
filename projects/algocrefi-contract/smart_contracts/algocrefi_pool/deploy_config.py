@@ -5,14 +5,14 @@ logger = logging.getLogger(__name__)
 
 def deploy() -> None:
     from smart_contracts.artifacts.algocrefi_pool.algocrefi_pool_client import (
-        AlgocrefiPoolFactory,
+        AlgoPoolFactory,
     )
 
     algorand = algokit_utils.AlgorandClient.from_environment()
     deployer_ = algorand.account.from_environment("DEPLOYER")
 
     factory = algorand.client.get_typed_app_factory(
-        AlgocrefiPoolFactory,
+        AlgoPoolFactory,
         default_sender=deployer_.address,
     )
 
