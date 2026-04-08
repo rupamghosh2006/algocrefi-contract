@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "uint64", "name": "amount"}], "name": "mint", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "uint64", "name": "amount"}], "name": "burn", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [], "name": "get_total_supply", "returns": {"type": "uint64"}, "events": [], "readonly": false, "recommendations": {}}], "name": "AlgocrefiAura", "state": {"keys": {"box": {}, "global": {"total_supply": {"key": "dG90YWxfc3VwcGx5", "keyType": "AVMString", "valueType": "AVMUint64"}}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 1}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CyADAAEIJgEMdG90YWxfc3VwcGx5MRhAAAMoImcxG0EAJDEZFEQxGESCAwS5i5BfBH8dQ+EERpCTVTYaAI4DAAkAHAA1ADEZFDEYFBBDNhoBSRUkEkQXIihlRAgoTGcjQzYaAUkVJBJEFyIoZURJSwIPREwJKExnI0MiKGVEFoAEFR98dUxQsCND", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAwIDEgOAogICAgYnl0ZWNibG9jayAidG90YWxfc3VwcGx5IgogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGJueiBtYWluX2FmdGVyX2lmX2Vsc2VAMgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjgKICAgIC8vIHNlbGYudG90YWxfc3VwcGx5ID0gVUludDY0KDApCiAgICBieXRlY18wIC8vICJ0b3RhbF9zdXBwbHkiCiAgICBpbnRjXzAgLy8gMAogICAgYXBwX2dsb2JhbF9wdXQKCm1haW5fYWZ0ZXJfaWZfZWxzZUAyOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjUKICAgIC8vIGNsYXNzIEFsZ29jcmVmaUF1cmEoQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDEyCiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICBhc3NlcnQKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQKICAgIHB1c2hieXRlc3MgMHhiOThiOTA1ZiAweDdmMWQ0M2UxIDB4NDY5MDkzNTUgLy8gbWV0aG9kICJtaW50KHVpbnQ2NCl2b2lkIiwgbWV0aG9kICJidXJuKHVpbnQ2NCl2b2lkIiwgbWV0aG9kICJnZXRfdG90YWxfc3VwcGx5KCl1aW50NjQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtaW50IGJ1cm4gZ2V0X3RvdGFsX3N1cHBseQogICAgZXJyCgptYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDEyOgogICAgdHhuIE9uQ29tcGxldGlvbgogICAgIQogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgICEKICAgICYmCiAgICByZXR1cm4KCgovLyBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5taW50W3JvdXRpbmddKCkgLT4gdm9pZDoKbWludDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToxMAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDgKICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQudWludDY0CiAgICBidG9pCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MTIKICAgIC8vIHNlbGYudG90YWxfc3VwcGx5ICs9IGFtb3VudAogICAgaW50Y18wIC8vIDAKICAgIGJ5dGVjXzAgLy8gInRvdGFsX3N1cHBseSIKICAgIGFwcF9nbG9iYWxfZ2V0X2V4CiAgICBhc3NlcnQgLy8gY2hlY2sgc2VsZi50b3RhbF9zdXBwbHkgZXhpc3RzCiAgICArCiAgICBieXRlY18wIC8vICJ0b3RhbF9zdXBwbHkiCiAgICBzd2FwCiAgICBhcHBfZ2xvYmFsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjEwCiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIGludGNfMSAvLyAxCiAgICByZXR1cm4KCgovLyBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5idXJuW3JvdXRpbmddKCkgLT4gdm9pZDoKYnVybjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToxNAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDgKICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQudWludDY0CiAgICBidG9pCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MTYKICAgIC8vIGFzc2VydCBzZWxmLnRvdGFsX3N1cHBseSA+PSBhbW91bnQKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18wIC8vICJ0b3RhbF9zdXBwbHkiCiAgICBhcHBfZ2xvYmFsX2dldF9leAogICAgYXNzZXJ0IC8vIGNoZWNrIHNlbGYudG90YWxfc3VwcGx5IGV4aXN0cwogICAgZHVwCiAgICBkaWcgMgogICAgPj0KICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjE3CiAgICAvLyBzZWxmLnRvdGFsX3N1cHBseSAtPSBhbW91bnQKICAgIHN3YXAKICAgIC0KICAgIGJ5dGVjXzAgLy8gInRvdGFsX3N1cHBseSIKICAgIHN3YXAKICAgIGFwcF9nbG9iYWxfcHV0CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MTQKICAgIC8vIEBhYmltZXRob2QoKQogICAgaW50Y18xIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfYXVyYS5jb250cmFjdC5BbGdvY3JlZmlBdXJhLmdldF90b3RhbF9zdXBwbHlbcm91dGluZ10oKSAtPiB2b2lkOgpnZXRfdG90YWxfc3VwcGx5OgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjIxCiAgICAvLyByZXR1cm4gc2VsZi50b3RhbF9zdXBwbHkKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18wIC8vICJ0b3RhbF9zdXBwbHkiCiAgICBhcHBfZ2xvYmFsX2dldF9leAogICAgYXNzZXJ0IC8vIGNoZWNrIHNlbGYudG90YWxfc3VwcGx5IGV4aXN0cwogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjE5CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIGl0b2IKICAgIHB1c2hieXRlcyAweDE1MWY3Yzc1CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGxvZwogICAgaW50Y18xIC8vIDEKICAgIHJldHVybgo=", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [90, 109, 125], "errorMessage": "check self.total_supply exists"}, {"pc": [85, 104], "errorMessage": "invalid number of bytes for arc4.uint64"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
+_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["OptIn"], "create": []}, "args": [], "name": "opt_in", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}, {"type": "uint64", "name": "interest_paid"}], "name": "add_repayment_aura", "returns": {"type": "uint64"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}, {"type": "uint64", "name": "penalty"}], "name": "add_default_penalty", "returns": {"type": "uint64"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}], "name": "blacklist_unsecured", "returns": {"type": "uint64"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}], "name": "get_net_aura", "returns": {"type": "uint64"}, "events": [], "readonly": true, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}], "name": "get_aura_earned", "returns": {"type": "uint64"}, "events": [], "readonly": true, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}], "name": "get_aura_penalty", "returns": {"type": "uint64"}, "events": [], "readonly": true, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "user"}], "name": "is_blacklisted", "returns": {"type": "uint64"}, "events": [], "readonly": true, "recommendations": {}}], "name": "AlgocrefiAura", "state": {"keys": {"box": {}, "global": {}, "local": {"aura_earned": {"key": "YXVyYV9lYXJuZWQ=", "keyType": "AVMString", "valueType": "AVMUint64"}, "aura_penalty": {"key": "YXVyYV9wZW5hbHR5", "keyType": "AVMString", "valueType": "AVMUint64"}, "blacklisted": {"key": "YmxhY2tsaXN0ZWQ=", "keyType": "AVMString", "valueType": "AVMUint64"}}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 3}}}, "structs": {}, "byteCode": {"approval": "CyAEAAEgCCYEBBUffHULYXVyYV9lYXJuZWQMYXVyYV9wZW5hbHR5C2JsYWNrbGlzdGVkMRtBAFiABDDG1Yo2GgCOAQBAMRkURDEYRIIHBMToUMQEGOmh1AR8+qKhBJdwRWsE3VnALgSoXCXfBFciX7g2GgCOBwAlAFYAhwCpALsA0QDnADEZIxIxGBBEQgAIMRkUMRgUEEMxACkiZjEAKiJmMQArImYjQzYaAUkVJBJENhoCSRUlEkQXMQAyCRJESwEiKWMiTgJNCEsBKU8CZogArhYoTFCwI0M2GgFJFSQSRDYaAkkVJRJEFzEAMgkSREsBIipjIk4CTQhLASpPAmaIAH0WKExQsCNDNhoBSRUkEkQxADIJEkQrI2aADBUffHUAAAAAAAAAAbAjQzYaAUkVJBJEiABJFihMULAjQzYaAUkVJBJEIiljIk4CTRYoTFCwI0M2GgFJFSQSRCIqYyJOAk0WKExQsCNDNhoBSRUkEkQiK2MiTgJNFihMULAjQ4oBAYv/IiljIk4CTUmL/yIqYyJOAk1JTgIPQQAIiwCLAQmMAIkijACJ", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAwIDEgMzIgOAogICAgYnl0ZWNibG9jayAweDE1MWY3Yzc1ICJhdXJhX2Vhcm5lZCIgImF1cmFfcGVuYWx0eSIgImJsYWNrbGlzdGVkIgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjUKICAgIC8vIGNsYXNzIEFsZ29jcmVmaUF1cmEoQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDE4CiAgICBwdXNoYnl0ZXMgMHgzMGM2ZDU4YSAvLyBtZXRob2QgIm9wdF9pbigpdm9pZCIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDAKICAgIG1hdGNoIG1haW5fb3B0X2luX3JvdXRlQDUKCm1haW5fc3dpdGNoX2Nhc2VfbmV4dEA2OgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjUKICAgIC8vIGNsYXNzIEFsZ29jcmVmaUF1cmEoQVJDNENvbnRyYWN0KToKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydAogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGFzc2VydAogICAgcHVzaGJ5dGVzcyAweGM0ZTg1MGM0IDB4MThlOWExZDQgMHg3Y2ZhYTJhMSAweDk3NzA0NTZiIDB4ZGQ1OWMwMmUgMHhhODVjMjVkZiAweDU3MjI1ZmI4IC8vIG1ldGhvZCAiYWRkX3JlcGF5bWVudF9hdXJhKGFkZHJlc3MsdWludDY0KXVpbnQ2NCIsIG1ldGhvZCAiYWRkX2RlZmF1bHRfcGVuYWx0eShhZGRyZXNzLHVpbnQ2NCl1aW50NjQiLCBtZXRob2QgImJsYWNrbGlzdF91bnNlY3VyZWQoYWRkcmVzcyl1aW50NjQiLCBtZXRob2QgImdldF9uZXRfYXVyYShhZGRyZXNzKXVpbnQ2NCIsIG1ldGhvZCAiZ2V0X2F1cmFfZWFybmVkKGFkZHJlc3MpdWludDY0IiwgbWV0aG9kICJnZXRfYXVyYV9wZW5hbHR5KGFkZHJlc3MpdWludDY0IiwgbWV0aG9kICJpc19ibGFja2xpc3RlZChhZGRyZXNzKXVpbnQ2NCIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDAKICAgIG1hdGNoIGFkZF9yZXBheW1lbnRfYXVyYSBhZGRfZGVmYXVsdF9wZW5hbHR5IGJsYWNrbGlzdF91bnNlY3VyZWQgZ2V0X25ldF9hdXJhIGdldF9hdXJhX2Vhcm5lZCBnZXRfYXVyYV9wZW5hbHR5IGlzX2JsYWNrbGlzdGVkCiAgICBlcnIKCm1haW5fb3B0X2luX3JvdXRlQDU6CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MTIKICAgIC8vIEBhYmltZXRob2QoYWxsb3dfYWN0aW9ucz1bIk9wdEluIl0pCiAgICB0eG4gT25Db21wbGV0aW9uCiAgICBpbnRjXzEgLy8gT3B0SW4KICAgID09CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgJiYKICAgIGFzc2VydAogICAgYiBvcHRfaW4KCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTg6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgJiYKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfYXVyYS5jb250cmFjdC5BbGdvY3JlZmlBdXJhLm9wdF9pbltyb3V0aW5nXSgpIC0+IHZvaWQ6Cm9wdF9pbjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToxNAogICAgLy8gc2VsZi5hdXJhX2Vhcm5lZFtUeG4uc2VuZGVyXSA9IFVJbnQ2NCgwKQogICAgdHhuIFNlbmRlcgogICAgYnl0ZWNfMSAvLyAiYXVyYV9lYXJuZWQiCiAgICBpbnRjXzAgLy8gMAogICAgYXBwX2xvY2FsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjE1CiAgICAvLyBzZWxmLmF1cmFfcGVuYWx0eVtUeG4uc2VuZGVyXSA9IFVJbnQ2NCgwKQogICAgdHhuIFNlbmRlcgogICAgYnl0ZWNfMiAvLyAiYXVyYV9wZW5hbHR5IgogICAgaW50Y18wIC8vIDAKICAgIGFwcF9sb2NhbF9wdXQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToxNgogICAgLy8gc2VsZi5ibGFja2xpc3RlZFtUeG4uc2VuZGVyXSA9IFVJbnQ2NCgwKQogICAgdHhuIFNlbmRlcgogICAgYnl0ZWNfMyAvLyAiYmxhY2tsaXN0ZWQiCiAgICBpbnRjXzAgLy8gMAogICAgYXBwX2xvY2FsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjEyCiAgICAvLyBAYWJpbWV0aG9kKGFsbG93X2FjdGlvbnM9WyJPcHRJbiJdKQogICAgaW50Y18xIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfYXVyYS5jb250cmFjdC5BbGdvY3JlZmlBdXJhLmFkZF9yZXBheW1lbnRfYXVyYVtyb3V0aW5nXSgpIC0+IHZvaWQ6CmFkZF9yZXBheW1lbnRfYXVyYToKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToxOAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDMyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCAzMj4KICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDIKICAgIGR1cAogICAgbGVuCiAgICBpbnRjXzMgLy8gOAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50NjQKICAgIGJ0b2kKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToyMAogICAgLy8gYXNzZXJ0IFR4bi5zZW5kZXIgPT0gR2xvYmFsLmNyZWF0b3JfYWRkcmVzcywgIk9ubHkgYWRtaW4iCiAgICB0eG4gU2VuZGVyCiAgICBnbG9iYWwgQ3JlYXRvckFkZHJlc3MKICAgID09CiAgICBhc3NlcnQgLy8gT25seSBhZG1pbgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjIxCiAgICAvLyBzZWxmLmF1cmFfZWFybmVkW3VzZXJdID0gc2VsZi5hdXJhX2Vhcm5lZC5nZXQodXNlciwgVUludDY0KDApKSArIGludGVyZXN0X3BhaWQKICAgIGRpZyAxCiAgICBpbnRjXzAgLy8gMAogICAgYnl0ZWNfMSAvLyAiYXVyYV9lYXJuZWQiCiAgICBhcHBfbG9jYWxfZ2V0X2V4CiAgICBpbnRjXzAgLy8gMAogICAgY292ZXIgMgogICAgc2VsZWN0CiAgICArCiAgICBkaWcgMQogICAgYnl0ZWNfMSAvLyAiYXVyYV9lYXJuZWQiCiAgICB1bmNvdmVyIDIKICAgIGFwcF9sb2NhbF9wdXQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToyMgogICAgLy8gcmV0dXJuIHNlbGYuZ2V0X25ldF9hdXJhKHVzZXIpCiAgICBjYWxsc3ViIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfYXVyYS5jb250cmFjdC5BbGdvY3JlZmlBdXJhLmdldF9uZXRfYXVyYQogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjE4CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIGl0b2IKICAgIGJ5dGVjXzAgLy8gMHgxNTFmN2M3NQogICAgc3dhcAogICAgY29uY2F0CiAgICBsb2cKICAgIGludGNfMSAvLyAxCiAgICByZXR1cm4KCgovLyBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5hZGRfZGVmYXVsdF9wZW5hbHR5W3JvdXRpbmddKCkgLT4gdm9pZDoKYWRkX2RlZmF1bHRfcGVuYWx0eToKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToyNAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDMyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCAzMj4KICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDIKICAgIGR1cAogICAgbGVuCiAgICBpbnRjXzMgLy8gOAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50NjQKICAgIGJ0b2kKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToyNgogICAgLy8gYXNzZXJ0IFR4bi5zZW5kZXIgPT0gR2xvYmFsLmNyZWF0b3JfYWRkcmVzcywgIk9ubHkgYWRtaW4iCiAgICB0eG4gU2VuZGVyCiAgICBnbG9iYWwgQ3JlYXRvckFkZHJlc3MKICAgID09CiAgICBhc3NlcnQgLy8gT25seSBhZG1pbgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjI3CiAgICAvLyBzZWxmLmF1cmFfcGVuYWx0eVt1c2VyXSA9IHNlbGYuYXVyYV9wZW5hbHR5LmdldCh1c2VyLCBVSW50NjQoMCkpICsgcGVuYWx0eQogICAgZGlnIDEKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18yIC8vICJhdXJhX3BlbmFsdHkiCiAgICBhcHBfbG9jYWxfZ2V0X2V4CiAgICBpbnRjXzAgLy8gMAogICAgY292ZXIgMgogICAgc2VsZWN0CiAgICArCiAgICBkaWcgMQogICAgYnl0ZWNfMiAvLyAiYXVyYV9wZW5hbHR5IgogICAgdW5jb3ZlciAyCiAgICBhcHBfbG9jYWxfcHV0CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MjgKICAgIC8vIHJldHVybiBzZWxmLmdldF9uZXRfYXVyYSh1c2VyKQogICAgY2FsbHN1YiBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5nZXRfbmV0X2F1cmEKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weToyNAogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBpdG9iCiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzEgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9hdXJhLmNvbnRyYWN0LkFsZ29jcmVmaUF1cmEuYmxhY2tsaXN0X3Vuc2VjdXJlZFtyb3V0aW5nXSgpIC0+IHZvaWQ6CmJsYWNrbGlzdF91bnNlY3VyZWQ6CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MzAKICAgIC8vIEBhYmltZXRob2QoKQogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgZHVwCiAgICBsZW4KICAgIGludGNfMiAvLyAzMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC5zdGF0aWNfYXJyYXk8YXJjNC51aW50OCwgMzI+CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6MzIKICAgIC8vIGFzc2VydCBUeG4uc2VuZGVyID09IEdsb2JhbC5jcmVhdG9yX2FkZHJlc3MsICJPbmx5IGFkbWluIgogICAgdHhuIFNlbmRlcgogICAgZ2xvYmFsIENyZWF0b3JBZGRyZXNzCiAgICA9PQogICAgYXNzZXJ0IC8vIE9ubHkgYWRtaW4KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weTozMwogICAgLy8gc2VsZi5ibGFja2xpc3RlZFt1c2VyXSA9IFVJbnQ2NCgxKQogICAgYnl0ZWNfMyAvLyAiYmxhY2tsaXN0ZWQiCiAgICBpbnRjXzEgLy8gMQogICAgYXBwX2xvY2FsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjMwCiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIHB1c2hieXRlcyAweDE1MWY3Yzc1MDAwMDAwMDAwMDAwMDAwMQogICAgbG9nCiAgICBpbnRjXzEgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9hdXJhLmNvbnRyYWN0LkFsZ29jcmVmaUF1cmEuZ2V0X25ldF9hdXJhW3JvdXRpbmddKCkgLT4gdm9pZDoKZ2V0X25ldF9hdXJhOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjM2CiAgICAvLyBAYWJpbWV0aG9kKHJlYWRvbmx5PVRydWUpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDMyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCAzMj4KICAgIGNhbGxzdWIgc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9hdXJhLmNvbnRyYWN0LkFsZ29jcmVmaUF1cmEuZ2V0X25ldF9hdXJhCiAgICBpdG9iCiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzEgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9hdXJhLmNvbnRyYWN0LkFsZ29jcmVmaUF1cmEuZ2V0X2F1cmFfZWFybmVkW3JvdXRpbmddKCkgLT4gdm9pZDoKZ2V0X2F1cmFfZWFybmVkOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjQ0CiAgICAvLyBAYWJpbWV0aG9kKHJlYWRvbmx5PVRydWUpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDMyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCAzMj4KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weTo0NgogICAgLy8gcmV0dXJuIHNlbGYuYXVyYV9lYXJuZWQuZ2V0KHVzZXIsIFVJbnQ2NCgwKSkKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18xIC8vICJhdXJhX2Vhcm5lZCIKICAgIGFwcF9sb2NhbF9nZXRfZXgKICAgIGludGNfMCAvLyAwCiAgICBjb3ZlciAyCiAgICBzZWxlY3QKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weTo0NAogICAgLy8gQGFiaW1ldGhvZChyZWFkb25seT1UcnVlKQogICAgaXRvYgogICAgYnl0ZWNfMCAvLyAweDE1MWY3Yzc1CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGxvZwogICAgaW50Y18xIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5hbGdvY3JlZmlfYXVyYS5jb250cmFjdC5BbGdvY3JlZmlBdXJhLmdldF9hdXJhX3BlbmFsdHlbcm91dGluZ10oKSAtPiB2b2lkOgpnZXRfYXVyYV9wZW5hbHR5OgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjQ4CiAgICAvLyBAYWJpbWV0aG9kKHJlYWRvbmx5PVRydWUpCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18yIC8vIDMyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCAzMj4KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weTo1MAogICAgLy8gcmV0dXJuIHNlbGYuYXVyYV9wZW5hbHR5LmdldCh1c2VyLCBVSW50NjQoMCkpCiAgICBpbnRjXzAgLy8gMAogICAgYnl0ZWNfMiAvLyAiYXVyYV9wZW5hbHR5IgogICAgYXBwX2xvY2FsX2dldF9leAogICAgaW50Y18wIC8vIDAKICAgIGNvdmVyIDIKICAgIHNlbGVjdAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjQ4CiAgICAvLyBAYWJpbWV0aG9kKHJlYWRvbmx5PVRydWUpCiAgICBpdG9iCiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzEgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9hdXJhLmNvbnRyYWN0LkFsZ29jcmVmaUF1cmEuaXNfYmxhY2tsaXN0ZWRbcm91dGluZ10oKSAtPiB2b2lkOgppc19ibGFja2xpc3RlZDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9hbGdvY3JlZmlfYXVyYS9jb250cmFjdC5weTo1MgogICAgLy8gQGFiaW1ldGhvZChyZWFkb25seT1UcnVlKQogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgZHVwCiAgICBsZW4KICAgIGludGNfMiAvLyAzMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC5zdGF0aWNfYXJyYXk8YXJjNC51aW50OCwgMzI+CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6NTQKICAgIC8vIHJldHVybiBzZWxmLmJsYWNrbGlzdGVkLmdldCh1c2VyLCBVSW50NjQoMCkpCiAgICBpbnRjXzAgLy8gMAogICAgYnl0ZWNfMyAvLyAiYmxhY2tsaXN0ZWQiCiAgICBhcHBfbG9jYWxfZ2V0X2V4CiAgICBpbnRjXzAgLy8gMAogICAgY292ZXIgMgogICAgc2VsZWN0CiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6NTIKICAgIC8vIEBhYmltZXRob2QocmVhZG9ubHk9VHJ1ZSkKICAgIGl0b2IKICAgIGJ5dGVjXzAgLy8gMHgxNTFmN2M3NQogICAgc3dhcAogICAgY29uY2F0CiAgICBsb2cKICAgIGludGNfMSAvLyAxCiAgICByZXR1cm4KCgovLyBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5nZXRfbmV0X2F1cmEodXNlcjogYnl0ZXMpIC0+IHVpbnQ2NDoKc21hcnRfY29udHJhY3RzLmFsZ29jcmVmaV9hdXJhLmNvbnRyYWN0LkFsZ29jcmVmaUF1cmEuZ2V0X25ldF9hdXJhOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjM2LTM3CiAgICAvLyBAYWJpbWV0aG9kKHJlYWRvbmx5PVRydWUpCiAgICAvLyBkZWYgZ2V0X25ldF9hdXJhKHNlbGYsIHVzZXI6IEFjY291bnQpIC0+IFVJbnQ2NDoKICAgIHByb3RvIDEgMQogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjM4CiAgICAvLyBlYXJuZWQgPSBzZWxmLmF1cmFfZWFybmVkLmdldCh1c2VyLCBVSW50NjQoMCkpCiAgICBmcmFtZV9kaWcgLTEKICAgIGludGNfMCAvLyAwCiAgICBieXRlY18xIC8vICJhdXJhX2Vhcm5lZCIKICAgIGFwcF9sb2NhbF9nZXRfZXgKICAgIGludGNfMCAvLyAwCiAgICBjb3ZlciAyCiAgICBzZWxlY3QKICAgIGR1cAogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjM5CiAgICAvLyBwZW5hbHR5ID0gc2VsZi5hdXJhX3BlbmFsdHkuZ2V0KHVzZXIsIFVJbnQ2NCgwKSkKICAgIGZyYW1lX2RpZyAtMQogICAgaW50Y18wIC8vIDAKICAgIGJ5dGVjXzIgLy8gImF1cmFfcGVuYWx0eSIKICAgIGFwcF9sb2NhbF9nZXRfZXgKICAgIGludGNfMCAvLyAwCiAgICBjb3ZlciAyCiAgICBzZWxlY3QKICAgIGR1cAogICAgY292ZXIgMgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjQwCiAgICAvLyBpZiBlYXJuZWQgPj0gcGVuYWx0eToKICAgID49CiAgICBieiBzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5nZXRfbmV0X2F1cmFfYWZ0ZXJfaWZfZWxzZUAyCiAgICAvLyBzbWFydF9jb250cmFjdHMvYWxnb2NyZWZpX2F1cmEvY29udHJhY3QucHk6NDEKICAgIC8vIHJldHVybiBlYXJuZWQgLSBwZW5hbHR5CiAgICBmcmFtZV9kaWcgMAogICAgZnJhbWVfZGlnIDEKICAgIC0KICAgIGZyYW1lX2J1cnkgMAogICAgcmV0c3ViCgpzbWFydF9jb250cmFjdHMuYWxnb2NyZWZpX2F1cmEuY29udHJhY3QuQWxnb2NyZWZpQXVyYS5nZXRfbmV0X2F1cmFfYWZ0ZXJfaWZfZWxzZUAyOgogICAgLy8gc21hcnRfY29udHJhY3RzL2FsZ29jcmVmaV9hdXJhL2NvbnRyYWN0LnB5OjQyCiAgICAvLyByZXR1cm4gVUludDY0KDApCiAgICBpbnRjXzAgLy8gMAogICAgZnJhbWVfYnVyeSAwCiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [191, 240, 280], "errorMessage": "Only admin"}, {"pc": [176, 225, 274, 308, 326, 348, 370], "errorMessage": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>"}, {"pc": [184, 233], "errorMessage": "invalid number of bytes for arc4.uint64"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -65,63 +65,184 @@ def _init_dataclass(cls: type, data: dict) -> object:
     return cls(**field_values)
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class MintArgs:
-    """Dataclass for mint arguments"""
-    amount: int
+class AddRepaymentAuraArgs:
+    """Dataclass for add_repayment_aura arguments"""
+    user: str
+    interest_paid: int
 
     @property
     def abi_method_signature(self) -> str:
-        return "mint(uint64)void"
+        return "add_repayment_aura(address,uint64)uint64"
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class BurnArgs:
-    """Dataclass for burn arguments"""
-    amount: int
+class AddDefaultPenaltyArgs:
+    """Dataclass for add_default_penalty arguments"""
+    user: str
+    penalty: int
 
     @property
     def abi_method_signature(self) -> str:
-        return "burn(uint64)void"
+        return "add_default_penalty(address,uint64)uint64"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class BlacklistUnsecuredArgs:
+    """Dataclass for blacklist_unsecured arguments"""
+    user: str
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "blacklist_unsecured(address)uint64"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class GetNetAuraArgs:
+    """Dataclass for get_net_aura arguments"""
+    user: str
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "get_net_aura(address)uint64"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class GetAuraEarnedArgs:
+    """Dataclass for get_aura_earned arguments"""
+    user: str
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "get_aura_earned(address)uint64"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class GetAuraPenaltyArgs:
+    """Dataclass for get_aura_penalty arguments"""
+    user: str
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "get_aura_penalty(address)uint64"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class IsBlacklistedArgs:
+    """Dataclass for is_blacklisted arguments"""
+    user: str
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "is_blacklisted(address)uint64"
+
+
+class _AlgocrefiAuraOptIn:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+
+    def opt_in(
+        self,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+    
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.opt_in(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "opt_in()void",
+        }))
 
 
 class AlgocrefiAuraParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def mint(
+    @property
+    def opt_in(self) -> "_AlgocrefiAuraOptIn":
+        return _AlgocrefiAuraOptIn(self.app_client)
+
+    def add_repayment_aura(
         self,
-        args: tuple[int] | MintArgs,
+        args: tuple[str, int] | AddRepaymentAuraArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.AppCallMethodCallParams:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "mint(uint64)void",
+            "method": "add_repayment_aura(address,uint64)uint64",
             "args": method_args,
         }))
 
-    def burn(
+    def add_default_penalty(
         self,
-        args: tuple[int] | BurnArgs,
+        args: tuple[str, int] | AddDefaultPenaltyArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.AppCallMethodCallParams:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "burn(uint64)void",
+            "method": "add_default_penalty(address,uint64)uint64",
             "args": method_args,
         }))
 
-    def get_total_supply(
+    def blacklist_unsecured(
         self,
+        args: tuple[str] | BlacklistUnsecuredArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.AppCallMethodCallParams:
-    
+        method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "get_total_supply()uint64",
+            "method": "blacklist_unsecured(address)uint64",
+            "args": method_args,
+        }))
+
+    def get_net_aura(
+        self,
+        args: tuple[str] | GetNetAuraArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_net_aura(address)uint64",
+            "args": method_args,
+        }))
+
+    def get_aura_earned(
+        self,
+        args: tuple[str] | GetAuraEarnedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_aura_earned(address)uint64",
+            "args": method_args,
+        }))
+
+    def get_aura_penalty(
+        self,
+        args: tuple[str] | GetAuraPenaltyArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_aura_penalty(address)uint64",
+            "args": method_args,
+        }))
+
+    def is_blacklisted(
+        self,
+        args: tuple[str] | IsBlacklistedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "is_blacklisted(address)uint64",
+            "args": method_args,
         }))
 
     def clear_state(
@@ -135,45 +256,119 @@ class AlgocrefiAuraParams:
         )
 
 
-class AlgocrefiAuraCreateTransactionParams:
+class _AlgocrefiAuraOptInTransaction:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def mint(
-        self,
-        args: tuple[int] | MintArgs,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> algokit_utils.BuiltTransactions:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "mint(uint64)void",
-            "args": method_args,
-        }))
-
-    def burn(
-        self,
-        args: tuple[int] | BurnArgs,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> algokit_utils.BuiltTransactions:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "burn(uint64)void",
-            "args": method_args,
-        }))
-
-    def get_total_supply(
+    def opt_in(
         self,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.BuiltTransactions:
     
         params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.opt_in(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "opt_in()void",
+        }))
+
+
+class AlgocrefiAuraCreateTransactionParams:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+
+    @property
+    def opt_in(self) -> "_AlgocrefiAuraOptInTransaction":
+        return _AlgocrefiAuraOptInTransaction(self.app_client)
+
+    def add_repayment_aura(
+        self,
+        args: tuple[str, int] | AddRepaymentAuraArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "get_total_supply()uint64",
+            "method": "add_repayment_aura(address,uint64)uint64",
+            "args": method_args,
+        }))
+
+    def add_default_penalty(
+        self,
+        args: tuple[str, int] | AddDefaultPenaltyArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "add_default_penalty(address,uint64)uint64",
+            "args": method_args,
+        }))
+
+    def blacklist_unsecured(
+        self,
+        args: tuple[str] | BlacklistUnsecuredArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "blacklist_unsecured(address)uint64",
+            "args": method_args,
+        }))
+
+    def get_net_aura(
+        self,
+        args: tuple[str] | GetNetAuraArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_net_aura(address)uint64",
+            "args": method_args,
+        }))
+
+    def get_aura_earned(
+        self,
+        args: tuple[str] | GetAuraEarnedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_aura_earned(address)uint64",
+            "args": method_args,
+        }))
+
+    def get_aura_penalty(
+        self,
+        args: tuple[str] | GetAuraPenaltyArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_aura_penalty(address)uint64",
+            "args": method_args,
+        }))
+
+    def is_blacklisted(
+        self,
+        args: tuple[str] | IsBlacklistedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "is_blacklisted(address)uint64",
+            "args": method_args,
         }))
 
     def clear_state(
@@ -187,52 +382,141 @@ class AlgocrefiAuraCreateTransactionParams:
         )
 
 
+class _AlgocrefiAuraOptInSend:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+
+    def opt_in(
+        self,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[None]:
+    
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.opt_in(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "opt_in()void",
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+
+
 class AlgocrefiAuraSend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def mint(
-        self,
-        args: tuple[int] | MintArgs,
-        params: algokit_utils.CommonAppCallParams | None = None,
-        send_params: algokit_utils.SendParams | None = None
-    ) -> algokit_utils.SendAppTransactionResult[None]:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "mint(uint64)void",
-            "args": method_args,
-        }), send_params=send_params)
-        parsed_response = response
-        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+    @property
+    def opt_in(self) -> "_AlgocrefiAuraOptInSend":
+        return _AlgocrefiAuraOptInSend(self.app_client)
 
-    def burn(
+    def add_repayment_aura(
         self,
-        args: tuple[int] | BurnArgs,
-        params: algokit_utils.CommonAppCallParams | None = None,
-        send_params: algokit_utils.SendParams | None = None
-    ) -> algokit_utils.SendAppTransactionResult[None]:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "burn(uint64)void",
-            "args": method_args,
-        }), send_params=send_params)
-        parsed_response = response
-        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
-
-    def get_total_supply(
-        self,
+        args: tuple[str, int] | AddRepaymentAuraArgs,
         params: algokit_utils.CommonAppCallParams | None = None,
         send_params: algokit_utils.SendParams | None = None
     ) -> algokit_utils.SendAppTransactionResult[int]:
-    
+        method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "get_total_supply()uint64",
+            "method": "add_repayment_aura(address,uint64)uint64",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
+
+    def add_default_penalty(
+        self,
+        args: tuple[str, int] | AddDefaultPenaltyArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[int]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "add_default_penalty(address,uint64)uint64",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
+
+    def blacklist_unsecured(
+        self,
+        args: tuple[str] | BlacklistUnsecuredArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[int]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "blacklist_unsecured(address)uint64",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
+
+    def get_net_aura(
+        self,
+        args: tuple[str] | GetNetAuraArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[int]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_net_aura(address)uint64",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
+
+    def get_aura_earned(
+        self,
+        args: tuple[str] | GetAuraEarnedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[int]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_aura_earned(address)uint64",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
+
+    def get_aura_penalty(
+        self,
+        args: tuple[str] | GetAuraPenaltyArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[int]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "get_aura_penalty(address)uint64",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
+
+    def is_blacklisted(
+        self,
+        args: tuple[str] | IsBlacklistedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[int]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "is_blacklisted(address)uint64",
+            "args": method_args,
         }), send_params=send_params)
         parsed_response = response
         return typing.cast(algokit_utils.SendAppTransactionResult[int], parsed_response)
@@ -248,9 +532,11 @@ class AlgocrefiAuraSend:
         )
 
 
-class GlobalStateValue(typing.TypedDict):
-    """Shape of global_state state key values"""
-    total_supply: int
+class LocalStateValue(typing.TypedDict):
+    """Shape of local_state state key values"""
+    aura_earned: int
+    aura_penalty: int
+    blacklisted: int
 
 class AlgocrefiAuraState:
     """Methods to access state for the current AlgocrefiAura app"""
@@ -258,40 +544,55 @@ class AlgocrefiAuraState:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    @property
-    def global_state(
-        self
-    ) -> "_GlobalState":
-            """Methods to access global_state for the current app"""
-            return _GlobalState(self.app_client)
+    def local_state(
+        self, address: str
+    ) -> "_LocalState":
+            """Methods to access local_state for the current app"""
+            return _LocalState(self.app_client, address)
 
-class _GlobalState:
-    def __init__(self, app_client: algokit_utils.AppClient):
+class _LocalState:
+    def __init__(self, app_client: algokit_utils.AppClient, address: str):
         self.app_client = app_client
-        
+        self.address = address
         # Pre-generated mapping of value types to their struct classes
         self._struct_classes: dict[str, typing.Type[typing.Any]] = {}
 
-    def get_all(self) -> GlobalStateValue:
-        """Get all current keyed values from global_state state"""
-        result = self.app_client.state.global_state.get_all()
+    def get_all(self) -> LocalStateValue:
+        """Get all current keyed values from local_state state"""
+        result = self.app_client.state.local_state(self.address).get_all()
         if not result:
-            return typing.cast(GlobalStateValue, {})
+            return typing.cast(LocalStateValue, {})
 
         converted = {}
         for key, value in result.items():
-            key_info = self.app_client.app_spec.state.keys.global_state.get(key)
+            key_info = self.app_client.app_spec.state.keys.local_state.get(key)
             struct_class = self._struct_classes.get(key_info.value_type) if key_info else None
             converted[key] = (
                 _init_dataclass(struct_class, value) if struct_class and isinstance(value, dict)
                 else value
             )
-        return typing.cast(GlobalStateValue, converted)
+        return typing.cast(LocalStateValue, converted)
 
     @property
-    def total_supply(self) -> int:
-        """Get the current value of the total_supply key in global_state state"""
-        value = self.app_client.state.global_state.get_value("total_supply")
+    def aura_earned(self) -> int:
+        """Get the current value of the aura_earned key in local_state state"""
+        value = self.app_client.state.local_state(self.address).get_value("aura_earned")
+        if isinstance(value, dict) and "AVMUint64" in self._struct_classes:
+            return _init_dataclass(self._struct_classes["AVMUint64"], value)  # type: ignore
+        return typing.cast(int, value)
+
+    @property
+    def aura_penalty(self) -> int:
+        """Get the current value of the aura_penalty key in local_state state"""
+        value = self.app_client.state.local_state(self.address).get_value("aura_penalty")
+        if isinstance(value, dict) and "AVMUint64" in self._struct_classes:
+            return _init_dataclass(self._struct_classes["AVMUint64"], value)  # type: ignore
+        return typing.cast(int, value)
+
+    @property
+    def blacklisted(self) -> int:
+        """Get the current value of the blacklisted key in local_state state"""
+        value = self.app_client.state.local_state(self.address).get_value("blacklisted")
         if isinstance(value, dict) and "AVMUint64" in self._struct_classes:
             return _init_dataclass(self._struct_classes["AVMUint64"], value)  # type: ignore
         return typing.cast(int, value)
@@ -442,21 +743,51 @@ class AlgocrefiAuraClient:
     @typing.overload
     def decode_return_value(
         self,
-        method: typing.Literal["mint(uint64)void"],
-        return_value: algokit_utils.ABIReturn | None
-    ) -> None: ...
-    @typing.overload
-    def decode_return_value(
-        self,
-        method: typing.Literal["burn(uint64)void"],
-        return_value: algokit_utils.ABIReturn | None
-    ) -> None: ...
-    @typing.overload
-    def decode_return_value(
-        self,
-        method: typing.Literal["get_total_supply()uint64"],
+        method: typing.Literal["add_repayment_aura(address,uint64)uint64"],
         return_value: algokit_utils.ABIReturn | None
     ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["add_default_penalty(address,uint64)uint64"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["blacklist_unsecured(address)uint64"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["get_net_aura(address)uint64"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["get_aura_earned(address)uint64"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["get_aura_penalty(address)uint64"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["is_blacklisted(address)uint64"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> int | None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["opt_in()void"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> None: ...
     @typing.overload
     def decode_return_value(
         self,
@@ -639,59 +970,159 @@ class AlgocrefiAuraFactoryCreateParams:
             algokit_utils.AppFactoryCreateParams(**dataclasses.asdict(params)),
             compilation_params=compilation_params)
 
-    def mint(
+    def add_repayment_aura(
         self,
-        args: tuple[int] | MintArgs,
+        args: tuple[str, int] | AddRepaymentAuraArgs,
         *,
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the mint(uint64)void ABI method"""
+        """Creates a new instance using the add_repayment_aura(address,uint64)uint64 ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "mint(uint64)void",
+                "method": "add_repayment_aura(address,uint64)uint64",
                 "args": _parse_abi_args(args),
                 }
             ),
             compilation_params=compilation_params
         )
 
-    def burn(
+    def add_default_penalty(
         self,
-        args: tuple[int] | BurnArgs,
+        args: tuple[str, int] | AddDefaultPenaltyArgs,
         *,
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the burn(uint64)void ABI method"""
+        """Creates a new instance using the add_default_penalty(address,uint64)uint64 ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "burn(uint64)void",
+                "method": "add_default_penalty(address,uint64)uint64",
                 "args": _parse_abi_args(args),
                 }
             ),
             compilation_params=compilation_params
         )
 
-    def get_total_supply(
+    def blacklist_unsecured(
         self,
+        args: tuple[str] | BlacklistUnsecuredArgs,
         *,
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the get_total_supply()uint64 ABI method"""
+        """Creates a new instance using the blacklist_unsecured(address)uint64 ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "get_total_supply()uint64",
+                "method": "blacklist_unsecured(address)uint64",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def get_net_aura(
+        self,
+        args: tuple[str] | GetNetAuraArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the get_net_aura(address)uint64 ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "get_net_aura(address)uint64",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def get_aura_earned(
+        self,
+        args: tuple[str] | GetAuraEarnedArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the get_aura_earned(address)uint64 ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "get_aura_earned(address)uint64",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def get_aura_penalty(
+        self,
+        args: tuple[str] | GetAuraPenaltyArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the get_aura_penalty(address)uint64 ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "get_aura_penalty(address)uint64",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def is_blacklisted(
+        self,
+        args: tuple[str] | IsBlacklistedArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the is_blacklisted(address)uint64 ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "is_blacklisted(address)uint64",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def opt_in(
+        self,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the opt_in()void ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "opt_in()void",
                 "args": None,
                 }
             ),
@@ -791,6 +1222,28 @@ class AlgocrefiAuraFactorySendCreate:
         return AlgocrefiAuraClient(result[0]), result[1]
 
 
+class _AlgocrefiAuraOptInComposer:
+    def __init__(self, composer: "AlgocrefiAuraComposer"):
+        self.composer = composer
+    def opt_in(
+        self,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AlgocrefiAuraComposer":
+        self.composer._composer.add_app_call_method_call(
+            self.composer.client.params.opt_in.opt_in(
+                
+                params=params,
+                
+            )
+        )
+        self.composer._result_mappers.append(
+            lambda v: self.composer.client.decode_return_value(
+                "opt_in()void", v
+            )
+        )
+        return self.composer
+
+
 class AlgocrefiAuraComposer:
     """Composer for creating transaction groups for AlgocrefiAura contract calls"""
 
@@ -799,55 +1252,132 @@ class AlgocrefiAuraComposer:
         self._composer = client.algorand.new_group()
         self._result_mappers: list[typing.Callable[[algokit_utils.ABIReturn | None], object] | None] = []
 
-    def mint(
+    @property
+    def opt_in(self) -> "_AlgocrefiAuraOptInComposer":
+        return _AlgocrefiAuraOptInComposer(self)
+
+    def add_repayment_aura(
         self,
-        args: tuple[int] | MintArgs,
+        args: tuple[str, int] | AddRepaymentAuraArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> "AlgocrefiAuraComposer":
         self._composer.add_app_call_method_call(
-            self.client.params.mint(
+            self.client.params.add_repayment_aura(
                 args=args,
                 params=params,
             )
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "mint(uint64)void", v
+                "add_repayment_aura(address,uint64)uint64", v
             )
         )
         return self
 
-    def burn(
+    def add_default_penalty(
         self,
-        args: tuple[int] | BurnArgs,
+        args: tuple[str, int] | AddDefaultPenaltyArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> "AlgocrefiAuraComposer":
         self._composer.add_app_call_method_call(
-            self.client.params.burn(
+            self.client.params.add_default_penalty(
                 args=args,
                 params=params,
             )
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "burn(uint64)void", v
+                "add_default_penalty(address,uint64)uint64", v
             )
         )
         return self
 
-    def get_total_supply(
+    def blacklist_unsecured(
         self,
+        args: tuple[str] | BlacklistUnsecuredArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> "AlgocrefiAuraComposer":
         self._composer.add_app_call_method_call(
-            self.client.params.get_total_supply(
-                
+            self.client.params.blacklist_unsecured(
+                args=args,
                 params=params,
             )
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "get_total_supply()uint64", v
+                "blacklist_unsecured(address)uint64", v
+            )
+        )
+        return self
+
+    def get_net_aura(
+        self,
+        args: tuple[str] | GetNetAuraArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AlgocrefiAuraComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.get_net_aura(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "get_net_aura(address)uint64", v
+            )
+        )
+        return self
+
+    def get_aura_earned(
+        self,
+        args: tuple[str] | GetAuraEarnedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AlgocrefiAuraComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.get_aura_earned(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "get_aura_earned(address)uint64", v
+            )
+        )
+        return self
+
+    def get_aura_penalty(
+        self,
+        args: tuple[str] | GetAuraPenaltyArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AlgocrefiAuraComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.get_aura_penalty(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "get_aura_penalty(address)uint64", v
+            )
+        )
+        return self
+
+    def is_blacklisted(
+        self,
+        args: tuple[str] | IsBlacklistedArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AlgocrefiAuraComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.is_blacklisted(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "is_blacklisted(address)uint64", v
             )
         )
         return self
