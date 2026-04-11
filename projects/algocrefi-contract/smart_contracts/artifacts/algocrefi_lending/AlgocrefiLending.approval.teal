@@ -3,8 +3,8 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 0 1 8 32 86400
-    bytecblock 0x151f7c75 "available_algo" "loan_active" "interest_due" "due_amount" "collateral_usdc" "due_ts" "loan_type" "usdc_asset_id" "principal" "aura_earned" "aura_penalty" "aura_blacklisted" "daily_interest_bps"
+    intcblock 0 1 32 8 10000 86400
+    bytecblock 0x151f7c75 "available_algo" "loan_active" "interest_due" "due_amount" "collateral_usdc" "due_ts" "loan_type" "usdc_asset_id" "principal" "aura_earned" "aura_penalty" "microalgos_per_algo" "aura_blacklisted" "daily_interest_bps" "min_aura_for_unsecured" "unsecured_limit_bps_of_aura"
     txn ApplicationID
     bnz main_after_if_else@2
     // smart_contracts/algocrefi_lending/contract.py:8
@@ -19,15 +19,30 @@ main:
     app_global_put
     // smart_contracts/algocrefi_lending/contract.py:10
     // self.daily_interest_bps = UInt64(10)  # 0.10% per day
-    bytec 13 // "daily_interest_bps"
+    bytec 14 // "daily_interest_bps"
     pushint 10
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:11
+    // self.microalgos_per_algo = UInt64(1_000_000)
+    bytec 12 // "microalgos_per_algo"
+    pushint 1000000
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:12
+    // self.min_aura_for_unsecured = UInt64(30)
+    bytec 15 // "min_aura_for_unsecured"
+    pushint 30
+    app_global_put
+    // smart_contracts/algocrefi_lending/contract.py:13
+    // self.unsecured_limit_bps_of_aura = UInt64(1000)  # 10%
+    bytec 16 // "unsecured_limit_bps_of_aura"
+    pushint 1000
     app_global_put
 
 main_after_if_else@2:
     // smart_contracts/algocrefi_lending/contract.py:5
     // class AlgocrefiLending(ARC4Contract):
     txn NumAppArgs
-    bz main___algopy_default_create@24
+    bz main___algopy_default_create@26
     pushbytes 0x30c6d58a // method "opt_in()void"
     txna ApplicationArgs 0
     match main_opt_in_route@5
@@ -40,13 +55,13 @@ main_switch_case_next@6:
     assert
     txn ApplicationID
     assert
-    pushbytess 0xc4e93a53 0xcf32a50c 0x3c8e815e 0x1f87c711 0xe7035078 0x7cd72bae 0x2571122c 0x3b8c7418 0x34101fb2 0x00cada5f 0xdd59c02e 0xa85c25df 0x57225fb8 // method "app_opt_in_usdc()void", method "add_liquidity(uint64)uint64", method "request_collateral_loan(uint64,uint64,uint64,uint64)uint64", method "request_unsecured_loan(uint64,uint64)uint64", method "repay(uint64)uint64", method "liquidate_default(address)uint64", method "get_available_algo()uint64", method "get_active_loan(address)uint64", method "get_due_amount(address)uint64", method "get_due_ts(address)uint64", method "get_aura_earned(address)uint64", method "get_aura_penalty(address)uint64", method "is_blacklisted(address)uint64"
+    pushbytess 0xc4e93a53 0xcf32a50c 0x3c8e815e 0x1f87c711 0xe7035078 0x7cd72bae 0x2571122c 0x3b8c7418 0x34101fb2 0x00cada5f 0xdd59c02e 0xa85c25df 0x9770456b 0x33276655 0x57225fb8 // method "app_opt_in_usdc()void", method "add_liquidity(uint64)uint64", method "request_collateral_loan(uint64,uint64,uint64,uint64)uint64", method "request_unsecured_loan(uint64,uint64)uint64", method "repay(uint64)uint64", method "liquidate_default(address)uint64", method "get_available_algo()uint64", method "get_active_loan(address)uint64", method "get_due_amount(address)uint64", method "get_due_ts(address)uint64", method "get_aura_earned(address)uint64", method "get_aura_penalty(address)uint64", method "get_net_aura(address)uint64", method "get_unsecured_credit_limit(address)uint64", method "is_blacklisted(address)uint64"
     txna ApplicationArgs 0
-    match app_opt_in_usdc add_liquidity request_collateral_loan request_unsecured_loan repay liquidate_default get_available_algo get_active_loan get_due_amount get_due_ts get_aura_earned get_aura_penalty is_blacklisted
+    match app_opt_in_usdc add_liquidity request_collateral_loan request_unsecured_loan repay liquidate_default get_available_algo get_active_loan get_due_amount get_due_ts get_aura_earned get_aura_penalty get_net_aura get_unsecured_credit_limit is_blacklisted
     err
 
 main_opt_in_route@5:
-    // smart_contracts/algocrefi_lending/contract.py:24
+    // smart_contracts/algocrefi_lending/contract.py:42
     // @abimethod(allow_actions=["OptIn"])
     txn OnCompletion
     intc_1 // OptIn
@@ -56,7 +71,7 @@ main_opt_in_route@5:
     assert
     b opt_in
 
-main___algopy_default_create@24:
+main___algopy_default_create@26:
     txn OnCompletion
     !
     txn ApplicationID
@@ -67,67 +82,67 @@ main___algopy_default_create@24:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.opt_in[routing]() -> void:
 opt_in:
-    // smart_contracts/algocrefi_lending/contract.py:26
+    // smart_contracts/algocrefi_lending/contract.py:44
     // self.loan_active[Txn.sender] = UInt64(0)
     txn Sender
     bytec_2 // "loan_active"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:27
+    // smart_contracts/algocrefi_lending/contract.py:45
     // self.loan_type[Txn.sender] = UInt64(0)
     txn Sender
     bytec 7 // "loan_type"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:28
+    // smart_contracts/algocrefi_lending/contract.py:46
     // self.principal[Txn.sender] = UInt64(0)
     txn Sender
     bytec 9 // "principal"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:29
+    // smart_contracts/algocrefi_lending/contract.py:47
     // self.interest_due[Txn.sender] = UInt64(0)
     txn Sender
     bytec_3 // "interest_due"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:30
+    // smart_contracts/algocrefi_lending/contract.py:48
     // self.due_amount[Txn.sender] = UInt64(0)
     txn Sender
     bytec 4 // "due_amount"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:31
+    // smart_contracts/algocrefi_lending/contract.py:49
     // self.collateral_usdc[Txn.sender] = UInt64(0)
     txn Sender
     bytec 5 // "collateral_usdc"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:32
+    // smart_contracts/algocrefi_lending/contract.py:50
     // self.due_ts[Txn.sender] = UInt64(0)
     txn Sender
     bytec 6 // "due_ts"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:33
+    // smart_contracts/algocrefi_lending/contract.py:51
     // self.aura_earned[Txn.sender] = UInt64(0)
     txn Sender
     bytec 10 // "aura_earned"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:34
+    // smart_contracts/algocrefi_lending/contract.py:52
     // self.aura_penalty[Txn.sender] = UInt64(0)
     txn Sender
     bytec 11 // "aura_penalty"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:35
+    // smart_contracts/algocrefi_lending/contract.py:53
     // self.aura_blacklisted[Txn.sender] = UInt64(0)
     txn Sender
-    bytec 12 // "aura_blacklisted"
+    bytec 13 // "aura_blacklisted"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:24
+    // smart_contracts/algocrefi_lending/contract.py:42
     // @abimethod(allow_actions=["OptIn"])
     intc_1 // 1
     return
@@ -135,13 +150,13 @@ opt_in:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.app_opt_in_usdc[routing]() -> void:
 app_opt_in_usdc:
-    // smart_contracts/algocrefi_lending/contract.py:39
+    // smart_contracts/algocrefi_lending/contract.py:57
     // assert Txn.sender == Global.creator_address, "Only admin"
     txn Sender
     global CreatorAddress
     ==
     assert // Only admin
-    // smart_contracts/algocrefi_lending/contract.py:41-46
+    // smart_contracts/algocrefi_lending/contract.py:59-64
     // itxn.AssetTransfer(
     //     xfer_asset=self.usdc_asset_id,
     //     asset_receiver=Global.current_application_address,
@@ -149,30 +164,30 @@ app_opt_in_usdc:
     //     fee=UInt64(0),
     // ).submit()
     itxn_begin
-    // smart_contracts/algocrefi_lending/contract.py:42
+    // smart_contracts/algocrefi_lending/contract.py:60
     // xfer_asset=self.usdc_asset_id,
     intc_0 // 0
     bytec 8 // "usdc_asset_id"
     app_global_get_ex
     assert // check self.usdc_asset_id exists
-    // smart_contracts/algocrefi_lending/contract.py:43
+    // smart_contracts/algocrefi_lending/contract.py:61
     // asset_receiver=Global.current_application_address,
     global CurrentApplicationAddress
-    // smart_contracts/algocrefi_lending/contract.py:44
+    // smart_contracts/algocrefi_lending/contract.py:62
     // asset_amount=UInt64(0),
     intc_0 // 0
     itxn_field AssetAmount
     itxn_field AssetReceiver
     itxn_field XferAsset
-    // smart_contracts/algocrefi_lending/contract.py:41
+    // smart_contracts/algocrefi_lending/contract.py:59
     // itxn.AssetTransfer(
     pushint 4 // axfer
     itxn_field TypeEnum
-    // smart_contracts/algocrefi_lending/contract.py:45
+    // smart_contracts/algocrefi_lending/contract.py:63
     // fee=UInt64(0),
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/algocrefi_lending/contract.py:41-46
+    // smart_contracts/algocrefi_lending/contract.py:59-64
     // itxn.AssetTransfer(
     //     xfer_asset=self.usdc_asset_id,
     //     asset_receiver=Global.current_application_address,
@@ -180,7 +195,7 @@ app_opt_in_usdc:
     //     fee=UInt64(0),
     // ).submit()
     itxn_submit
-    // smart_contracts/algocrefi_lending/contract.py:37
+    // smart_contracts/algocrefi_lending/contract.py:55
     // @abimethod()
     intc_1 // 1
     return
@@ -188,42 +203,42 @@ app_opt_in_usdc:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.add_liquidity[routing]() -> void:
 add_liquidity:
-    // smart_contracts/algocrefi_lending/contract.py:48
+    // smart_contracts/algocrefi_lending/contract.py:66
     // @abimethod()
     txna ApplicationArgs 1
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
-    // smart_contracts/algocrefi_lending/contract.py:50
+    // smart_contracts/algocrefi_lending/contract.py:68
     // pay = gtxn.PaymentTransaction(payment_txn_index)
     dup
     gtxns TypeEnum
     intc_1 // pay
     ==
     assert // transaction type is pay
-    // smart_contracts/algocrefi_lending/contract.py:51
+    // smart_contracts/algocrefi_lending/contract.py:69
     // assert pay.sender == Txn.sender, "Invalid liquidity sender"
     dup
     gtxns Sender
     txn Sender
     ==
     assert // Invalid liquidity sender
-    // smart_contracts/algocrefi_lending/contract.py:52
+    // smart_contracts/algocrefi_lending/contract.py:70
     // assert pay.receiver == Global.current_application_address, "Invalid receiver"
     dup
     gtxns Receiver
     global CurrentApplicationAddress
     ==
     assert // Invalid receiver
-    // smart_contracts/algocrefi_lending/contract.py:53
+    // smart_contracts/algocrefi_lending/contract.py:71
     // assert pay.amount > 0, "Liquidity must be positive"
     gtxns Amount
     dup
     assert // Liquidity must be positive
-    // smart_contracts/algocrefi_lending/contract.py:55
+    // smart_contracts/algocrefi_lending/contract.py:73
     // self.available_algo += pay.amount
     intc_0 // 0
     bytec_1 // "available_algo"
@@ -233,7 +248,7 @@ add_liquidity:
     bytec_1 // "available_algo"
     dig 1
     app_global_put
-    // smart_contracts/algocrefi_lending/contract.py:48
+    // smart_contracts/algocrefi_lending/contract.py:66
     // @abimethod()
     itob
     bytec_0 // 0x151f7c75
@@ -246,45 +261,45 @@ add_liquidity:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.request_collateral_loan[routing]() -> void:
 request_collateral_loan:
-    // smart_contracts/algocrefi_lending/contract.py:58
+    // smart_contracts/algocrefi_lending/contract.py:76
     // @abimethod()
     txna ApplicationArgs 1
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
     txna ApplicationArgs 2
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
     txna ApplicationArgs 3
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
     txna ApplicationArgs 4
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
-    // smart_contracts/algocrefi_lending/contract.py:66
+    // smart_contracts/algocrefi_lending/contract.py:84
     // assert algo_amount > 0, "Amount must be positive"
     dig 3
     assert // Amount must be positive
-    // smart_contracts/algocrefi_lending/contract.py:67
+    // smart_contracts/algocrefi_lending/contract.py:85
     // assert days_to_repay > 0, "Days must be positive"
     dig 2
     assert // Days must be positive
-    // smart_contracts/algocrefi_lending/contract.py:68
+    // smart_contracts/algocrefi_lending/contract.py:86
     // assert self.loan_active.get(Txn.sender, UInt64(0)) == 0, "Active loan exists"
     txn Sender
     intc_0 // 0
@@ -295,7 +310,7 @@ request_collateral_loan:
     select
     !
     assert // Active loan exists
-    // smart_contracts/algocrefi_lending/contract.py:69
+    // smart_contracts/algocrefi_lending/contract.py:87
     // assert self.available_algo >= algo_amount, "Insufficient liquidity"
     intc_0 // 0
     bytec_1 // "available_algo"
@@ -305,28 +320,28 @@ request_collateral_loan:
     dig 5
     >=
     assert // Insufficient liquidity
-    // smart_contracts/algocrefi_lending/contract.py:71
+    // smart_contracts/algocrefi_lending/contract.py:89
     // collateral_txn = gtxn.AssetTransferTransaction(collateral_txn_index)
     dig 1
     gtxns TypeEnum
     pushint 4 // axfer
     ==
     assert // transaction type is axfer
-    // smart_contracts/algocrefi_lending/contract.py:72
+    // smart_contracts/algocrefi_lending/contract.py:90
     // assert collateral_txn.sender == Txn.sender, "Invalid collateral sender"
     dig 1
     gtxns Sender
     txn Sender
     ==
     assert // Invalid collateral sender
-    // smart_contracts/algocrefi_lending/contract.py:73
+    // smart_contracts/algocrefi_lending/contract.py:91
     // assert collateral_txn.asset_receiver == Global.current_application_address, "Invalid collateral receiver"
     dig 1
     gtxns AssetReceiver
     global CurrentApplicationAddress
     ==
     assert // Invalid collateral receiver
-    // smart_contracts/algocrefi_lending/contract.py:74
+    // smart_contracts/algocrefi_lending/contract.py:92
     // assert collateral_txn.xfer_asset == Asset(self.usdc_asset_id), "Invalid collateral asset"
     dig 1
     gtxns XferAsset
@@ -336,7 +351,7 @@ request_collateral_loan:
     assert // check self.usdc_asset_id exists
     ==
     assert // Invalid collateral asset
-    // smart_contracts/algocrefi_lending/contract.py:75
+    // smart_contracts/algocrefi_lending/contract.py:93
     // assert collateral_txn.asset_amount >= min_collateral_usdc, "Insufficient collateral"
     swap
     gtxns AssetAmount
@@ -344,73 +359,73 @@ request_collateral_loan:
     uncover 3
     >=
     assert // Insufficient collateral
-    // smart_contracts/algocrefi_lending/contract.py:77
+    // smart_contracts/algocrefi_lending/contract.py:95
     // per_day_interest = (algo_amount * self.daily_interest_bps) // UInt64(10_000)
     intc_0 // 0
-    bytec 13 // "daily_interest_bps"
+    bytec 14 // "daily_interest_bps"
     app_global_get_ex
     assert // check self.daily_interest_bps exists
     dig 4
     *
-    pushint 10000
+    intc 4 // 10000
     /
-    // smart_contracts/algocrefi_lending/contract.py:78
+    // smart_contracts/algocrefi_lending/contract.py:96
     // interest = per_day_interest * days_to_repay
     dig 3
     *
-    // smart_contracts/algocrefi_lending/contract.py:79
+    // smart_contracts/algocrefi_lending/contract.py:97
     // due = algo_amount + interest
     dig 4
     dig 1
     +
-    // smart_contracts/algocrefi_lending/contract.py:81
+    // smart_contracts/algocrefi_lending/contract.py:99
     // self.loan_active[Txn.sender] = UInt64(1)
     txn Sender
     bytec_2 // "loan_active"
     intc_1 // 1
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:82
+    // smart_contracts/algocrefi_lending/contract.py:100
     // self.loan_type[Txn.sender] = UInt64(1)
     txn Sender
     bytec 7 // "loan_type"
     intc_1 // 1
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:83
+    // smart_contracts/algocrefi_lending/contract.py:101
     // self.principal[Txn.sender] = algo_amount
     txn Sender
     bytec 9 // "principal"
     dig 7
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:84
+    // smart_contracts/algocrefi_lending/contract.py:102
     // self.interest_due[Txn.sender] = interest
     txn Sender
     bytec_3 // "interest_due"
     uncover 3
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:85
+    // smart_contracts/algocrefi_lending/contract.py:103
     // self.due_amount[Txn.sender] = due
     txn Sender
     bytec 4 // "due_amount"
     dig 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:86
+    // smart_contracts/algocrefi_lending/contract.py:104
     // self.collateral_usdc[Txn.sender] = collateral_txn.asset_amount
     txn Sender
     bytec 5 // "collateral_usdc"
     uncover 3
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:87
+    // smart_contracts/algocrefi_lending/contract.py:105
     // self.due_ts[Txn.sender] = Global.latest_timestamp + (days_to_repay * UInt64(86_400))
     global LatestTimestamp
     uncover 3
-    intc 4 // 86400
+    intc 5 // 86400
     *
     +
     txn Sender
     bytec 6 // "due_ts"
     uncover 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:89
+    // smart_contracts/algocrefi_lending/contract.py:107
     // self.available_algo -= algo_amount
     swap
     dig 2
@@ -418,35 +433,35 @@ request_collateral_loan:
     bytec_1 // "available_algo"
     swap
     app_global_put
-    // smart_contracts/algocrefi_lending/contract.py:91-95
+    // smart_contracts/algocrefi_lending/contract.py:109-113
     // itxn.Payment(
     //     receiver=Txn.sender,
     //     amount=algo_amount,
     //     fee=UInt64(0),
     // ).submit()
     itxn_begin
-    // smart_contracts/algocrefi_lending/contract.py:92
+    // smart_contracts/algocrefi_lending/contract.py:110
     // receiver=Txn.sender,
     txn Sender
     uncover 2
     itxn_field Amount
     itxn_field Receiver
-    // smart_contracts/algocrefi_lending/contract.py:91
+    // smart_contracts/algocrefi_lending/contract.py:109
     // itxn.Payment(
     intc_1 // pay
     itxn_field TypeEnum
-    // smart_contracts/algocrefi_lending/contract.py:94
+    // smart_contracts/algocrefi_lending/contract.py:112
     // fee=UInt64(0),
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/algocrefi_lending/contract.py:91-95
+    // smart_contracts/algocrefi_lending/contract.py:109-113
     // itxn.Payment(
     //     receiver=Txn.sender,
     //     amount=algo_amount,
     //     fee=UInt64(0),
     // ).submit()
     itxn_submit
-    // smart_contracts/algocrefi_lending/contract.py:58
+    // smart_contracts/algocrefi_lending/contract.py:76
     // @abimethod()
     itob
     bytec_0 // 0x151f7c75
@@ -459,31 +474,31 @@ request_collateral_loan:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.request_unsecured_loan[routing]() -> void:
 request_unsecured_loan:
-    // smart_contracts/algocrefi_lending/contract.py:99
+    // smart_contracts/algocrefi_lending/contract.py:117
     // @abimethod()
     txna ApplicationArgs 1
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
     txna ApplicationArgs 2
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
-    // smart_contracts/algocrefi_lending/contract.py:101
+    // smart_contracts/algocrefi_lending/contract.py:119
     // assert algo_amount > 0, "Amount must be positive"
     dig 1
     assert // Amount must be positive
-    // smart_contracts/algocrefi_lending/contract.py:102
+    // smart_contracts/algocrefi_lending/contract.py:120
     // assert days_to_repay > 0, "Days must be positive"
     dup
     assert // Days must be positive
-    // smart_contracts/algocrefi_lending/contract.py:103
+    // smart_contracts/algocrefi_lending/contract.py:121
     // assert self.loan_active.get(Txn.sender, UInt64(0)) == 0, "Active loan exists"
     txn Sender
     intc_0 // 0
@@ -494,148 +509,149 @@ request_unsecured_loan:
     select
     !
     assert // Active loan exists
-    // smart_contracts/algocrefi_lending/contract.py:104
+    // smart_contracts/algocrefi_lending/contract.py:122
     // assert self.available_algo >= algo_amount, "Insufficient liquidity"
     intc_0 // 0
     bytec_1 // "available_algo"
     app_global_get_ex
     assert // check self.available_algo exists
-    dup
-    dig 3
+    dig 2
     >=
     assert // Insufficient liquidity
-    // smart_contracts/algocrefi_lending/contract.py:105
+    // smart_contracts/algocrefi_lending/contract.py:123
     // assert self.aura_blacklisted.get(Txn.sender, UInt64(0)) == 0, "Blacklisted for unsecured loans"
     txn Sender
     intc_0 // 0
-    bytec 12 // "aura_blacklisted"
+    bytec 13 // "aura_blacklisted"
     app_local_get_ex
     intc_0 // 0
     cover 2
     select
     !
     assert // Blacklisted for unsecured loans
-    // smart_contracts/algocrefi_lending/contract.py:106
-    // assert self.aura_earned.get(Txn.sender, UInt64(0)) > self.aura_penalty.get(Txn.sender, UInt64(0)), "AURA too low"
+    // smart_contracts/algocrefi_lending/contract.py:124
+    // assert self._net_aura(Txn.sender) >= self.min_aura_for_unsecured, "AURA must be at least 30"
     txn Sender
+    callsub _net_aura
     intc_0 // 0
-    bytec 10 // "aura_earned"
-    app_local_get_ex
-    intc_0 // 0
-    cover 2
-    select
+    bytec 15 // "min_aura_for_unsecured"
+    app_global_get_ex
+    assert // check self.min_aura_for_unsecured exists
+    >=
+    assert // AURA must be at least 30
+    // smart_contracts/algocrefi_lending/contract.py:125
+    // assert algo_amount <= self._max_unsecured_amount_microalgo(Txn.sender), "Requested amount exceeds credit limit"
     txn Sender
-    intc_0 // 0
-    bytec 11 // "aura_penalty"
-    app_local_get_ex
-    intc_0 // 0
-    cover 2
-    select
-    >
-    assert // AURA too low
-    // smart_contracts/algocrefi_lending/contract.py:108
+    callsub _max_unsecured_amount_microalgo
+    dig 2
+    >=
+    assert // Requested amount exceeds credit limit
+    // smart_contracts/algocrefi_lending/contract.py:127
     // per_day_interest = (algo_amount * self.daily_interest_bps) // UInt64(10_000)
     intc_0 // 0
-    bytec 13 // "daily_interest_bps"
+    bytec 14 // "daily_interest_bps"
     app_global_get_ex
     assert // check self.daily_interest_bps exists
-    dig 3
-    *
-    pushint 10000
-    /
-    // smart_contracts/algocrefi_lending/contract.py:109
-    // interest = per_day_interest * days_to_repay
     dig 2
     *
-    // smart_contracts/algocrefi_lending/contract.py:110
+    intc 4 // 10000
+    /
+    // smart_contracts/algocrefi_lending/contract.py:128
+    // interest = per_day_interest * days_to_repay
+    dig 1
+    *
+    // smart_contracts/algocrefi_lending/contract.py:129
     // due = algo_amount + interest
-    dig 3
+    dig 2
     dig 1
     +
-    // smart_contracts/algocrefi_lending/contract.py:112
+    // smart_contracts/algocrefi_lending/contract.py:131
     // self.loan_active[Txn.sender] = UInt64(1)
     txn Sender
     bytec_2 // "loan_active"
     intc_1 // 1
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:113
+    // smart_contracts/algocrefi_lending/contract.py:132
     // self.loan_type[Txn.sender] = UInt64(2)
     txn Sender
     bytec 7 // "loan_type"
     pushint 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:114
+    // smart_contracts/algocrefi_lending/contract.py:133
     // self.principal[Txn.sender] = algo_amount
     txn Sender
     bytec 9 // "principal"
-    dig 6
+    dig 5
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:115
+    // smart_contracts/algocrefi_lending/contract.py:134
     // self.interest_due[Txn.sender] = interest
     txn Sender
     bytec_3 // "interest_due"
     uncover 3
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:116
+    // smart_contracts/algocrefi_lending/contract.py:135
     // self.due_amount[Txn.sender] = due
     txn Sender
     bytec 4 // "due_amount"
     dig 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:117
+    // smart_contracts/algocrefi_lending/contract.py:136
     // self.collateral_usdc[Txn.sender] = UInt64(0)
     txn Sender
     bytec 5 // "collateral_usdc"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:118
+    // smart_contracts/algocrefi_lending/contract.py:137
     // self.due_ts[Txn.sender] = Global.latest_timestamp + (days_to_repay * UInt64(86_400))
     global LatestTimestamp
-    uncover 3
-    intc 4 // 86400
+    uncover 2
+    intc 5 // 86400
     *
     +
     txn Sender
     bytec 6 // "due_ts"
     uncover 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:120
+    // smart_contracts/algocrefi_lending/contract.py:139
     // self.available_algo -= algo_amount
-    swap
+    intc_0 // 0
+    bytec_1 // "available_algo"
+    app_global_get_ex
+    assert // check self.available_algo exists
     dig 2
     -
     bytec_1 // "available_algo"
     swap
     app_global_put
-    // smart_contracts/algocrefi_lending/contract.py:122-126
+    // smart_contracts/algocrefi_lending/contract.py:141-145
     // itxn.Payment(
     //     receiver=Txn.sender,
     //     amount=algo_amount,
     //     fee=UInt64(0),
     // ).submit()
     itxn_begin
-    // smart_contracts/algocrefi_lending/contract.py:123
+    // smart_contracts/algocrefi_lending/contract.py:142
     // receiver=Txn.sender,
     txn Sender
     uncover 2
     itxn_field Amount
     itxn_field Receiver
-    // smart_contracts/algocrefi_lending/contract.py:122
+    // smart_contracts/algocrefi_lending/contract.py:141
     // itxn.Payment(
     intc_1 // pay
     itxn_field TypeEnum
-    // smart_contracts/algocrefi_lending/contract.py:125
+    // smart_contracts/algocrefi_lending/contract.py:144
     // fee=UInt64(0),
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/algocrefi_lending/contract.py:122-126
+    // smart_contracts/algocrefi_lending/contract.py:141-145
     // itxn.Payment(
     //     receiver=Txn.sender,
     //     amount=algo_amount,
     //     fee=UInt64(0),
     // ).submit()
     itxn_submit
-    // smart_contracts/algocrefi_lending/contract.py:99
+    // smart_contracts/algocrefi_lending/contract.py:117
     // @abimethod()
     itob
     bytec_0 // 0x151f7c75
@@ -648,16 +664,16 @@ request_unsecured_loan:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.repay[routing]() -> void:
 repay:
-    // smart_contracts/algocrefi_lending/contract.py:130
+    // smart_contracts/algocrefi_lending/contract.py:149
     // @abimethod()
     txna ApplicationArgs 1
     dup
     len
-    intc_2 // 8
+    intc_3 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
     btoi
-    // smart_contracts/algocrefi_lending/contract.py:132
+    // smart_contracts/algocrefi_lending/contract.py:151
     // assert self.loan_active.get(Txn.sender, UInt64(0)) == 1, "No active loan"
     txn Sender
     intc_0 // 0
@@ -669,7 +685,7 @@ repay:
     intc_1 // 1
     ==
     assert // No active loan
-    // smart_contracts/algocrefi_lending/contract.py:134
+    // smart_contracts/algocrefi_lending/contract.py:153
     // due = self.due_amount.get(Txn.sender, UInt64(0))
     txn Sender
     intc_0 // 0
@@ -680,7 +696,7 @@ repay:
     select
     dup
     uncover 2
-    // smart_contracts/algocrefi_lending/contract.py:135
+    // smart_contracts/algocrefi_lending/contract.py:154
     // interest = self.interest_due.get(Txn.sender, UInt64(0))
     txn Sender
     intc_0 // 0
@@ -689,7 +705,7 @@ repay:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:136
+    // smart_contracts/algocrefi_lending/contract.py:155
     // collateral = self.collateral_usdc.get(Txn.sender, UInt64(0))
     txn Sender
     intc_0 // 0
@@ -699,49 +715,49 @@ repay:
     cover 2
     select
     dup
-    cover 3
     cover 4
-    // smart_contracts/algocrefi_lending/contract.py:138
+    cover 4
+    // smart_contracts/algocrefi_lending/contract.py:157
     // pay = gtxn.PaymentTransaction(payment_txn_index)
     dig 1
     gtxns TypeEnum
     intc_1 // pay
     ==
     assert // transaction type is pay
-    // smart_contracts/algocrefi_lending/contract.py:139
+    // smart_contracts/algocrefi_lending/contract.py:158
     // assert pay.sender == Txn.sender, "Invalid repayment sender"
     dig 1
     gtxns Sender
     txn Sender
     ==
     assert // Invalid repayment sender
-    // smart_contracts/algocrefi_lending/contract.py:140
+    // smart_contracts/algocrefi_lending/contract.py:159
     // assert pay.receiver == Global.current_application_address, "Invalid repayment receiver"
     dig 1
     gtxns Receiver
     global CurrentApplicationAddress
     ==
     assert // Invalid repayment receiver
-    // smart_contracts/algocrefi_lending/contract.py:141
+    // smart_contracts/algocrefi_lending/contract.py:160
     // assert pay.amount >= due, "Repayment too low"
     swap
     gtxns Amount
-    dig 3
+    dig 2
     >=
     assert // Repayment too low
-    // smart_contracts/algocrefi_lending/contract.py:143
+    // smart_contracts/algocrefi_lending/contract.py:162
     // self.available_algo += due
     intc_0 // 0
     bytec_1 // "available_algo"
     app_global_get_ex
     assert // check self.available_algo exists
-    uncover 3
+    uncover 2
     +
     bytec_1 // "available_algo"
     swap
     app_global_put
-    // smart_contracts/algocrefi_lending/contract.py:144
-    // self.aura_earned[Txn.sender] = self.aura_earned.get(Txn.sender, UInt64(0)) + interest
+    // smart_contracts/algocrefi_lending/contract.py:163
+    // self.aura_earned[Txn.sender] = self.aura_earned.get(Txn.sender, UInt64(0)) + self._interest_to_aura_points(interest)
     txn Sender
     intc_0 // 0
     bytec 10 // "aura_earned"
@@ -749,15 +765,26 @@ repay:
     intc_0 // 0
     cover 2
     select
+    // smart_contracts/algocrefi_lending/contract.py:28
+    // return interest_microalgo // self.microalgos_per_algo
+    intc_0 // 0
+    bytec 12 // "microalgos_per_algo"
+    app_global_get_ex
+    assert // check self.microalgos_per_algo exists
+    uncover 2
+    swap
+    /
+    // smart_contracts/algocrefi_lending/contract.py:163
+    // self.aura_earned[Txn.sender] = self.aura_earned.get(Txn.sender, UInt64(0)) + self._interest_to_aura_points(interest)
     +
     txn Sender
     bytec 10 // "aura_earned"
     uncover 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:146
+    // smart_contracts/algocrefi_lending/contract.py:165
     // if collateral > 0:
     bz repay_after_if_else@4
-    // smart_contracts/algocrefi_lending/contract.py:147-152
+    // smart_contracts/algocrefi_lending/contract.py:166-171
     // itxn.AssetTransfer(
     //     xfer_asset=self.usdc_asset_id,
     //     asset_receiver=Txn.sender,
@@ -765,28 +792,28 @@ repay:
     //     fee=UInt64(0),
     // ).submit()
     itxn_begin
-    // smart_contracts/algocrefi_lending/contract.py:148
+    // smart_contracts/algocrefi_lending/contract.py:167
     // xfer_asset=self.usdc_asset_id,
     intc_0 // 0
     bytec 8 // "usdc_asset_id"
     app_global_get_ex
     assert // check self.usdc_asset_id exists
-    // smart_contracts/algocrefi_lending/contract.py:149
+    // smart_contracts/algocrefi_lending/contract.py:168
     // asset_receiver=Txn.sender,
     txn Sender
     dig 2
     itxn_field AssetAmount
     itxn_field AssetReceiver
     itxn_field XferAsset
-    // smart_contracts/algocrefi_lending/contract.py:147
+    // smart_contracts/algocrefi_lending/contract.py:166
     // itxn.AssetTransfer(
     pushint 4 // axfer
     itxn_field TypeEnum
-    // smart_contracts/algocrefi_lending/contract.py:151
+    // smart_contracts/algocrefi_lending/contract.py:170
     // fee=UInt64(0),
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/algocrefi_lending/contract.py:147-152
+    // smart_contracts/algocrefi_lending/contract.py:166-171
     // itxn.AssetTransfer(
     //     xfer_asset=self.usdc_asset_id,
     //     asset_receiver=Txn.sender,
@@ -796,49 +823,49 @@ repay:
     itxn_submit
 
 repay_after_if_else@4:
-    // smart_contracts/algocrefi_lending/contract.py:154
+    // smart_contracts/algocrefi_lending/contract.py:173
     // self.loan_active[Txn.sender] = UInt64(0)
     txn Sender
     bytec_2 // "loan_active"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:155
+    // smart_contracts/algocrefi_lending/contract.py:174
     // self.loan_type[Txn.sender] = UInt64(0)
     txn Sender
     bytec 7 // "loan_type"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:156
+    // smart_contracts/algocrefi_lending/contract.py:175
     // self.principal[Txn.sender] = UInt64(0)
     txn Sender
     bytec 9 // "principal"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:157
+    // smart_contracts/algocrefi_lending/contract.py:176
     // self.interest_due[Txn.sender] = UInt64(0)
     txn Sender
     bytec_3 // "interest_due"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:158
+    // smart_contracts/algocrefi_lending/contract.py:177
     // self.due_amount[Txn.sender] = UInt64(0)
     txn Sender
     bytec 4 // "due_amount"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:159
+    // smart_contracts/algocrefi_lending/contract.py:178
     // self.collateral_usdc[Txn.sender] = UInt64(0)
     txn Sender
     bytec 5 // "collateral_usdc"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:160
+    // smart_contracts/algocrefi_lending/contract.py:179
     // self.due_ts[Txn.sender] = UInt64(0)
     txn Sender
     bytec 6 // "due_ts"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:130
+    // smart_contracts/algocrefi_lending/contract.py:149
     // @abimethod()
     dig 1
     itob
@@ -852,21 +879,21 @@ repay_after_if_else@4:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.liquidate_default[routing]() -> void:
 liquidate_default:
-    // smart_contracts/algocrefi_lending/contract.py:164
+    // smart_contracts/algocrefi_lending/contract.py:183
     // @abimethod()
     txna ApplicationArgs 1
     dupn 2
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:166
+    // smart_contracts/algocrefi_lending/contract.py:185
     // assert Txn.sender == Global.creator_address, "Only admin"
     txn Sender
     global CreatorAddress
     ==
     assert // Only admin
-    // smart_contracts/algocrefi_lending/contract.py:167
+    // smart_contracts/algocrefi_lending/contract.py:186
     // assert self.loan_active.get(borrower, UInt64(0)) == 1, "No active loan"
     dup
     intc_0 // 0
@@ -878,7 +905,7 @@ liquidate_default:
     intc_1 // 1
     ==
     assert // No active loan
-    // smart_contracts/algocrefi_lending/contract.py:168
+    // smart_contracts/algocrefi_lending/contract.py:187
     // assert Global.latest_timestamp > self.due_ts.get(borrower, UInt64(0)), "Loan not overdue"
     global LatestTimestamp
     dig 1
@@ -890,7 +917,7 @@ liquidate_default:
     select
     >
     assert // Loan not overdue
-    // smart_contracts/algocrefi_lending/contract.py:170
+    // smart_contracts/algocrefi_lending/contract.py:189
     // loan_type = self.loan_type.get(borrower, UInt64(0))
     dup
     intc_0 // 0
@@ -899,7 +926,7 @@ liquidate_default:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:171
+    // smart_contracts/algocrefi_lending/contract.py:190
     // interest = self.interest_due.get(borrower, UInt64(0))
     dig 1
     intc_0 // 0
@@ -911,7 +938,7 @@ liquidate_default:
     dup
     cover 2
     cover 3
-    // smart_contracts/algocrefi_lending/contract.py:172
+    // smart_contracts/algocrefi_lending/contract.py:191
     // collateral = self.collateral_usdc.get(borrower, UInt64(0))
     dig 2
     intc_0 // 0
@@ -921,8 +948,8 @@ liquidate_default:
     cover 2
     select
     cover 3
-    // smart_contracts/algocrefi_lending/contract.py:174
-    // self.aura_penalty[borrower] = self.aura_penalty.get(borrower, UInt64(0)) + interest
+    // smart_contracts/algocrefi_lending/contract.py:193
+    // self.aura_penalty[borrower] = self.aura_penalty.get(borrower, UInt64(0)) + self._interest_to_aura_points(interest)
     dig 2
     intc_0 // 0
     bytec 11 // "aura_penalty"
@@ -930,30 +957,40 @@ liquidate_default:
     intc_0 // 0
     cover 2
     select
-    uncover 2
+    // smart_contracts/algocrefi_lending/contract.py:28
+    // return interest_microalgo // self.microalgos_per_algo
+    intc_0 // 0
+    bytec 12 // "microalgos_per_algo"
+    app_global_get_ex
+    assert // check self.microalgos_per_algo exists
+    uncover 3
+    swap
+    /
+    // smart_contracts/algocrefi_lending/contract.py:193
+    // self.aura_penalty[borrower] = self.aura_penalty.get(borrower, UInt64(0)) + self._interest_to_aura_points(interest)
     +
     uncover 2
     bytec 11 // "aura_penalty"
     uncover 2
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:176
+    // smart_contracts/algocrefi_lending/contract.py:195
     // if loan_type == 2:
     pushint 2
     ==
     bz liquidate_default_after_if_else@3
-    // smart_contracts/algocrefi_lending/contract.py:177
+    // smart_contracts/algocrefi_lending/contract.py:196
     // self.aura_blacklisted[borrower] = UInt64(1)
     dig 2
-    bytec 12 // "aura_blacklisted"
+    bytec 13 // "aura_blacklisted"
     intc_1 // 1
     app_local_put
 
 liquidate_default_after_if_else@3:
-    // smart_contracts/algocrefi_lending/contract.py:179
+    // smart_contracts/algocrefi_lending/contract.py:198
     // if collateral > 0:
     dup
     bz liquidate_default_after_if_else@6
-    // smart_contracts/algocrefi_lending/contract.py:180-185
+    // smart_contracts/algocrefi_lending/contract.py:199-204
     // itxn.AssetTransfer(
     //     xfer_asset=self.usdc_asset_id,
     //     asset_receiver=Global.creator_address,
@@ -961,28 +998,28 @@ liquidate_default_after_if_else@3:
     //     fee=UInt64(0),
     // ).submit()
     itxn_begin
-    // smart_contracts/algocrefi_lending/contract.py:181
+    // smart_contracts/algocrefi_lending/contract.py:200
     // xfer_asset=self.usdc_asset_id,
     intc_0 // 0
     bytec 8 // "usdc_asset_id"
     app_global_get_ex
     assert // check self.usdc_asset_id exists
-    // smart_contracts/algocrefi_lending/contract.py:182
+    // smart_contracts/algocrefi_lending/contract.py:201
     // asset_receiver=Global.creator_address,
     global CreatorAddress
     dig 2
     itxn_field AssetAmount
     itxn_field AssetReceiver
     itxn_field XferAsset
-    // smart_contracts/algocrefi_lending/contract.py:180
+    // smart_contracts/algocrefi_lending/contract.py:199
     // itxn.AssetTransfer(
     pushint 4 // axfer
     itxn_field TypeEnum
-    // smart_contracts/algocrefi_lending/contract.py:184
+    // smart_contracts/algocrefi_lending/contract.py:203
     // fee=UInt64(0),
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/algocrefi_lending/contract.py:180-185
+    // smart_contracts/algocrefi_lending/contract.py:199-204
     // itxn.AssetTransfer(
     //     xfer_asset=self.usdc_asset_id,
     //     asset_receiver=Global.creator_address,
@@ -992,49 +1029,49 @@ liquidate_default_after_if_else@3:
     itxn_submit
 
 liquidate_default_after_if_else@6:
-    // smart_contracts/algocrefi_lending/contract.py:187
+    // smart_contracts/algocrefi_lending/contract.py:206
     // self.loan_active[borrower] = UInt64(0)
     dig 2
     dup
     bytec_2 // "loan_active"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:188
+    // smart_contracts/algocrefi_lending/contract.py:207
     // self.loan_type[borrower] = UInt64(0)
     dup
     bytec 7 // "loan_type"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:189
+    // smart_contracts/algocrefi_lending/contract.py:208
     // self.principal[borrower] = UInt64(0)
     dup
     bytec 9 // "principal"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:190
+    // smart_contracts/algocrefi_lending/contract.py:209
     // self.interest_due[borrower] = UInt64(0)
     dup
     bytec_3 // "interest_due"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:191
+    // smart_contracts/algocrefi_lending/contract.py:210
     // self.due_amount[borrower] = UInt64(0)
     dup
     bytec 4 // "due_amount"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:192
+    // smart_contracts/algocrefi_lending/contract.py:211
     // self.collateral_usdc[borrower] = UInt64(0)
     dup
     bytec 5 // "collateral_usdc"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:193
+    // smart_contracts/algocrefi_lending/contract.py:212
     // self.due_ts[borrower] = UInt64(0)
     bytec 6 // "due_ts"
     intc_0 // 0
     app_local_put
-    // smart_contracts/algocrefi_lending/contract.py:164
+    // smart_contracts/algocrefi_lending/contract.py:183
     // @abimethod()
     dig 1
     itob
@@ -1048,13 +1085,13 @@ liquidate_default_after_if_else@6:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_available_algo[routing]() -> void:
 get_available_algo:
-    // smart_contracts/algocrefi_lending/contract.py:199
+    // smart_contracts/algocrefi_lending/contract.py:218
     // return self.available_algo
     intc_0 // 0
     bytec_1 // "available_algo"
     app_global_get_ex
     assert // check self.available_algo exists
-    // smart_contracts/algocrefi_lending/contract.py:197
+    // smart_contracts/algocrefi_lending/contract.py:216
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1067,15 +1104,15 @@ get_available_algo:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_active_loan[routing]() -> void:
 get_active_loan:
-    // smart_contracts/algocrefi_lending/contract.py:201
+    // smart_contracts/algocrefi_lending/contract.py:220
     // @abimethod(readonly=True)
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:203
+    // smart_contracts/algocrefi_lending/contract.py:222
     // return self.loan_active.get(borrower, UInt64(0))
     intc_0 // 0
     bytec_2 // "loan_active"
@@ -1083,7 +1120,7 @@ get_active_loan:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:201
+    // smart_contracts/algocrefi_lending/contract.py:220
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1096,15 +1133,15 @@ get_active_loan:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_due_amount[routing]() -> void:
 get_due_amount:
-    // smart_contracts/algocrefi_lending/contract.py:205
+    // smart_contracts/algocrefi_lending/contract.py:224
     // @abimethod(readonly=True)
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:207
+    // smart_contracts/algocrefi_lending/contract.py:226
     // return self.due_amount.get(borrower, UInt64(0))
     intc_0 // 0
     bytec 4 // "due_amount"
@@ -1112,7 +1149,7 @@ get_due_amount:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:205
+    // smart_contracts/algocrefi_lending/contract.py:224
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1125,15 +1162,15 @@ get_due_amount:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_due_ts[routing]() -> void:
 get_due_ts:
-    // smart_contracts/algocrefi_lending/contract.py:209
+    // smart_contracts/algocrefi_lending/contract.py:228
     // @abimethod(readonly=True)
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:211
+    // smart_contracts/algocrefi_lending/contract.py:230
     // return self.due_ts.get(borrower, UInt64(0))
     intc_0 // 0
     bytec 6 // "due_ts"
@@ -1141,7 +1178,7 @@ get_due_ts:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:209
+    // smart_contracts/algocrefi_lending/contract.py:228
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1154,15 +1191,15 @@ get_due_ts:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_aura_earned[routing]() -> void:
 get_aura_earned:
-    // smart_contracts/algocrefi_lending/contract.py:213
+    // smart_contracts/algocrefi_lending/contract.py:232
     // @abimethod(readonly=True)
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:215
+    // smart_contracts/algocrefi_lending/contract.py:234
     // return self.aura_earned.get(borrower, UInt64(0))
     intc_0 // 0
     bytec 10 // "aura_earned"
@@ -1170,7 +1207,7 @@ get_aura_earned:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:213
+    // smart_contracts/algocrefi_lending/contract.py:232
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1183,15 +1220,15 @@ get_aura_earned:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_aura_penalty[routing]() -> void:
 get_aura_penalty:
-    // smart_contracts/algocrefi_lending/contract.py:217
+    // smart_contracts/algocrefi_lending/contract.py:236
     // @abimethod(readonly=True)
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:219
+    // smart_contracts/algocrefi_lending/contract.py:238
     // return self.aura_penalty.get(borrower, UInt64(0))
     intc_0 // 0
     bytec 11 // "aura_penalty"
@@ -1199,7 +1236,55 @@ get_aura_penalty:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:217
+    // smart_contracts/algocrefi_lending/contract.py:236
+    // @abimethod(readonly=True)
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_net_aura[routing]() -> void:
+get_net_aura:
+    // smart_contracts/algocrefi_lending/contract.py:240
+    // @abimethod(readonly=True)
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    // smart_contracts/algocrefi_lending/contract.py:242
+    // return self._net_aura(borrower)
+    callsub _net_aura
+    // smart_contracts/algocrefi_lending/contract.py:240
+    // @abimethod(readonly=True)
+    itob
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending.get_unsecured_credit_limit[routing]() -> void:
+get_unsecured_credit_limit:
+    // smart_contracts/algocrefi_lending/contract.py:244
+    // @abimethod(readonly=True)
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    // smart_contracts/algocrefi_lending/contract.py:246
+    // return self._max_unsecured_amount_microalgo(borrower)
+    callsub _max_unsecured_amount_microalgo
+    // smart_contracts/algocrefi_lending/contract.py:244
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1212,23 +1297,23 @@ get_aura_penalty:
 
 // smart_contracts.algocrefi_lending.contract.AlgocrefiLending.is_blacklisted[routing]() -> void:
 is_blacklisted:
-    // smart_contracts/algocrefi_lending/contract.py:221
+    // smart_contracts/algocrefi_lending/contract.py:248
     // @abimethod(readonly=True)
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    intc_2 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    // smart_contracts/algocrefi_lending/contract.py:223
+    // smart_contracts/algocrefi_lending/contract.py:250
     // return self.aura_blacklisted.get(borrower, UInt64(0))
     intc_0 // 0
-    bytec 12 // "aura_blacklisted"
+    bytec 13 // "aura_blacklisted"
     app_local_get_ex
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/algocrefi_lending/contract.py:221
+    // smart_contracts/algocrefi_lending/contract.py:248
     // @abimethod(readonly=True)
     itob
     bytec_0 // 0x151f7c75
@@ -1237,3 +1322,76 @@ is_blacklisted:
     log
     intc_1 // 1
     return
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending._net_aura(borrower: bytes) -> uint64:
+_net_aura:
+    // smart_contracts/algocrefi_lending/contract.py:30
+    // def _net_aura(self, borrower: Account) -> UInt64:
+    proto 1 1
+    // smart_contracts/algocrefi_lending/contract.py:31
+    // earned = self.aura_earned.get(borrower, UInt64(0))
+    frame_dig -1
+    intc_0 // 0
+    bytec 10 // "aura_earned"
+    app_local_get_ex
+    intc_0 // 0
+    cover 2
+    select
+    dup
+    // smart_contracts/algocrefi_lending/contract.py:32
+    // penalty = self.aura_penalty.get(borrower, UInt64(0))
+    frame_dig -1
+    intc_0 // 0
+    bytec 11 // "aura_penalty"
+    app_local_get_ex
+    intc_0 // 0
+    cover 2
+    select
+    dup
+    cover 2
+    // smart_contracts/algocrefi_lending/contract.py:33
+    // if earned >= penalty:
+    >=
+    bz _net_aura_after_if_else@2
+    // smart_contracts/algocrefi_lending/contract.py:34
+    // return earned - penalty
+    frame_dig 0
+    frame_dig 1
+    -
+    frame_bury 0
+    retsub
+
+_net_aura_after_if_else@2:
+    // smart_contracts/algocrefi_lending/contract.py:35
+    // return UInt64(0)
+    intc_0 // 0
+    frame_bury 0
+    retsub
+
+
+// smart_contracts.algocrefi_lending.contract.AlgocrefiLending._max_unsecured_amount_microalgo(borrower: bytes) -> uint64:
+_max_unsecured_amount_microalgo:
+    // smart_contracts/algocrefi_lending/contract.py:37
+    // def _max_unsecured_amount_microalgo(self, borrower: Account) -> UInt64:
+    proto 1 1
+    // smart_contracts/algocrefi_lending/contract.py:38
+    // net_aura = self._net_aura(borrower)
+    frame_dig -1
+    callsub _net_aura
+    // smart_contracts/algocrefi_lending/contract.py:39-40
+    // # credit_limit_algo = aura * 10% ; convert to microalgo
+    // return (net_aura * self.unsecured_limit_bps_of_aura * self.microalgos_per_algo) // UInt64(10_000)
+    intc_0 // 0
+    bytec 16 // "unsecured_limit_bps_of_aura"
+    app_global_get_ex
+    assert // check self.unsecured_limit_bps_of_aura exists
+    *
+    intc_0 // 0
+    bytec 12 // "microalgos_per_algo"
+    app_global_get_ex
+    assert // check self.microalgos_per_algo exists
+    *
+    intc 4 // 10000
+    /
+    retsub
