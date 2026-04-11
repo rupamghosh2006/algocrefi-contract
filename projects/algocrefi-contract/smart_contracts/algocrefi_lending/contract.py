@@ -5,7 +5,7 @@ from algopy.arc4 import abimethod
 class AlgocrefiLending(ARC4Contract):
 
     def __init__(self) -> None:
-        self.available_algo = UInt64(0)
+        self.pool_address = Global.creator_address
         self.usdc_asset_id = UInt64(10458941)
         self.daily_interest_bps = UInt64(10)  # 0.10% per day
         self.microalgos_per_algo = UInt64(1_000_000)
@@ -64,14 +64,9 @@ class AlgocrefiLending(ARC4Contract):
         ).submit()
 
     @abimethod()
-    def add_liquidity(self, payment_txn_index: UInt64) -> UInt64:
-        pay = gtxn.PaymentTransaction(payment_txn_index)
-        assert pay.sender == Txn.sender, "Invalid liquidity sender"
-        assert pay.receiver == Global.current_application_address, "Invalid receiver"
-        assert pay.amount > 0, "Liquidity must be positive"
-
-        self.available_algo += pay.amount
-        return self.available_algo
+    def set_pool_address(self, pool: Account) -> None:
+        assert Txn.sender == Global.creator_address, "Only admin"
+        self.pool_address = pool
 
     @abimethod()
     def request_collateral_loan(
@@ -80,17 +75,22 @@ class AlgocrefiLending(ARC4Contract):
         days_to_repay: UInt64,
         min_collateral_usdc: UInt64,
         collateral_txn_index: UInt64,
+        pool_payout_txn_index: UInt64,
     ) -> UInt64:
         assert algo_amount > 0, "Amount must be positive"
         assert days_to_repay > 0, "Days must be positive"
         assert self.loan_active.get(Txn.sender, UInt64(0)) == 0, "Active loan exists"
-        assert self.available_algo >= algo_amount, "Insufficient liquidity"
 
         collateral_txn = gtxn.AssetTransferTransaction(collateral_txn_index)
         assert collateral_txn.sender == Txn.sender, "Invalid collateral sender"
         assert collateral_txn.asset_receiver == Global.current_application_address, "Invalid collateral receiver"
         assert collateral_txn.xfer_asset == Asset(self.usdc_asset_id), "Invalid collateral asset"
         assert collateral_txn.asset_amount >= min_collateral_usdc, "Insufficient collateral"
+
+        payout_txn = gtxn.PaymentTransaction(pool_payout_txn_index)
+        assert payout_txn.sender == self.pool_address, "Loan must come from pool"
+        assert payout_txn.receiver == Txn.sender, "Invalid borrower receiver"
+        assert payout_txn.amount == algo_amount, "Invalid loan payout amount"
 
         per_day_interest = (algo_amount * self.daily_interest_bps) // UInt64(10_000)
         interest = per_day_interest * days_to_repay
@@ -104,25 +104,21 @@ class AlgocrefiLending(ARC4Contract):
         self.collateral_usdc[Txn.sender] = collateral_txn.asset_amount
         self.due_ts[Txn.sender] = Global.latest_timestamp + (days_to_repay * UInt64(86_400))
 
-        self.available_algo -= algo_amount
-
-        itxn.Payment(
-            receiver=Txn.sender,
-            amount=algo_amount,
-            fee=UInt64(0),
-        ).submit()
-
         return due
 
     @abimethod()
-    def request_unsecured_loan(self, algo_amount: UInt64, days_to_repay: UInt64) -> UInt64:
+    def request_unsecured_loan(self, algo_amount: UInt64, days_to_repay: UInt64, pool_payout_txn_index: UInt64) -> UInt64:
         assert algo_amount > 0, "Amount must be positive"
         assert days_to_repay > 0, "Days must be positive"
         assert self.loan_active.get(Txn.sender, UInt64(0)) == 0, "Active loan exists"
-        assert self.available_algo >= algo_amount, "Insufficient liquidity"
         assert self.aura_blacklisted.get(Txn.sender, UInt64(0)) == 0, "Blacklisted for unsecured loans"
         assert self._net_aura(Txn.sender) >= self.min_aura_for_unsecured, "AURA must be at least 30"
         assert algo_amount <= self._max_unsecured_amount_microalgo(Txn.sender), "Requested amount exceeds credit limit"
+
+        payout_txn = gtxn.PaymentTransaction(pool_payout_txn_index)
+        assert payout_txn.sender == self.pool_address, "Loan must come from pool"
+        assert payout_txn.receiver == Txn.sender, "Invalid borrower receiver"
+        assert payout_txn.amount == algo_amount, "Invalid loan payout amount"
 
         per_day_interest = (algo_amount * self.daily_interest_bps) // UInt64(10_000)
         interest = per_day_interest * days_to_repay
@@ -136,14 +132,6 @@ class AlgocrefiLending(ARC4Contract):
         self.collateral_usdc[Txn.sender] = UInt64(0)
         self.due_ts[Txn.sender] = Global.latest_timestamp + (days_to_repay * UInt64(86_400))
 
-        self.available_algo -= algo_amount
-
-        itxn.Payment(
-            receiver=Txn.sender,
-            amount=algo_amount,
-            fee=UInt64(0),
-        ).submit()
-
         return due
 
     @abimethod()
@@ -156,10 +144,8 @@ class AlgocrefiLending(ARC4Contract):
 
         pay = gtxn.PaymentTransaction(payment_txn_index)
         assert pay.sender == Txn.sender, "Invalid repayment sender"
-        assert pay.receiver == Global.current_application_address, "Invalid repayment receiver"
+        assert pay.receiver == self.pool_address, "Repayment must go to pool"
         assert pay.amount >= due, "Repayment too low"
-
-        self.available_algo += due
         self.aura_earned[Txn.sender] = self.aura_earned.get(Txn.sender, UInt64(0)) + self._interest_to_aura_points(interest)
 
         if collateral > 0:
@@ -214,8 +200,8 @@ class AlgocrefiLending(ARC4Contract):
         return interest
 
     @abimethod(readonly=True)
-    def get_available_algo(self) -> UInt64:
-        return self.available_algo
+    def get_pool_address(self) -> Account:
+        return self.pool_address
 
     @abimethod(readonly=True)
     def get_active_loan(self, borrower: Account) -> UInt64:
